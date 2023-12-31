@@ -1,0 +1,270 @@
+---
+artifacts:
+  - Project:
+      title: Exchange Simulator
+      time: 2022-12
+      languages:
+        - Python
+        - Javascript
+      status: Completed
+      tags:
+        - Trading
+      preview: assets/tradingsim.png
+      link: "https://tradingsim.allenchen.dev/"
+      desc: "<p>A simulated exchange backed by a real FIFO matching engine. Players can trade with each other (and my bots) in real time, and the exchange will match orders.</p>\n<p>Ships with a clean, minimalist web-based GUI for click trading, and a suite of RESTful APIs for programmatic trading.</p>"
+  - Project:
+      title: DaVinci Ergonomics Laboratory
+      time: 2022-10
+      languages:
+        - Cpp
+        - Javascript
+      status: Discontinued
+      tags:
+        - Hardware
+        - Startup
+      preview: assets/davinci.png
+      link: "https://davinci-ergo-lab.com/#home"
+      desc: "<p>I built a startup aiming to build the next generation of ergonomic keyboards: customizable, affordable and empowering.</p>\n<p>I had to discontinue this because my work visa doesn't allow me to run a company while being employed. 😢</p>"
+  - Project:
+      title: Evacuate Greensboro
+      time: 2022-03
+      languages:
+        - Python
+      status: Completed
+      tags:
+        - Simulation
+      preview: assets/evac.png
+      link: "https://arxiv.org/pdf/2305.12722.pdf"
+      desc: "<p>GreenEVT is a city-scale evacuation simulator with a focus on high-dimensional constraints and objectives - not just city traffic, but also load on the power grid due to charging electric vehicles.</p>\n<p>I was tasked to maintain the codebase for the hybrid simulator, and optimize its performance. With tactics like memoization and parallel computing, I managed to achieve a 5x speedup.</p>"
+  - Project:
+      title: Control Barrier Function in Rendezvous Consensus
+      time: 2021-12
+      languages:
+        - Python
+      status: Completed
+      tags:
+        - Robotics
+      preview: assets/rendezvous.png
+      link: "https://github.com/YilunAllenChen/"
+      desc: "<p>Rendezvous Consensus Problem with Double Integrator Control Barrier Function Simulation.</p>\n<p>The algorithm allows agents, who only have local information, to reach a consensus on a rendezvous point, while avoiding collisions with each other and obstacles.</p>"
+  - Project:
+      title: Anti-alising With PDE
+      time: 2021-10
+      languages:
+        - Python
+      status: Completed
+      tags:
+        - Graphics
+      preview: assets/pde.png
+      link: "https://github.com/YilunAllenChen/anti-aliasing-pde"
+      desc: "<p>Anti-alising is a technique used in computer graphics to reduce the visual artifacts known as aliasing when representing a high-resolution image at a lower resolution.</p>\n<p>The algorithm is a variant of the geometric heat equation, but instead of promoting diffusion along edges, it promotes diffusion across edges while preserving other features of the image, achieving a similar effect to anti-alising.</p>"
+  - Project:
+      title: Source Code Sonificator
+      time: 2019-05
+      languages:
+        - Python
+      status: Completed
+      tags:
+        - Music
+      preview: assets/sonicpy.png
+      link: "https://github.com/YilunAllenChen/codemposer"
+      desc: "<p>This playful project is a Python app that converts source code into music.</p>\n<p>It looks for patterns in the code, and then maps those patterns to musical notes.</p>\n<p>Award: First Place, HackGT 2019 Georgia Tech Horizon Hackathon.</p>"
+  - Project:
+      title: Self Driving Car in GTAV
+      time: 2021-03
+      languages:
+        - Cpp
+        - Python
+      status: Completed
+      tags:
+        - Game
+      preview: assets/sdc.png
+      link: "https://www.youtube.com/watch?v=K5tWRnS-N8U&t=1s"
+      desc: "<p>This project aims to build a self driving car in Grand Theft Auto V.</p>\n<p>The camera capture is done in C++ using the OpenCV library, and the neural network is trained in Python.</p>\n<p>The output of the neural net is then fed into both a simulation environment to reconstruct the state of the world, and a controller to control the car.</p>"
+  - Project:
+      title: Museum of Code
+      time: 2023-10
+      languages:
+        - Rust
+      status: Ongoing
+      tags:
+        - Art
+      preview: assets/moco.png
+      link: "https://yilunallenchen.github.io/museum_of_code/"
+      desc: "<p>Museum of Code is a collection of beautiful code in all languages.</p>\n<p>It's a playful project that aims to showcase the beauty of computer programs in the form of a museum.</p>"
+  - Project:
+      title: Karage
+      time: 2022-09
+      languages:
+        - Rust
+      status: Ongoing
+      tags:
+        - Trading
+      preview: assets/karage.png
+      link: "https://github.com/YilunAllenChen/Karage"
+      desc: "<p>Karage set out to be a fully-featured trading platform fully written in pure Rust.</p>\n<p>Current implementation:</p>\n<p>(Sept 2022) Market-making bot for binance bitcoin perpetual future on the testing network</p>\n<p>(Oct 2023) Equity market-making bot on Alpaca Markets</p>"
+  - Project:
+      title: Self-Watering Pot
+      time: 2021-05
+      languages:
+        - Python
+        - Java
+      status: Completed
+      tags:
+        - IoT
+      preview: assets/yingxao.png
+      link: "https://github.com/YilunAllenChen/YingXao"
+      desc: "<p>YingXao is an IoT solution for plant lovers - a self-watering pot that automatically waters plants when they are thirsty, and adjusts lighting conditions to ensure optimal growth.</p>\n<p>It also ships with a mobile app backed by a cloud platform, which continuously improve the algorithm and provide the best care for your plants.</p>"
+  - Project:
+      title: Project Dowwin
+      time: 2019-02
+      languages:
+        - Python
+      status: Completed
+      tags:
+        - Trading
+      preview: assets/dowwin.png
+      link: "https://github.com/YilunAllenChen/Dowwin"
+      desc: "<p>Dowwin is a roboadvisor training platform for stock trading.</p>\n<p>With a unified interface to fetch market data from multiple sources, the platform has milliseoncd-level latency to the market, albeit a completely free system.</p>\n<p>It trains hundreds of roboadvisors with different strategy parameters, and use evolution algorithms to filter out the best ones.</p>"
+  - Project:
+      title: Cecropia
+      time: 2020-10
+      languages:
+        - Python
+        - Javascript
+      status: Completed
+      tags:
+        - Robotics
+        - Cloud
+      preview: assets/cecropia.png
+      link: "https://cecropia.web.app/"
+      desc: "<p>Cecropia is where SlothBot lives on - it's a all-in-one dashboard for SlothBot fleets.</p>\n<p>It allows users to monitor SlothBot's status, and control the robot remotely, or schedule the robot to perform certain tasks (when they wake up)</p>"
+  - Project:
+      title: Breaking DKIM in Outlook
+      time: 2021-11
+      languages:
+        - Python
+      status: Completed
+      tags:
+        - Security
+      preview: assets/breaking_dkim.png
+      link: "https://github.com/YilunAllenChen/Breaking_DKIM"
+      desc: "<p>DKIM is a widely used email authentication protocol. It is used to verify that the email is sent from the claimed sender, and that the email is not tampered with in transit.</p>\n<p>An attacker is able to spoof any identity and change the content of the email any way they want, as long as the spoofed identity is whitelisted by the victim.\n(Note: Not that the attacker is whitelisted, but the identity that the attacker pretends to be, is whitelisted).</p>"
+  - Project:
+      title: SlothBot
+      time: 2021-09
+      languages:
+        - Cpp
+        - Javascript
+        - Python
+      status: Completed
+      tags:
+        - Robotics
+      preview: assets/slothbot.jpeg
+      link: "https://news.gatech.edu/news/2020/06/16/slothbot-garden-demonstrates-hyper-efficient-conservation-robot"
+      desc: "<p>The SlothBot is a robot that moves slowly along a cable, monitoring the environment and collecting data on the climate.</p>\n<p>It's a playful experiment in robotics, as it embraces &quot;slowness&quot; as a design paradigm, allowing us to rethink the way robots interact with the world.</p>"
+  - Project:
+      title: BrushBot 2.0
+      time: 2020-09
+      languages:
+        - Python
+        - Cpp
+      status: Completed
+      tags:
+        - Robotics
+      preview: assets/brushbot.png
+      link: "https://github.com/YilunAllenChen/BrushBot"
+      desc: "<p>BrushBot 2.0 is a continuation of the BrushBot project.</p>\n<p>It aims to explore the randomness of movements in its most extreme form - the robot moves solely by vibrating its brush.</p>\n<p>BrushBot 2.0 has significantly smaller size and weight, and is equipped with more advanced sensors.</p>"
+  - Project:
+      title: "Conway's Game of Life"
+      time: 2021-12
+      languages:
+        - Python
+      status: Completed
+      tags:
+        - Game
+      preview: assets/gameoflife.png
+      link: "https://github.com/YilunAllenChen/pygame-of-life"
+      desc: "<p>Conway's Game of Life is a cellular automaton devised by the British mathematician John Horton Conway in 1970.</p>\n<p>It's a game where the player sets the initial state of the board, and then observes the evolution of the board.</p>"
+  - Experience:
+      company: Georgia Tech
+      start_time: 2019-02
+      end_time: 2021-05
+      location: "Atlanta, GA"
+      icon: gt.jpg
+      title: Undergraduate Research Assistant
+      desc: "<p>All kinds of robots.</p>\n<ul>\n<li>Hyper-energy-efficient Field Deployed Robots</li>\n<li>Swarm robots and Simulations</li>\n<li>Random-walk Robots</li>\n<li>Remote-control Dashboards</li>\n</ul>"
+  - Experience:
+      company: Mobility Asia
+      start_time: 2020-08
+      end_time: 2020-12
+      location: "Beijing, China"
+      icon: mobility_asia.jpg
+      title: Software Engineer Intern
+      desc: "<p>Internet of Cars.</p>\n<ul>\n<li>Quality Assurance Automation Framework</li>\n<li>Data Sourcing</li>\n</ul>"
+  - Experience:
+      company: Uber
+      start_time: 2020-05
+      end_time: 2020-07
+      location: Remote
+      icon: uber.jpg
+      title: Hardware Engineering Intern
+      desc: "<p>Platform Validation.</p>\n<ul>\n<li>Fleet Orchestrator for Autonomous Vehicles</li>\n</ul>"
+  - Experience:
+      company: DaVinci
+      start_time: 2022-02
+      end_time: 2022-10
+      location: "Chicago, IL"
+      icon: davinci.jpg
+      title: Founder & CEO
+      desc: "<p>Split Ergonomic Mechanical Keyboards Startup.</p>\n<ul>\n<li>Firmware, Hardware, Frontend engineering</li>\n<li>Project Management</li>\n<li>Procurement &amp; Manufacturing</li>\n</ul>"
+  - Experience:
+      company: StartProto
+      start_time: 2021-02
+      end_time: 2021-8
+      location: "Atlanta, GA"
+      icon: startproto.jpg
+      title: Product Engineer
+      desc: "<p>Operating System for Makerspaces.</p>\n<ul>\n<li>Architectural Design</li>\n<li>Full-stack Engineering</li>\n</ul>"
+  - Experience:
+      company: Biggerlab
+      start_time: 2018-05
+      end_time: 2018-08
+      location: "Shanghai, China"
+      icon: biggerlab.jpg
+      title: Instructor & Developer
+      desc: "<p>Programming for K-12 Students.</p>\n<ul>\n<li>Python Summer Bootcamp for K-12 Students</li>\n<li>Cloud Infrastructure</li>\n<li>SEO Optimization</li>\n</ul>"
+  - Experience:
+      company: DRW
+      start_time: 2022-07
+      end_time: current
+      location: "Chicago, IL"
+      icon: drw.jpg
+      title: Software Engineer
+      desc: "<p>Desk Tools &amp; Infrastructure.</p>\n<ul>\n<li>High-performance, Low-latency, and Fault-tolerant Data Infrastructure</li>\n<li>Portfolio Risk Attribution and PnL Tools</li>\n<li>Exotic Option Pricing Infrastructure</li>\n</ul>"
+  - Experience:
+      company: Georgia Tech
+      start_time: 2022-01
+      end_time: 2022-05
+      location: "Atlanta, GA"
+      icon: gt.jpg
+      title: Graduate Research Assistant
+      desc: "<p>Giga-scale Urban Traffic Simulation.</p>\n<ul>\n<li>Data Infrastructure</li>\n<li>Algorithmic Optimization</li>\n</ul>"
+  - Experience:
+      company: DRW
+      start_time: 2021-06
+      end_time: 2021-08
+      location: "Chicago, IL"
+      icon: drw.jpg
+      title: Software Engineering Intern
+      desc: "<p>Large-scale Data Infrastructure.</p>\n<ul>\n<li>Proof-of-concept Language-agnostic High-throughput Data Pipeline</li>\n<li>Orchestration and Monitoring Dashboard</li>\n</ul>"
+  - Experience:
+      company: Georgia Tech
+      start_time: 2021-08
+      end_time: 2022-01
+      location: "Atlanta, GA"
+      icon: gt.jpg
+      title: Graduate Teaching Assistant
+      desc: "<p>Professional Communications.</p>\n<ul>\n<li>Technical Documentation</li>\n<li>Resume Crafting</li>\n<li>Interview Skills</li>\n</ul>"
+meta:
+  build: "1704048188729"
