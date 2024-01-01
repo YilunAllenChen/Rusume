@@ -38,42 +38,54 @@ impl Component for ProjectController {
     type Properties = ProjectControllerProps;
 
     fn create(ctx: &Context<Self>) -> Self {
-        let init = vec![Project {
-            name: "Museum of Code".to_string(),
-            description: "Educational web app caputuring the beauty of programming.".to_string(),
-            technologies: "Rust/Yew".to_string(),
-            url: Some("https://yilunallenchen.github.io/museum_of_code/".to_string()),
-        }, Project {
-            name: "Exchange Simulator".to_string(),
-            description: "FIFO matching engine with materialized market impacts.".to_string(),
-            technologies: "Python, JavaScript".to_string(),
-            url: Some("https://tradingsim.allenchen.dev/".to_string()),
-        }, Project {
-            name: "Project Karage".to_string(),
-            description: "Toy trading platform with market-making / arbitrage bot.".to_string(),
-            technologies: "Rust".to_string(),
-            url: Some("https://github.com/YilunAllenChen/Karage".to_string()),
-        }, Project {
-            name: "DaVinci Ergo Lab".to_string(),
-            description: "Ergonomic split mechanical keyboards built from the ground up. ".to_string(),
-            technologies: "Python, C++".to_string(),
-            url: Some("https://davinci-ergo-lab.com/".to_string()),
-        }, Project {
-            name: "Project Dowwin".to_string(),
-            description: "Genetic algorithm inspired robo-advisor training system and market data feeds.".to_string(),
-            technologies: "Python".to_string(),
-            url: Some("https://github.com/YilunAllenChen/Dowwin_legacy/".to_string()),
-        }, Project {
-            name: "PDE-based Anti-Aliasing".to_string(),
-            description: "Enhance computer graphics with partial differential equations. ".to_string(),
-            technologies: "Python".to_string(),
-            url: Some("https://github.com/YilunAllenChen/Dowwin_legacy/".to_string()),
-        }, Project {
-            name: "SDC in GTAV".to_string(),
-            description: "Self-driving cars in Grant Theft Auto V.".to_string(),
-            technologies: "Python, C++".to_string(),
-            url: Some("https://github.com/YilunAllenChen/Dowwin_legacy/".to_string()),
-        }
+        let init = vec![
+            Project {
+                name: "Museum of Code".to_string(),
+                description: "Educational web app caputuring the beauty of programming."
+                    .to_string(),
+                technologies: "Rust/Yew".to_string(),
+                url: Some("https://yilunallenchen.github.io/museum_of_code/".to_string()),
+            },
+            Project {
+                name: "Exchange Simulator".to_string(),
+                description: "FIFO matching engine with materialized market impacts.".to_string(),
+                technologies: "Python, JavaScript".to_string(),
+                url: Some("https://tradingsim.allenchen.dev/".to_string()),
+            },
+            Project {
+                name: "Project Karage".to_string(),
+                description: "Toy trading platform with market-making / arbitrage bot.".to_string(),
+                technologies: "Rust".to_string(),
+                url: Some("https://github.com/YilunAllenChen/Karage".to_string()),
+            },
+            Project {
+                name: "DaVinci Ergo Lab".to_string(),
+                description: "Ergonomic split mechanical keyboards built from the ground up. "
+                    .to_string(),
+                technologies: "Python, C++".to_string(),
+                url: Some("https://davinci-ergo-lab.com/".to_string()),
+            },
+            Project {
+                name: "Project Dowwin".to_string(),
+                description:
+                    "Genetic algorithm inspired robo-advisor training system and market data feeds."
+                        .to_string(),
+                technologies: "Python".to_string(),
+                url: Some("https://github.com/YilunAllenChen/Dowwin_legacy/".to_string()),
+            },
+            Project {
+                name: "PDE-based Anti-Aliasing".to_string(),
+                description: "Enhance computer graphics with partial differential equations. "
+                    .to_string(),
+                technologies: "Python".to_string(),
+                url: Some("https://github.com/YilunAllenChen/Dowwin_legacy/".to_string()),
+            },
+            Project {
+                name: "SDC in GTAV".to_string(),
+                description: "Self-driving cars in Grant Theft Auto V.".to_string(),
+                technologies: "Python, C++".to_string(),
+                url: Some("https://github.com/YilunAllenChen/Dowwin_legacy/".to_string()),
+            },
         ];
         let slf = Self { projects: init };
         ctx.props().callback.emit(slf.projects.clone());
@@ -197,15 +209,22 @@ where
         let input: HtmlInputElement = e.target_unchecked_into();
         ProjectMsg::UpdateField(idx, cons(input.value()))
     });
-    let input = html! {
-        <input
-            type="text"
-            oninput={callback}
-            class="w-full rounded-md mb-2 px-3.5 py-2.5 text-md shadow-sm"
-            value={value}
-        />
-    };
-    with_side_tip(input, name)
+    html! {
+    <div class="m-2">
+        <div class="relative">
+            <input type="text"
+                   id={name.clone()}
+                   oninput={callback}
+                   class="peer rounded-md px-2 pt-5 pb-1 block w-full border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-black pt-2"
+                   value={value}
+            />
+            <label for={name.clone()}
+                   class="absolute -top-0 left-2 text-gray-500 text-sm transition-all peer-placeholder-shown:text-xl peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-0">
+                {name}
+            </label>
+        </div>
+    </div>
+    }
 }
 
 #[derive(Properties, PartialEq)]

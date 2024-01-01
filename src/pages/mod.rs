@@ -12,9 +12,9 @@ use education::EducationController;
 use education::EducationViewer;
 
 mod experiences;
+use experiences::Experience;
 use experiences::ExperienceController;
 use experiences::ExperienceViewer;
-use experiences::Experience;
 
 mod projects;
 use projects::Project;
@@ -258,13 +258,20 @@ where
         let input: HtmlInputElement = e.target_unchecked_into();
         HomeMsg::UpdateField(cons(input.value()))
     });
-    let input = html! {
-        <input
-            type="text"
-            oninput={callback}
-            class="w-full rounded-md mb-2 px-3.5 py-1.5 text-sm shadow-sm"
-            value={value}
-        />
-    };
-    with_side_tip(input, name)
+    html! {
+    <div class="m-2">
+        <div class="relative">
+            <input type="text"
+                   id={name.clone()}
+                   oninput={callback}
+                   class="peer rounded-md px-2 pt-5 pb-1 block w-full border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-black pt-2"
+                   value={value}
+            />
+            <label for={name.clone()}
+                   class="absolute -top-0 left-2 text-gray-500 text-sm transition-all peer-placeholder-shown:text-xl peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-0">
+                {name}
+            </label>
+        </div>
+    </div>
+    }
 }

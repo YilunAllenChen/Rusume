@@ -197,32 +197,35 @@ impl Component for ExperienceController {
                     let input: HtmlInputElement = e.target_unchecked_into();
                     ExperienceMsg::UpdateField(idx, ExperienceField::Description(input.value()))
                 });
-                let description_input = with_side_tip(
-                    html! {
-                        <textarea
-                            class="w-full h-32 rounded-md mb-2 px-3.5 py-2.5 text-md shadow-sm"
-                            oninput={callback}
-                            value={experience.description.clone()}
-                        />
-                    },
-                    "Description".to_string(),
-                    )
-                    ;
-                    html! {
-                    <div class="space-y-2 rounded-lg bg-slate-100 p-4 my-4">
-                        {employer_input}
-                        {team_input}
-                        {title_input}
-                        {dates_input}
-                        {location_input}
-                        {description_input}
-                        <button
-                            class="w-full rounded-md mb-2 px-3.5 py-2.5 text-md shadow-sm bg-red-500 text-white"
-                            onclick={remove_experience}
-                        >
-                            {"Remove Experience"}
-                        </button>
+                let description_input = html! {
+                    <div class="relative m-2">
+                    <textarea
+                        name="description"
+                        class="w-full h-32 rounded-md px-3.5 pt-5 text-md shadow-sm"
+                        oninput={callback}
+                        value={experience.description.clone()}
+                    />
+                    <label for={"description".to_string()}
+                           class="absolute -top-0 left-2 text-gray-500 text-sm transition-all peer-placeholder-shown:text-xl peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-0">
+                        {"Description"}
+                    </label>
                     </div>
+                };
+                html! {
+                <div class="space-y-2 rounded-lg bg-slate-100 p-4 my-4">
+                    {employer_input}
+                    {team_input}
+                    {title_input}
+                    {dates_input}
+                    {location_input}
+                    {description_input}
+                    <button
+                        class="w-full rounded-md mb-2 px-3.5 py-2.5 text-md shadow-sm bg-red-500 text-white"
+                        onclick={remove_experience}
+                    >
+                        {"Remove Experience"}
+                    </button>
+                </div>
                 }
             }).collect::<Html>();
         html! {
@@ -253,15 +256,22 @@ where
         let input: HtmlInputElement = e.target_unchecked_into();
         ExperienceMsg::UpdateField(idx, cons(input.value()))
     });
-    let input = html! {
-        <input
-            type="text"
-            oninput={callback}
-            class="w-full rounded-md mb-2 px-3.5 py-2.5 text-md shadow-sm"
-            value={value}
-        />
-    };
-    with_side_tip(input, name)
+    html! {
+    <div class="m-2">
+        <div class="relative">
+            <input type="text"
+                   id={name.clone()}
+                   oninput={callback}
+                   class="peer rounded-md px-2 pt-5 pb-1 block w-full border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-black pt-2"
+                   value={value}
+            />
+            <label for={name.clone()}
+                   class="absolute -top-0 left-2 text-gray-500 text-sm transition-all peer-placeholder-shown:text-xl peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-0">
+                {name}
+            </label>
+        </div>
+    </div>
+    }
 }
 
 #[derive(Properties, PartialEq)]
