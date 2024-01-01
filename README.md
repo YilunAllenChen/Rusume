@@ -1,4 +1,12 @@
-# [Personal Page](https://yilunallenchen.github.io/)
+# [A blazingly-fast resume builder](https://yilunallenchen.github.io/Rusume/#/)
+- Opinionated layout, so you don't have to worry about it.
+- Fill-in-the-blanks, but real-time updates.
+- Blazingly-fast, because it's powered by Rust/Yew and WebAssembly. 🦀🦀🦀.
+
+## Features to Add
+- The `Skills` section
+- Markdown support for description for better bolding & highlighting.
+- Adjutable layout
 
 
 ### Developer setup
