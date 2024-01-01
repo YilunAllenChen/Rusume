@@ -188,7 +188,15 @@ impl Component for Home {
 
         html! {
             <div class="w-screen h-screen flex">
-                <h1 class="w-1/3 p-4 bg-slate-200 overflow-scroll">
+                <h1 class="w-1/4 p-4 bg-slate-200 overflow-scroll">
+
+                    <button
+                        class="rounded-md w-full mt-10 bg-green-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-300"
+                        onclick={ctx.link().callback(|_| HomeMsg::Print)}
+                    >
+                    {"Print"}
+                    </button>
+
                     <h5 class="text-xl font-bold text-left self-center pl-4 mt-4 mb-1"> {"Basic Information"} </h5>
                     <hr/>
                     {make_input(ctx, "Name".to_string(), self.name.clone(), Field::Name)}
@@ -218,7 +226,7 @@ impl Component for Home {
                     {"Print"}
                     </button>
                 </h1>
-                <div class="flex w-2/3 justify-center bg-slate-100 ">
+                <div class="flex w-3/4 justify-center bg-slate-100 ">
                 <div id="rusume" class="w-[816x] bg-white p-4 overflow-scroll">
                     <div class="font-['Times'] text-lg tracking-normal">
                         <div class="text-4xl text-center"> {self.name.clone()} </div>
@@ -254,7 +262,7 @@ where
         <input
             type="text"
             oninput={callback}
-            class="w-full rounded-md mb-2 px-3.5 py-2.5 text-md shadow-sm"
+            class="w-full rounded-md mb-2 px-3.5 py-1.5 text-sm shadow-sm"
             value={value}
         />
     };
