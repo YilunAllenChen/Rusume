@@ -1,8 +1,6 @@
 use web_sys::HtmlInputElement;
 use yew::prelude::*;
 
-use super::html_utils::with_side_tip;
-
 #[derive(Debug, PartialEq, Clone)]
 pub struct Education {
     school: String,
@@ -189,6 +187,8 @@ impl Component for EducationController {
             }).collect::<Html>();
         html! {
             <>
+                <h5 class="text-xl font-bold text-left self-center pl-4 mt-4 mb-1"> {"Education"} </h5>
+                <hr/>
                 {inputs}
                 <button
                     class="w-full rounded-md mt-4 py-2.5 text-md shadow-sm bg-green-500 text-white"
@@ -240,6 +240,9 @@ pub struct Props {
 
 #[function_component(EducationViewer)]
 pub fn view_education(props: &Props) -> Html {
+    if props.educations.is_empty() {
+        return html! {};
+    }
     let educations = props
         .educations
         .iter()
@@ -262,8 +265,11 @@ pub fn view_education(props: &Props) -> Html {
         })
         .collect::<Html>();
     html! {
-        <div class="m-4 flex flex-col space-y-1">
-            {educations}
-        </div>
+        <>
+            <h5 class="text-2xl font-bold text-left w-full border-b-2 border-black mt-4"> {"Education"} </h5>
+            <div class="mx-2 my-1 flex flex-col space-y-0">
+                {educations}
+            </div>
+        </>
     }
 }

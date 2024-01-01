@@ -1,8 +1,6 @@
 use web_sys::HtmlInputElement;
 use yew::prelude::*;
 
-use super::html_utils::with_side_tip;
-
 #[derive(Debug, PartialEq, Clone)]
 pub struct Project {
     name: String,
@@ -210,6 +208,9 @@ where
         ProjectMsg::UpdateField(idx, cons(input.value()))
     });
     html! {
+    <>
+    <h5 class="text-xl font-bold text-left self-center pl-4 mt-4 mb-1"> {"Projects"} </h5>
+    <hr/>
     <div class="m-2">
         <div class="relative">
             <input type="text"
@@ -224,6 +225,7 @@ where
             </label>
         </div>
     </div>
+    </>
     }
 }
 
@@ -234,6 +236,9 @@ pub struct Props {
 
 #[function_component(ProjectViewer)]
 pub fn view_project(props: &Props) -> Html {
+    if props.projects.is_empty() {
+        return html! {};
+    }
     let projects = props
         .projects
         .iter()
@@ -255,8 +260,11 @@ pub fn view_project(props: &Props) -> Html {
         })
         .collect::<Html>();
     html! {
-        <div class="m-4 flex flex-col space-y-[0.5]">
+        <>
+        <h5 class="text-2xl font-bold text-left w-full border-b-2 border-black mt-4"> {"Projects"} </h5>
+        <div class="m-2 flex flex-col space-y-[0.5]">
             {projects}
         </div>
+        </>
     }
 }

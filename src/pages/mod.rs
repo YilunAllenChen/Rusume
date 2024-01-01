@@ -2,9 +2,12 @@ use log::info;
 use web_sys::{window, HtmlInputElement};
 use yew::prelude::*;
 
-use self::html_utils::with_side_tip;
-
 mod html_utils;
+
+mod basic;
+use basic::Basic;
+use basic::BasicController;
+use basic::BasicViewer;
 
 mod education;
 use education::Education;
@@ -21,30 +24,16 @@ use projects::Project;
 use projects::ProjectController;
 use projects::ProjectViewer;
 
-#[derive(Debug)]
-pub enum Field {
-    Name(String),
-    Email(String),
-    Phone(String),
-    LinkedInUrl(String),
-    GithubUrl(String),
-}
-
 pub struct Home {
-    name: String,
-    email: String,
-    phone: String,
-    linkedin_url: Option<String>,
-    github_url: Option<String>,
-
+    basic: Basic,
     educations: Vec<Education>,
     experiences: Vec<Experience>,
     projects: Vec<Project>,
 }
 
 pub enum HomeMsg {
-    UpdateField(Field),
     Print,
+    UpdateBasic(Basic),
     UpdateEducationSection(Vec<education::Education>),
     UpdateExperienceSection(Vec<experiences::Experience>),
     UpdateProjectSection(Vec<projects::Project>),
@@ -59,14 +48,7 @@ impl Component for Home {
 
     fn create(_ctx: &Context<Self>) -> Self {
         Self {
-            name: "Yilun \"Allen\" Chen".to_string(),
-            email: "allenchenyilun1999@gmail.com".to_string(),
-            phone: "404-409-9683".to_string(),
-            linkedin_url: "https://www.linkedin.com/in/yilun-allen-chen-572b71141/"
-                .to_string()
-                .into(),
-            github_url: "https://github.com/YilunAllenChen".to_string().into(),
-
+            basic: Basic::default(),
             educations: [].to_vec(),
             experiences: [].to_vec(),
             projects: [].to_vec(),
@@ -79,34 +61,6 @@ impl Component for Home {
 
     fn update(&mut self, _ctx: &Context<Self>, msg: Self::Message) -> bool {
         match msg {
-            HomeMsg::UpdateField(field) => {
-                match field {
-                    Field::Name(name) => {
-                        self.name = name;
-                    }
-                    Field::Email(email) => {
-                        self.email = email;
-                    }
-                    Field::Phone(phone) => {
-                        self.phone = phone;
-                    }
-                    Field::LinkedInUrl(linkedin_url) => {
-                        if linkedin_url.is_empty() {
-                            self.linkedin_url = None;
-                            return true;
-                        }
-                        self.linkedin_url = Some(linkedin_url);
-                    }
-                    Field::GithubUrl(github_url) => {
-                        if github_url.is_empty() {
-                            self.github_url = None;
-                            return true;
-                        }
-                        self.github_url = Some(github_url);
-                    }
-                }
-                true
-            }
             HomeMsg::Print => {
                 info!("print");
                 let window = window().unwrap();
@@ -129,6 +83,11 @@ impl Component for Home {
                 info!("reset done");
                 true
             }
+            HomeMsg::UpdateBasic(basic) => {
+                self.basic = basic;
+                info!("update basic");
+                true
+            }
             HomeMsg::UpdateEducationSection(educations) => {
                 self.educations = educations;
                 info!("update education section");
@@ -148,34 +107,6 @@ impl Component for Home {
     }
 
     fn view(&self, ctx: &Context<Self>) -> Html {
-        let linkedin = match &self.linkedin_url {
-            Some(url) => {
-                html! {
-                    <a class="text-blue-700" target="_blank" href={url.clone()}>
-                        <i class="devicon-linkedin-plain"/> {" LinkedIn"}
-                    </a>
-                }
-            }
-            None => html! {},
-        };
-
-        let github = match &self.github_url {
-            Some(url) => {
-                html! {
-                    <a class="text-blue-700" target="_blank" href={url.clone()}>
-                        <i class="devicon-github-original text-black"/> {" Github"}
-                    </a>
-                }
-            }
-            None => html! {},
-        };
-
-        let email = html! {
-            <a class="text-blue-700" href={"mailto:".to_string() + &self.email.clone()}>
-                {self.email.clone()}
-            </a>
-        };
-
         let education_cb = ctx
             .link()
             .callback(|educations| HomeMsg::UpdateEducationSection(educations));
@@ -185,6 +116,7 @@ impl Component for Home {
         let project_cb = ctx
             .link()
             .callback(|projects| HomeMsg::UpdateProjectSection(projects));
+        let basic_cb = ctx.link().callback(|basic| HomeMsg::UpdateBasic(basic));
 
         html! {
             <div class="w-screen h-screen flex">
@@ -196,29 +128,10 @@ impl Component for Home {
                     >
                     {"Print"}
                     </button>
-
-                    <h5 class="text-xl font-bold text-left self-center pl-4 mt-4 mb-1"> {"Basic Information"} </h5>
-                    <hr/>
-                    {make_input(ctx, "Name".to_string(), self.name.clone(), Field::Name)}
-                    {make_input(ctx, "Email".to_string(), self.email.clone(), Field::Email)}
-                    {make_input(ctx, "Phone".to_string(), self.phone.clone(), Field::Phone)}
-                    <h5 class="text-xl font-bold text-left self-center pl-4 mt-4 mb-1"> {"Social Media"} </h5>
-                    <hr/>
-                    {make_input(ctx, "LinkedIn".to_string(), self.linkedin_url.clone().unwrap_or("".to_string()), Field::LinkedInUrl)}
-                    {make_input(ctx, "Github".to_string(), self.github_url.clone().unwrap_or("".to_string()), Field::GithubUrl)}
-
-                    <h5 class="text-xl font-bold text-left self-center pl-4 mt-4 mb-1"> {"Education"} </h5>
-                    <hr/>
+                    <BasicController callback={basic_cb}/>
                     <EducationController callback={education_cb}/>
-
-                    <h5 class="text-xl font-bold text-left self-center pl-4 mt-4 mb-1"> {"Experiences"} </h5>
-                    <hr/>
                     <ExperienceController callback={experience_cb} />
-
-                    <h5 class="text-xl font-bold text-left self-center pl-4 mt-4 mb-1"> {"Projects"} </h5>
-                    <hr/>
                     <ProjectController callback={project_cb} />
-
                     <button
                         class="rounded-md w-full mt-10 bg-green-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-300"
                         onclick={ctx.link().callback(|_| HomeMsg::Print)}
@@ -229,49 +142,14 @@ impl Component for Home {
                 <div class="flex w-3/4 justify-center bg-slate-100 ">
                 <div id="rusume" class="w-[816x] bg-white p-4 overflow-scroll">
                     <div class="font-['Times'] text-lg tracking-normal">
-                        <div class="text-4xl text-center"> {self.name.clone()} </div>
-                        <div class="flex gap-x-8 text-center justify-center">
-                            <div> {self.phone.clone()} </div>
-                            {email}
-                            {linkedin}
-                            {github}
-                        </div>
-
-                        <h5 class="text-2xl font-bold text-left w-full border-b-2 border-black mt-4"> {"Education"} </h5>
+                        <BasicViewer basic={self.basic.clone()} />
                         <EducationViewer educations={self.educations.clone()} />
-                        <h5 class="text-2xl font-bold text-left w-full border-b-2 border-black mt-4"> {"Experiences"} </h5>
                         <ExperienceViewer experiences={self.experiences.clone()} />
-                        <h5 class="text-2xl font-bold text-left w-full border-b-2 border-black mt-4"> {"Projects"} </h5>
                         <ProjectViewer projects={self.projects.clone()} />
                     </div>
                 </div>
                 </div>
             </div>
         }
-    }
-}
-fn make_input<F>(ctx: &Context<Home>, name: String, value: String, cons: F) -> Html
-where
-    F: Fn(String) -> Field + 'static,
-{
-    let callback = ctx.link().callback(move |e: InputEvent| {
-        let input: HtmlInputElement = e.target_unchecked_into();
-        HomeMsg::UpdateField(cons(input.value()))
-    });
-    html! {
-    <div class="m-2">
-        <div class="relative">
-            <input type="text"
-                   id={name.clone()}
-                   oninput={callback}
-                   class="peer rounded-md px-2 pt-5 pb-1 block w-full border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-black pt-2"
-                   value={value}
-            />
-            <label for={name.clone()}
-                   class="absolute -top-0 left-2 text-gray-500 text-sm transition-all peer-placeholder-shown:text-xl peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-0">
-                {name}
-            </label>
-        </div>
-    </div>
     }
 }
