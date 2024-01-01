@@ -181,6 +181,8 @@ impl Component for ProjectController {
             }).collect::<Html>();
         html! {
             <>
+                <h5 class="text-xl font-bold text-left self-center pl-4 mt-4 mb-1"> {"Projects"} </h5>
+                <hr/>
                 {inputs}
                 <button
                     class="w-full rounded-md mt-4 py-2.5 text-md shadow-sm bg-green-500 text-white"
@@ -209,8 +211,6 @@ where
     });
     html! {
     <>
-    <h5 class="text-xl font-bold text-left self-center pl-4 mt-4 mb-1"> {"Projects"} </h5>
-    <hr/>
     <div class="m-2">
         <div class="relative">
             <input type="text"
