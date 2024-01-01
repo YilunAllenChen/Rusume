@@ -276,8 +276,8 @@ pub fn view_experience(props: &Props) -> Html {
         .iter()
         .map(|experience| {
             html! {
-                <div class="">
-                <div class="flex justify-between mt-2 mb-1">
+                <div class="mb-2">
+                <div class="flex justify-between mb-1">
                     <div class="flex gap-x-3">
                         <span class="font-bold"> {&experience.employer.clone()} </span>
                         { " | " }

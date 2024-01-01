@@ -218,9 +218,9 @@ impl Component for Home {
                     {"Print"}
                     </button>
                 </h1>
-                <div class="flex w-2/3 justify-center overflow-scroll">
-                <div id="rusume" class="w-[1080px] p-4 bg-white text-xl text-black font-['Times']">
-                    <div class="font-['Times'] tracking-normal">
+                <div class="flex w-2/3 justify-center bg-slate-100 ">
+                <div id="rusume" class="w-[816x] bg-white p-4 overflow-scroll">
+                    <div class="font-['Times'] text-lg tracking-normal">
                         <div class="text-4xl text-center"> {self.name.clone()} </div>
                         <div class="flex gap-x-8 text-center justify-center">
                             <div> {self.phone.clone()} </div>

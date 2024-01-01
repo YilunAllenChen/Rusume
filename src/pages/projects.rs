@@ -54,7 +54,7 @@ impl Component for ProjectController {
             technologies: "Rust".to_string(),
             url: Some("https://github.com/YilunAllenChen/Karage".to_string()),
         }, Project {
-            name: "DaVinci Ergonomics Laboratory".to_string(),
+            name: "DaVinci Ergo Lab".to_string(),
             description: "Ergonomic split mechanical keyboards built from the ground up. ".to_string(),
             technologies: "Python, C++".to_string(),
             url: Some("https://davinci-ergo-lab.com/".to_string()),
@@ -236,7 +236,7 @@ pub fn view_project(props: &Props) -> Html {
         })
         .collect::<Html>();
     html! {
-        <div class="m-4 flex flex-col space-y-1">
+        <div class="m-4 flex flex-col space-y-[0.5]">
             {projects}
         </div>
     }
