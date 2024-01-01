@@ -218,7 +218,7 @@ impl Component for Home {
                     {"Print"}
                     </button>
                 </h1>
-                <div class="flex w-2/3 justify-center">
+                <div class="flex w-2/3 justify-center overflow-scroll">
                 <div id="rusume" class="w-[1080px] p-4 bg-white text-xl text-black font-['Times']">
                     <div class="font-['Times'] tracking-normal">
                         <div class="text-4xl text-center"> {self.name.clone()} </div>
