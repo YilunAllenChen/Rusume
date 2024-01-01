@@ -48,11 +48,11 @@ impl Component for ExperienceController {
             location: "Chicago, IL".to_string(),
             description: vec![
                 "• Own, develop and manage the core data streaming library enjoyed by 20 systems and 13 trading desks.",
-                "• Spearhead the design and development of option pricing dataset processes with estimated impact of $2M/yr",
-                "• Revamped and modernized group’s core risk product, boosting speed by 5x and reducing error rate by 85%",
+                "• Spearhead the design and development of option pricing dataset processes with estimated impact of **$2M/yr**.",
+                "• Revamped and modernized group’s core risk product, boosting speed by **5x** and reducing error rate by **85%**",
                 "• Automated, documented and standardized team operational procedures, saving 20 engr hrs / week.",
                 "• Orchestrated collaboration across 3 teams to integrate exotic options pricing into existing trading systems.",
-                "• Utilized: Python, Rust, Java, Kafka, Delta Lake, gRPC/Protobuf, S3, OracleDB, Arrow, Flight, Redis",
+                "• **Utilized**: Python, Rust, Java, Kafka, Delta Lake, gRPC/Protobuf, S3, OracleDB, Arrow, Flight, Redis",
             ].join("\n").to_string(),
         }, Experience {
             employer: "DRW".to_string(),
@@ -61,10 +61,10 @@ impl Component for ExperienceController {
             dates: "2022/06 - 2022/08".to_string(),
             location: "Chicago, IL".to_string(),
             description: vec![
-                "• Pioneered the design of a performant, language-agnostic data ingestion engine, handling >300k messages/sec.",
+                "• Pioneered the design of a performant, language-agnostic data ingestion engine, handling **>300k** messages/sec.",
                 "• Shipped unified data APIs to serve both historical and live data, widely used in critical trading infrastructure.",
-                "• Devised compression and normalization algorithms for high-dimensional data, reducing sizes by 80%.",
-                "• Utilized: Python, Java, Kafka, S3, Parquet, gRPC/Protobuf, Trino/Presto.",
+                "• Devised compression and normalization algorithms for high-dimensional data, reducing sizes by **80%**.",
+                "• **Utilized**: Python, Java, Kafka, S3, Parquet, gRPC/Protobuf, Trino/Presto.",
             ].join("\n").to_string(),
         }, Experience {
             employer: "Georgia Tech".to_string(),
@@ -75,7 +75,7 @@ impl Component for ExperienceController {
             description: vec![
                 "• Led a team of 4 PhD/MS students to build hardware, firmware and software for robots (The SlothBot).",
                 "• Architected asynchronous over-the-air software update infrastructure for field-deployed robots swarms.",
-                "• Utilized: C/C++, Python, React+Redux, Google Firebase, DigitalOcean, Kubernetes, Docker, ROS.",
+                "• **Utilized**: C/C++, Python, React+Redux, Google Firebase, DigitalOcean, Kubernetes, Docker, ROS.",
             ].join("\n").to_string(),
         }, Experience {
             employer: "Uber ATG".to_string(),
@@ -85,8 +85,8 @@ impl Component for ExperienceController {
             location: "Atlanta, GA".to_string(),
             description: vec![
                 "• Modularized and optimized the architecture of a legacy autonomous vehicle fleet orchestration system.",
-                "• Designed task scheduling algorithms, improving system capacity by 700% and reducing memory usage by 80%.",
-                "• Utilized: Python (asyncio), Bash, AWS (EC2), PostgreSQL.",
+                "• Designed task scheduling algorithms, improving system capacity by **700%** and reducing memory usage by **80%**.",
+                "• **Utilized**: Python (asyncio), Bash, AWS (EC2), PostgreSQL.",
             ].join("\n").to_string(),
        }
         ];
@@ -288,6 +288,15 @@ pub fn view_experience(props: &Props) -> Html {
         .experiences
         .iter()
         .map(|experience| {
+            let parsed = experience
+                .description
+                .split("\n")
+                .collect::<Vec<&str>>()
+                .iter()
+                .map(|s| markdown::to_html(s))
+                .collect::<Vec<String>>()
+                .into_iter()
+                .map(|html_str| Html::from_html_unchecked(html_str.into())).collect::<Html>();
             html! {
                 <div class="">
                 <div class="flex justify-between mb-1">
@@ -304,7 +313,7 @@ pub fn view_experience(props: &Props) -> Html {
                         <span class=""> {&experience.location} </span>
                     </div>
                 </div>
-                <pre class="font-['Times']"> {&experience.description} </pre>
+                <pre class="font-['Times'] flex flex-col gap-x-0"> {parsed} </pre>
                 </div>
             }
         })

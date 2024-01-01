@@ -62,45 +62,27 @@ impl Component for Home {
     fn update(&mut self, _ctx: &Context<Self>, msg: Self::Message) -> bool {
         match msg {
             HomeMsg::Print => {
-                info!("print");
                 let window = window().unwrap();
-                let old_body = window.document().unwrap().body().unwrap();
-                let print_content = window
-                    .document()
-                    .unwrap()
-                    .get_element_by_id("rusume")
-                    .unwrap()
-                    .inner_html();
-                window
-                    .document()
-                    .unwrap()
-                    .body()
-                    .unwrap()
-                    .set_inner_html(print_content.as_str());
+                let doc = window.document().unwrap();
+                let print_content = doc.get_element_by_id("rusume").unwrap().inner_html();
+                doc.body().unwrap().set_inner_html(print_content.as_str());
                 window.print().unwrap();
-                info!("print done");
-                window.document().unwrap().set_body(Some(&old_body));
-                info!("reset done");
                 true
             }
             HomeMsg::UpdateBasic(basic) => {
                 self.basic = basic;
-                info!("update basic");
                 true
             }
             HomeMsg::UpdateEducationSection(educations) => {
                 self.educations = educations;
-                info!("update education section");
                 true
             }
             HomeMsg::UpdateExperienceSection(experiences) => {
                 self.experiences = experiences;
-                info!("update experience section");
                 true
             }
             HomeMsg::UpdateProjectSection(projects) => {
                 self.projects = projects;
-                info!("update project section");
                 true
             }
         }
