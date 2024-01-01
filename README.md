@@ -1,11 +1,14 @@
 # [A blazingly-fast resume builder](https://yilunallenchen.github.io/Rusume/#/)
 - Opinionated layout, so you don't have to worry about it.
 - Fill-in-the-blanks, but real-time updates.
+- Supports markdown in experience description.
 - Blazingly-fast, because it's powered by Rust/Yew and WebAssembly. 🦀🦀🦀.
+
+# Known Issues
+- "-" in markdown doesn't work.
 
 ## Features to Add
 - The `Skills` section
-- Markdown support for description for better bolding & highlighting.
 - Adjutable layout
 
 
