@@ -4,13 +4,9 @@ use log::info;
 use yew::prelude::*;
 use yew_router::prelude::*;
 
-mod code;
-mod html_utils;
-mod items;
-mod models;
 mod pages;
 
-use pages::{Contact, Experiences, Home, Nav, Projects, Wip};
+use pages::Home;
 
 #[derive(Debug, Clone, PartialEq, Routable)]
 pub enum Route {
@@ -18,12 +14,6 @@ pub enum Route {
     Home,
     #[at("/contact")]
     Contact,
-    #[at("/projects")]
-    Projects,
-    #[at("/experiences")]
-    Experiences,
-    #[at("/*_path")]
-    Wip { _path: String },
 }
 
 impl Display for Route {
@@ -31,9 +21,6 @@ impl Display for Route {
         let name = match self {
             Route::Home => "Home",
             Route::Contact => "Contact",
-            Route::Projects => "Projects",
-            Route::Experiences => "Experiences",
-            _ => "WIP",
         };
         write!(f, "{}", name)
     }
@@ -42,10 +29,7 @@ impl Display for Route {
 fn switch(route: Route) -> Html {
     match route {
         Route::Home => html! {<Home />},
-        Route::Contact => html! {<Contact/>},
-        Route::Experiences => html! {<Experiences />},
-        Route::Projects => html! {<Projects />},
-        Route::Wip { _path } => html! {<Wip />},
+        Route::Contact => html! {"WIP"},
     }
 }
 
@@ -80,12 +64,9 @@ impl Component for App {
         }
     }
 
-    fn view(&self, ctx: &Context<Self>) -> Html {
-        let on_clicked = ctx.link().callback(Msg::GoToPage);
-
+    fn view(&self, _ctx: &Context<Self>) -> Html {
         html! {
             <HashRouter>
-                <Nav {on_clicked} />
                 <Switch<Route> render={switch} />
             </HashRouter>
         }

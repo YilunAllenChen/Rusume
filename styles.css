@@ -1,6 +1,7 @@
 @keyframes enter_bottom {
   from {
-    transform: translateY(100%); }
+    transform: translateY(100%);
+  }
 
   to {
     transform: translateY(0%);
@@ -32,5 +33,4 @@
 }
 
 html {
-  background-color: black;
 }
