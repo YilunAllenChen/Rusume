@@ -1,6 +1,10 @@
 use web_sys::HtmlInputElement;
 use yew::prelude::*;
 
+use super::html_utils::{
+    ADD_BUTTON_CLASS, INPUT_CLASS, LABEL_CLASS, REMOVE_BUTTON_CLASS, SECTION_HEADER_CLASS,
+};
+
 #[derive(Debug, PartialEq, Clone)]
 pub struct Experience {
     employer: String,
@@ -47,12 +51,12 @@ impl Component for ExperienceController {
             dates: "2022/07 - Present".to_string(),
             location: "Chicago, IL".to_string(),
             description: vec![
-                "• Own, develop and manage the core data streaming library enjoyed by 20 systems and 13 trading desks.",
-                "• Spearhead the design and development of option pricing dataset processes with estimated impact of **$2M/yr**.",
-                "• Revamped and modernized group’s core risk product, boosting speed by **5x** and reducing error rate by **85%**",
-                "• Automated, documented and standardized team operational procedures, saving 20 engr hrs / week.",
-                "• Orchestrated collaboration across 3 teams to integrate exotic options pricing into existing trading systems.",
-                "• **Utilized**: Python, Rust, Java, Kafka, Delta Lake, gRPC/Protobuf, S3, OracleDB, Arrow, Flight, Redis",
+                "Own, develop and manage the core data streaming library enjoyed by 20 systems and 13 trading desks.",
+                "Spearhead the design and development of option pricing dataset processes with estimated impact of **$2M/yr**.",
+                "Revamped and modernized group’s core risk product, boosting speed by **5x** and reducing error rate by **85%**",
+                "Automated, documented and standardized team operational procedures, saving 20 engr hrs / week.",
+                "Orchestrated collaboration across 3 teams to integrate exotic options pricing into existing trading systems.",
+                "**Utilized**: Python, Rust, Java, Kafka, Delta Lake, gRPC/Protobuf, S3, OracleDB, Arrow, Flight, Redis",
             ].join("\n").to_string(),
         }, Experience {
             employer: "DRW".to_string(),
@@ -61,10 +65,10 @@ impl Component for ExperienceController {
             dates: "2022/06 - 2022/08".to_string(),
             location: "Chicago, IL".to_string(),
             description: vec![
-                "• Pioneered the design of a performant, language-agnostic data ingestion engine, handling **>300k** messages/sec.",
-                "• Shipped unified data APIs to serve both historical and live data, widely used in critical trading infrastructure.",
-                "• Devised compression and normalization algorithms for high-dimensional data, reducing sizes by **80%**.",
-                "• **Utilized**: Python, Java, Kafka, S3, Parquet, gRPC/Protobuf, Trino/Presto.",
+                "Pioneered the design of a performant, language-agnostic data ingestion engine, handling **>300k** msgs/s.",
+                "Shipped unified data APIs to serve both historical and live data, widely used in critical trading infrastructure.",
+                "Devised compression and normalization algorithms for high-dimensional data, reducing sizes by **80%**.",
+                "**Utilized**: Python, Java, Kafka, S3, Parquet, gRPC/Protobuf, Trino/Presto.",
             ].join("\n").to_string(),
         }, Experience {
             employer: "Georgia Tech".to_string(),
@@ -73,9 +77,9 @@ impl Component for ExperienceController {
             dates: "2019/05 - 2021/6".to_string(),
             location: "Atlanta, GA".to_string(),
             description: vec![
-                "• Led a team of 4 PhD/MS students to build hardware, firmware and software for robots (The SlothBot).",
-                "• Architected asynchronous over-the-air software update infrastructure for field-deployed robots swarms.",
-                "• **Utilized**: C/C++, Python, React+Redux, Google Firebase, DigitalOcean, Kubernetes, Docker, ROS.",
+                "Led a team of 4 PhD/MS students to build hardware, firmware and software for robots (The SlothBot).",
+                "Architected asynchronous over-the-air software update infrastructure for field-deployed robots swarms.",
+                "**Utilized**: C/C++, Python, React+Redux, Google Firebase, DigitalOcean, Kubernetes, Docker, ROS.",
             ].join("\n").to_string(),
         }, Experience {
             employer: "Uber ATG".to_string(),
@@ -84,9 +88,9 @@ impl Component for ExperienceController {
             dates: "2020/05 - 2020/07".to_string(),
             location: "Atlanta, GA".to_string(),
             description: vec![
-                "• Modularized and optimized the architecture of a legacy autonomous vehicle fleet orchestration system.",
-                "• Designed task scheduling algorithms, improving system capacity by **700%** and reducing memory usage by **80%**.",
-                "• **Utilized**: Python (asyncio), Bash, AWS (EC2), PostgreSQL.",
+                "Modularized and optimized the architecture of a legacy autonomous vehicle fleet orchestration system.",
+                "Designed task scheduling algorithms, improving system capacity by **700%** and reducing memory usage by **80%**.",
+                "**Utilized**: Python (asyncio), Bash, AWS (EC2), PostgreSQL.",
             ].join("\n").to_string(),
        }
         ];
@@ -204,7 +208,7 @@ impl Component for ExperienceController {
                         value={experience.description.clone()}
                     />
                     <label for={"description".to_string()}
-                           class="absolute -top-0 left-2 text-gray-500 text-sm transition-all peer-placeholder-shown:text-xl peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-0">
+                           class={LABEL_CLASS} >
                         {"Description"}
                     </label>
                     </div>
@@ -218,9 +222,8 @@ impl Component for ExperienceController {
                     {location_input}
                     {description_input}
                     <button
-                        class="w-full rounded-md mb-2 px-3.5 py-2.5 text-md shadow-sm bg-red-500 text-white"
-                        onclick={remove_experience}
-                    >
+                        class={REMOVE_BUTTON_CLASS}
+                        onclick={remove_experience}>
                         {"Remove Experience"}
                     </button>
                 </div>
@@ -232,7 +235,7 @@ impl Component for ExperienceController {
                 <hr/>
                 {inputs}
                 <button
-                    class="w-full rounded-md mt-4 py-2.5 text-md shadow-sm bg-green-500 text-white"
+                    class={ADD_BUTTON_CLASS}
                     onclick={add_experience}
                 >
                     {"Add Experience"}
@@ -262,11 +265,11 @@ where
             <input type="text"
                    id={name.clone()}
                    oninput={callback}
-                   class="peer rounded-md px-2 pt-5 pb-1 block w-full border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-black pt-2"
+                   class={INPUT_CLASS}
                    value={value}
             />
             <label for={name.clone()}
-                   class="absolute -top-0 left-2 text-gray-500 text-sm transition-all peer-placeholder-shown:text-xl peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-0">
+                   class={LABEL_CLASS}>
                 {name}
             </label>
         </div>
@@ -293,7 +296,8 @@ pub fn view_experience(props: &Props) -> Html {
                 .split("\n")
                 .collect::<Vec<&str>>()
                 .iter()
-                .map(|s| markdown::to_html(s))
+                .map(|s| " - • ".to_string() + &s)
+                .map(|s| markdown::to_html(&s))
                 .collect::<Vec<String>>()
                 .into_iter()
                 .map(|html_str| Html::from_html_unchecked(html_str.into())).collect::<Html>();
@@ -313,7 +317,9 @@ pub fn view_experience(props: &Props) -> Html {
                         <span class=""> {&experience.location} </span>
                     </div>
                 </div>
-                <pre class="font-['Times'] flex flex-col gap-x-0"> {parsed} </pre>
+                <div class="">
+                    {parsed}
+                </div>
                 </div>
             }
         })
@@ -321,7 +327,7 @@ pub fn view_experience(props: &Props) -> Html {
     html! {
 
         <>
-        <h5 class="text-2xl font-bold text-left w-full border-b-2 border-black mt-4"> {"Experiences"} </h5>
+        <h5 class={SECTION_HEADER_CLASS}> {"Experiences"} </h5>
         <div class="mx-2 my-2 flex flex-col space-y-1">
             {experiences}
         </div>

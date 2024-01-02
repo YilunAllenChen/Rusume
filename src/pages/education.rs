@@ -1,6 +1,10 @@
 use web_sys::HtmlInputElement;
 use yew::prelude::*;
 
+use super::html_utils::{
+    ADD_BUTTON_CLASS, INPUT_CLASS, LABEL_CLASS, REMOVE_BUTTON_CLASS, SECTION_HEADER_CLASS,
+};
+
 #[derive(Debug, PartialEq, Clone)]
 pub struct Education {
     school: String,
@@ -117,9 +121,9 @@ impl Component for EducationController {
             .iter()
             .enumerate()
             .map(|(idx, education)| {
-                let remove_education = ctx.link().callback(move |_| {
-                    EducationMsg::RemoveEducation(idx)
-                });
+                let remove_education = ctx
+                    .link()
+                    .callback(move |_| EducationMsg::RemoveEducation(idx));
                 let school_input = make_input(
                     ctx,
                     idx,
@@ -177,21 +181,22 @@ impl Component for EducationController {
                             </div>
                         </div>
                         <button
-                            class="w-full rounded-md mb-2 px-3.5 py-2.5 text-md shadow-sm bg-red-500 text-white"
+                            class={REMOVE_BUTTON_CLASS}
                             onclick={remove_education}
                         >
                             {"Remove Education"}
                         </button>
                     </div>
                 }
-            }).collect::<Html>();
+            })
+            .collect::<Html>();
         html! {
             <>
                 <h5 class="text-xl font-bold text-left self-center pl-4 mt-4 mb-1"> {"Education"} </h5>
                 <hr/>
                 {inputs}
                 <button
-                    class="w-full rounded-md mt-4 py-2.5 text-md shadow-sm bg-green-500 text-white"
+                    class={ADD_BUTTON_CLASS}
                     onclick={add_education}
                 >
                     {"Add Education"}
@@ -221,11 +226,11 @@ where
             <input type="text"
                    id={name.clone()}
                    oninput={callback}
-                   class="peer rounded-md px-2 pt-5 pb-1 block w-full border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-black pt-2"
+                   class={INPUT_CLASS}
                    value={value}
             />
             <label for={name.clone()}
-                   class="absolute -top-0 left-2 text-gray-500 text-sm transition-all peer-placeholder-shown:text-xl peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-0">
+                   class={LABEL_CLASS}>
                 {name}
             </label>
         </div>
@@ -266,7 +271,7 @@ pub fn view_education(props: &Props) -> Html {
         .collect::<Html>();
     html! {
         <>
-            <h5 class="text-2xl font-bold text-left w-full border-b-2 border-black mt-4"> {"Education"} </h5>
+            <h5 class={SECTION_HEADER_CLASS}> {"Education"} </h5>
             <div class="mx-2 my-1 flex flex-col space-y-0">
                 {educations}
             </div>

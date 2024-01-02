@@ -1,5 +1,4 @@
-use log::info;
-use web_sys::{window, HtmlInputElement};
+use web_sys::window;
 use yew::prelude::*;
 
 mod html_utils;
@@ -24,19 +23,26 @@ use projects::Project;
 use projects::ProjectController;
 use projects::ProjectViewer;
 
+mod skills;
+use skills::SkillCategory;
+use skills::SkillController;
+use skills::SkillViewer;
+
 pub struct Home {
     basic: Basic,
     educations: Vec<Education>,
+    skills: Vec<SkillCategory>,
     experiences: Vec<Experience>,
     projects: Vec<Project>,
 }
 
 pub enum HomeMsg {
     Print,
-    UpdateBasic(Basic),
+    UpdateBasicSection(Basic),
     UpdateEducationSection(Vec<education::Education>),
     UpdateExperienceSection(Vec<experiences::Experience>),
     UpdateProjectSection(Vec<projects::Project>),
+    UpdateSkillSection(Vec<skills::SkillCategory>),
 }
 
 #[derive(Properties, PartialEq)]
@@ -50,6 +56,7 @@ impl Component for Home {
         Self {
             basic: Basic::default(),
             educations: [].to_vec(),
+            skills: [].to_vec(),
             experiences: [].to_vec(),
             projects: [].to_vec(),
         }
@@ -67,25 +74,24 @@ impl Component for Home {
                 let print_content = doc.get_element_by_id("rusume").unwrap().inner_html();
                 doc.body().unwrap().set_inner_html(print_content.as_str());
                 window.print().unwrap();
-                true
             }
-            HomeMsg::UpdateBasic(basic) => {
+            HomeMsg::UpdateBasicSection(basic) => {
                 self.basic = basic;
-                true
             }
             HomeMsg::UpdateEducationSection(educations) => {
                 self.educations = educations;
-                true
             }
             HomeMsg::UpdateExperienceSection(experiences) => {
                 self.experiences = experiences;
-                true
             }
             HomeMsg::UpdateProjectSection(projects) => {
                 self.projects = projects;
-                true
+            }
+            HomeMsg::UpdateSkillSection(skills) => {
+                self.skills = skills;
             }
         }
+        true
     }
 
     fn view(&self, ctx: &Context<Self>) -> Html {
@@ -98,34 +104,40 @@ impl Component for Home {
         let project_cb = ctx
             .link()
             .callback(|projects| HomeMsg::UpdateProjectSection(projects));
-        let basic_cb = ctx.link().callback(|basic| HomeMsg::UpdateBasic(basic));
+        let basic_cb = ctx
+            .link()
+            .callback(|basic| HomeMsg::UpdateBasicSection(basic));
+        let skill_cb = ctx
+            .link()
+            .callback(|skills| HomeMsg::UpdateSkillSection(skills));
+
+        let print_button = html! {
+            <button
+                class="rounded-md w-full mt-10 bg-green-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-300"
+                onclick={ctx.link().callback(|_| HomeMsg::Print)}
+            >
+            {"Print"}
+            </button>
+        };
 
         html! {
             <div class="w-screen h-screen flex">
                 <h1 class="w-1/4 p-4 bg-slate-200 overflow-scroll">
 
-                    <button
-                        class="rounded-md w-full mt-10 bg-green-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-300"
-                        onclick={ctx.link().callback(|_| HomeMsg::Print)}
-                    >
-                    {"Print"}
-                    </button>
+                    {print_button.clone()}
                     <BasicController callback={basic_cb}/>
+                    <SkillController callback={skill_cb} />
                     <EducationController callback={education_cb}/>
                     <ExperienceController callback={experience_cb} />
                     <ProjectController callback={project_cb} />
-                    <button
-                        class="rounded-md w-full mt-10 bg-green-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-300"
-                        onclick={ctx.link().callback(|_| HomeMsg::Print)}
-                    >
-                    {"Print"}
-                    </button>
+                    {print_button.clone()}
                 </h1>
                 <div class="flex w-3/4 justify-center bg-slate-100 ">
-                <div id="rusume" class="w-[816x] bg-white p-4 overflow-scroll">
-                    <div class="font-['Times'] text-lg tracking-normal">
+                <div id="rusume" class="w-[816x] bg-white overflow-scroll">
+                    <div class="font-['Arial'] text-lg tracking-normal p-12">
                         <BasicViewer basic={self.basic.clone()} />
                         <EducationViewer educations={self.educations.clone()} />
+                        <SkillViewer skills={self.skills.clone()} />
                         <ExperienceViewer experiences={self.experiences.clone()} />
                         <ProjectViewer projects={self.projects.clone()} />
                     </div>

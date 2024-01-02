@@ -1,6 +1,10 @@
 use web_sys::HtmlInputElement;
 use yew::prelude::*;
 
+use super::html_utils::{
+    ADD_BUTTON_CLASS, INPUT_CLASS, LABEL_CLASS, REMOVE_BUTTON_CLASS, SECTION_HEADER_CLASS,
+};
+
 #[derive(Debug, PartialEq, Clone)]
 pub struct Project {
     name: String,
@@ -83,6 +87,12 @@ impl Component for ProjectController {
                 description: "Self-driving cars in Grant Theft Auto V.".to_string(),
                 technologies: "Python, C++".to_string(),
                 url: Some("https://github.com/YilunAllenChen/Dowwin_legacy/".to_string()),
+            },
+            Project {
+                name: "Rusume".to_string(),
+                description: "Real-time resume builder that I used to craft this resume".to_string(),
+                technologies: "Rust/Yew".to_string(),
+                url: Some("https://yilunallenchen.github.io/Rusume/#/".to_string()),
             },
         ];
         let slf = Self { projects: init };
@@ -171,7 +181,7 @@ impl Component for ProjectController {
                         {technologies_input}
                         {url_input}
                         <button
-                            class="w-full rounded-md mb-2 px-3.5 py-2.5 text-md shadow-sm bg-red-500 text-white"
+                            class={REMOVE_BUTTON_CLASS}
                             onclick={remove_project}
                         >
                             {"Remove"}
@@ -185,7 +195,7 @@ impl Component for ProjectController {
                 <hr/>
                 {inputs}
                 <button
-                    class="w-full rounded-md mt-4 py-2.5 text-md shadow-sm bg-green-500 text-white"
+                    class={ADD_BUTTON_CLASS}
                     onclick={add_project}
                 >
                     {"Add Project"}
@@ -216,11 +226,11 @@ where
             <input type="text"
                    id={name.clone()}
                    oninput={callback}
-                   class="peer rounded-md px-2 pt-5 pb-1 block w-full border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-black pt-2"
+                   class={INPUT_CLASS}
                    value={value}
             />
             <label for={name.clone()}
-                   class="absolute -top-0 left-2 text-gray-500 text-sm transition-all peer-placeholder-shown:text-xl peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-0">
+                   class={LABEL_CLASS}>
                 {name}
             </label>
         </div>
@@ -261,7 +271,7 @@ pub fn view_project(props: &Props) -> Html {
         .collect::<Html>();
     html! {
         <>
-        <h5 class="text-2xl font-bold text-left w-full border-b-2 border-black mt-4"> {"Projects"} </h5>
+        <h5 class={SECTION_HEADER_CLASS}> {"Projects"} </h5>
         <div class="m-2 flex flex-col space-y-[0.5]">
             {projects}
         </div>
