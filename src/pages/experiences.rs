@@ -53,7 +53,7 @@ impl Component for ExperienceController {
             description: vec![
                 "Own, develop and manage the core data streaming library enjoyed by 20 systems and 13 trading desks.",
                 "Spearhead the design and development of option pricing dataset processes with estimated impact of **$2M/yr**.",
-                "Revamped and modernized group’s core risk product, boosting speed by **5x** and reducing error rate by **85%**",
+                "Revamped and modernized group’s core risk product, boosting speed by **5x** and reducing error rate by **85%**.",
                 "Automated, documented and standardized team operational procedures, saving 20 engr hrs / week.",
                 "Orchestrated collaboration across 3 teams to integrate exotic options pricing into existing trading systems.",
                 "**Utilized**: Python, Rust, Java, Kafka, Delta Lake, gRPC/Protobuf, S3, OracleDB, Arrow, Flight, Redis",
@@ -303,7 +303,7 @@ pub fn view_experience(props: &Props) -> Html {
                 .map(|html_str| Html::from_html_unchecked(html_str.into())).collect::<Html>();
             html! {
                 <div class="">
-                <div class="flex justify-between mb-1">
+                <div class="flex justify-between mt-1.5">
                     <div class="flex gap-x-3">
                         <span class="font-bold"> {&experience.employer.clone()} </span>
                         { " | " }
@@ -317,7 +317,7 @@ pub fn view_experience(props: &Props) -> Html {
                         <span class=""> {&experience.location} </span>
                     </div>
                 </div>
-                <div class="">
+                <div>
                     {parsed}
                 </div>
                 </div>
@@ -328,7 +328,7 @@ pub fn view_experience(props: &Props) -> Html {
 
         <>
         <h5 class={SECTION_HEADER_CLASS}> {"Experiences"} </h5>
-        <div class="mx-2 my-2 flex flex-col space-y-1">
+        <div class="mx-2 my-2">
             {experiences}
         </div>
         </>

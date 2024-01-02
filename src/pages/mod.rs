@@ -134,7 +134,7 @@ impl Component for Home {
                 </h1>
                 <div class="flex w-3/4 justify-center bg-slate-100 ">
                 <div id="rusume" class="w-[816x] bg-white overflow-scroll">
-                    <div class="font-['Arial'] text-lg tracking-normal p-12">
+                    <div class="font-['Arial'] text-lg tracking-normal p-10">
                         <BasicViewer basic={self.basic.clone()} />
                         <EducationViewer educations={self.educations.clone()} />
                         <SkillViewer skills={self.skills.clone()} />

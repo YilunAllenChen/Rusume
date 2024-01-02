@@ -51,7 +51,7 @@ impl Component for EducationController {
                 major: "Computer Engineering".to_string(),
                 start_date: "August 2021".to_string(),
                 end_date: "May 2022".to_string(),
-                gpa: "3.87/4.0".to_string(),
+                gpa: "3.87 / 4.0".to_string(),
             },
             Education {
                 school: "Georgia Tech".to_string(),
@@ -59,7 +59,7 @@ impl Component for EducationController {
                 major: "Computer Engineering".to_string(),
                 start_date: "August 2017".to_string(),
                 end_date: "May 2021".to_string(),
-                gpa: "3.86/4.0".to_string(),
+                gpa: "3.86 / 4.0".to_string(),
             },
         ];
         let slf = Self { educations: init };
@@ -272,7 +272,7 @@ pub fn view_education(props: &Props) -> Html {
     html! {
         <>
             <h5 class={SECTION_HEADER_CLASS}> {"Education"} </h5>
-            <div class="mx-2 my-1 flex flex-col space-y-0">
+            <div class="mx-2 my-1 flex flex-col -space-y-1">
                 {educations}
             </div>
         </>

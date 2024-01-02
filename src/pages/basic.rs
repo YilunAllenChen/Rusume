@@ -1,6 +1,10 @@
 use web_sys::HtmlInputElement;
 use yew::prelude::*;
 
+use super::html_utils::{
+    INPUT_CLASS, LABEL_CLASS, INPUT_SECTION_CLASS
+};
+
 #[derive(Debug, PartialEq, Clone)]
 pub struct Basic {
     name: String,
@@ -118,7 +122,7 @@ impl Component for BasicController {
 
         html! {
             <>
-            <h5 class="text-xl font-bold text-left self-center pl-4 mt-4 mb-1"> {"Basic Information"} </h5>
+            <h5 class={INPUT_SECTION_CLASS}> {"Basic Information"} </h5>
             <hr/>
             <div class="space-y-2 bg-slate-100 rounded-lg p-4 my-4">
                 {name_input}
@@ -146,11 +150,11 @@ where
             <input type="text"
                    id={name.clone()}
                    oninput={callback}
-                   class="peer rounded-md px-2 pt-5 pb-1 block w-full border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-black pt-2"
+                   class={INPUT_CLASS}
                    value={value}
             />
             <label for={name.clone()}
-                   class="absolute -top-0 left-2 text-gray-500 text-sm transition-all peer-placeholder-shown:text-xl peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-0">
+                   class={LABEL_CLASS}>
                 {name}
             </label>
         </div>

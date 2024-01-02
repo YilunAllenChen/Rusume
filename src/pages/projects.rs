@@ -90,7 +90,7 @@ impl Component for ProjectController {
             },
             Project {
                 name: "Rusume".to_string(),
-                description: "Real-time resume builder that I used to craft this resume".to_string(),
+                description: "Real-time resume builder that I used to craft this very resume".to_string(),
                 technologies: "Rust/Yew".to_string(),
                 url: Some("https://yilunallenchen.github.io/Rusume/#/".to_string()),
             },

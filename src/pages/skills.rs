@@ -49,7 +49,7 @@ impl Component for SkillController {
             },
             SkillCategory {
                 category: "The Softs".to_string(),
-                skills: "Evidence-based Entrepreneurship, Project Management, Public Speaking"
+                skills: "Leadership, Evidence-based Entrepreneurship, Project Management, Public Speaking"
                     .to_string(),
             }
         ];
@@ -126,7 +126,7 @@ impl Component for SkillController {
             .collect::<Html>();
         html! {
             <>
-                <h5 class="text-xl font-bold text-left self-center pl-4 mt-4 mb-1"> {"Skill"} </h5>
+                <h5 class="text-xl font-bold text-left self-center pl-4 mt-4 mb-1"> {"Skills"} </h5>
                 <hr/>
                 {inputs}
                 <button
@@ -196,8 +196,8 @@ pub fn view_skill(props: &Props) -> Html {
         .collect::<Html>();
     html! {
         <>
-            <h5 class={SECTION_HEADER_CLASS}> {"Skill"} </h5>
-            <div class="mx-2 my-1 flex flex-col space-y-0">
+            <h5 class={SECTION_HEADER_CLASS}> {"Skills"} </h5>
+            <div class="mx-2 my-1 flex flex-col -space-y-1">
                 {skills}
             </div>
         </>
