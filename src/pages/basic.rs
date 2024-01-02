@@ -1,9 +1,7 @@
 use web_sys::HtmlInputElement;
 use yew::prelude::*;
 
-use super::html_utils::{
-    INPUT_CLASS, LABEL_CLASS, INPUT_SECTION_CLASS
-};
+use super::html_utils::{INPUT_CLASS, INPUT_SECTION_CLASS, LABEL_CLASS};
 
 #[derive(Debug, PartialEq, Clone)]
 pub struct Basic {
@@ -170,24 +168,26 @@ pub struct Props {
 #[function_component(BasicViewer)]
 pub fn view_basic(props: &Props) -> Html {
     let linkedin = match &props.basic.linkedin_url {
-        Some(url) => {
-            html! {
+        Some(url) => match url.is_empty() {
+            true => html! {},
+            false => html! {
                 <a class="text-blue-700" target="_blank" href={url.clone()}>
                     <i class="devicon-linkedin-plain"/> {" LinkedIn"}
                 </a>
-            }
-        }
+            },
+        },
         None => html! {},
     };
 
     let github = match &props.basic.github_url {
-        Some(url) => {
-            html! {
+        Some(url) => match url.is_empty() {
+            true => html! {},
+            false => html! {
                 <a class="text-blue-700" target="_blank" href={url.clone()}>
                     <i class="devicon-github-original text-black"/> {" Github"}
                 </a>
-            }
-        }
+            },
+        },
         None => html! {},
     };
 
