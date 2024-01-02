@@ -153,9 +153,9 @@ impl Component for ExperienceController {
             .iter()
             .enumerate()
             .map(|(idx, experience)| {
-                let remove_experience = ctx.link().callback(move |_| {
-                    ExperienceMsg::RemoveExperience(idx)
-                });
+                let remove_experience = ctx
+                    .link()
+                    .callback(move |_| ExperienceMsg::RemoveExperience(idx));
 
                 let employer_input = make_input(
                     ctx,
@@ -203,7 +203,7 @@ impl Component for ExperienceController {
                     <div class="relative m-2">
                     <textarea
                         name="description"
-                        class="w-full h-32 rounded-md px-3.5 pt-5 text-md shadow-sm"
+                        class="w-full h-60 rounded-md px-3.5 pt-5 text-md shadow-sm"
                         oninput={callback}
                         value={experience.description.clone()}
                     />
@@ -228,7 +228,8 @@ impl Component for ExperienceController {
                     </button>
                 </div>
                 }
-            }).collect::<Html>();
+            })
+            .collect::<Html>();
         html! {
             <>
                 <h5 class="text-xl font-bold text-left self-center pl-4 mt-4 mb-1"> {"Experiences"} </h5>
@@ -300,7 +301,8 @@ pub fn view_experience(props: &Props) -> Html {
                 .map(|s| markdown::to_html(&s))
                 .collect::<Vec<String>>()
                 .into_iter()
-                .map(|html_str| Html::from_html_unchecked(html_str.into())).collect::<Html>();
+                .map(|html_str| Html::from_html_unchecked(html_str.into()))
+                .collect::<Html>();
             html! {
                 <div class="">
                 <div class="flex justify-between mt-1.5">

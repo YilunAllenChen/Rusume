@@ -39,8 +39,8 @@ pub struct Home {
 pub enum HomeMsg {
     Print,
     UpdateBasicSection(Basic),
-    UpdateEducationSection(Vec<education::Education>),
-    UpdateExperienceSection(Vec<experiences::Experience>),
+    UpdateEducationSection(Vec<Education>),
+    UpdateExperienceSection(Vec<Experience>),
     UpdateProjectSection(Vec<projects::Project>),
     UpdateSkillSection(Vec<skills::SkillCategory>),
 }
@@ -100,7 +100,7 @@ impl Component for Home {
             .callback(|educations| HomeMsg::UpdateEducationSection(educations));
         let experience_cb = ctx
             .link()
-            .callback(|experiences| HomeMsg::UpdateExperienceSection(experiences));
+            .callback(|experience| HomeMsg::UpdateExperienceSection(experience));
         let project_cb = ctx
             .link()
             .callback(|projects| HomeMsg::UpdateProjectSection(projects));
@@ -122,7 +122,7 @@ impl Component for Home {
 
         html! {
             <div class="w-screen h-screen flex">
-                <h1 class="w-1/4 p-4 bg-slate-200 overflow-scroll">
+                <h1 class="w-1/3 p-4 bg-slate-200 overflow-y-scroll">
 
                     {print_button.clone()}
                     <BasicController callback={basic_cb}/>
@@ -132,8 +132,8 @@ impl Component for Home {
                     <ProjectController callback={project_cb} />
                     {print_button.clone()}
                 </h1>
-                <div class="flex w-3/4 justify-center bg-slate-100 ">
-                <div id="rusume" class="w-[816x] bg-white overflow-scroll">
+                <div class="flex w-2/3 justify-center bg-slate-100 ">
+                <div id="rusume" class="flex-none max-w-[816x] bg-white overflow-scroll">
                     <div class="font-['Arial'] text-lg tracking-normal p-10">
                         <BasicViewer basic={self.basic.clone()} />
                         <EducationViewer educations={self.educations.clone()} />
