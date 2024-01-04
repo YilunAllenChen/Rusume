@@ -42,57 +42,46 @@ impl Component for ProjectController {
     fn create(ctx: &Context<Self>) -> Self {
         let init = vec![
             Project {
-                name: "Museum of Code".to_string(),
-                description: "Educational web app caputuring the beauty of programming."
+                name: "COVID Helper".to_string(),
+                description: "A web app that helps people find COVID-19 vaccine appointments."
                     .to_string(),
-                technologies: "Rust/Yew".to_string(),
+                technologies: "JavaScript".to_string(),
                 url: Some("https://yilunallenchen.github.io/museum_of_code/".to_string()),
             },
             Project {
-                name: "Exchange Simulator".to_string(),
-                description: "FIFO matching engine with materialized market impacts.".to_string(),
-                technologies: "Python, JavaScript".to_string(),
-                url: Some("https://tradingsim.allenchen.dev/".to_string()),
-            },
-            Project {
-                name: "Project Karage".to_string(),
-                description: "Toy trading platform with market-making / arbitrage bot.".to_string(),
-                technologies: "Rust".to_string(),
-                url: Some("https://github.com/YilunAllenChen/Karage".to_string()),
-            },
-            Project {
-                name: "DaVinci Ergo Lab".to_string(),
-                description: "Ergonomic split mechanical keyboards built from the ground up. "
+                name: "Student Management System".to_string(),
+                description: "A web app that organizes student information for teachers."
                     .to_string(),
-                technologies: "Python, C++".to_string(),
-                url: Some("https://davinci-ergo-lab.com/".to_string()),
+                technologies: "Java".to_string(),
+                url: Some("https://yilunallenchen.github.io/museum_of_code/".to_string()),
             },
             Project {
-                name: "Project Dowwin".to_string(),
-                description:
-                    "Genetic algorithm inspired robo-advisor training system and market data feeds."
-                        .to_string(),
-                technologies: "Python".to_string(),
-                url: Some("https://github.com/YilunAllenChen/Dowwin_legacy/".to_string()),
-            },
-            Project {
-                name: "PDE-based Anti-Aliasing".to_string(),
-                description: "Enhance computer graphics with partial differential equations. "
+                name: "COVID Helper".to_string(),
+                description: "A web app that helps people find COVID-19 vaccine appointments."
                     .to_string(),
-                technologies: "Python".to_string(),
-                url: Some("https://github.com/YilunAllenChen/Dowwin_legacy/".to_string()),
+                technologies: "JavaScript".to_string(),
+                url: Some("https://yilunallenchen.github.io/museum_of_code/".to_string()),
             },
             Project {
-                name: "SDC in GTAV".to_string(),
-                description: "Self-driving cars in Grant Theft Auto V.".to_string(),
-                technologies: "Python, C++".to_string(),
-                url: Some("https://github.com/YilunAllenChen/Dowwin_legacy/".to_string()),
+                name: "Student Management System".to_string(),
+                description: "A web app that organizes student information for teachers."
+                    .to_string(),
+                technologies: "Java".to_string(),
+                url: Some("https://yilunallenchen.github.io/museum_of_code/".to_string()),
             },
             Project {
-                name: "Rusume".to_string(),
-                description: "Real-time resume builder that I used to craft this very resume".to_string(),
-                technologies: "Rust/Yew".to_string(),
-                url: Some("https://yilunallenchen.github.io/Rusume/#/".to_string()),
+                name: "COVID Helper".to_string(),
+                description: "A web app that helps people find COVID-19 vaccine appointments."
+                    .to_string(),
+                technologies: "JavaScript".to_string(),
+                url: Some("https://yilunallenchen.github.io/museum_of_code/".to_string()),
+            },
+            Project {
+                name: "Student Management System".to_string(),
+                description: "A web app that organizes student information for teachers."
+                    .to_string(),
+                technologies: "Java".to_string(),
+                url: Some("https://yilunallenchen.github.io/museum_of_code/".to_string()),
             },
         ];
         let slf = Self { projects: init };

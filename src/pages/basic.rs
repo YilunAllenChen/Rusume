@@ -51,9 +51,9 @@ impl Component for BasicController {
 
     fn create(ctx: &Context<Self>) -> Self {
         let init = Basic {
-            name: "Yilun \"Allen\" Chen".to_string(),
-            email: "allenchenyilun1999@gmail.com".to_string(),
-            phone: "404-409-9683".to_string(),
+            name: "George P. Burdell".to_string(),
+            email: "gpburdell@gmail.com".to_string(),
+            phone: "404-123-4567".to_string(),
             linkedin_url: "https://www.linkedin.com/in/yilun-allen-chen-572b71141/"
                 .to_string()
                 .into(),

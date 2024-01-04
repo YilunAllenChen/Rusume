@@ -46,19 +46,19 @@ impl Component for EducationController {
     fn create(ctx: &Context<Self>) -> Self {
         let init = vec![
             Education {
-                school: "Georgia Tech".to_string(),
+                school: "WildChicken University".to_string(),
                 degree: "M.S.".to_string(),
-                major: "Computer Engineering".to_string(),
-                start_date: "2021/08".to_string(),
+                major: "Computer Science".to_string(),
+                start_date: "1999/08".to_string(),
                 end_date: "2022/05".to_string(),
-                gpa: "3.87 / 4.0".to_string(),
+                gpa: "3.56 / 4.0".to_string(),
             },
             Education {
-                school: "Georgia Tech".to_string(),
+                school: "WildChicken University".to_string(),
                 degree: "B.S.".to_string(),
                 major: "Computer Engineering".to_string(),
-                start_date: "2017/08".to_string(),
-                end_date: "2021/05".to_string(),
+                start_date: "1996/08".to_string(),
+                end_date: "1999/05".to_string(),
                 gpa: "3.86 / 4.0".to_string(),
             },
         ];
