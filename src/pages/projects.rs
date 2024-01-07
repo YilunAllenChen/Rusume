@@ -42,6 +42,12 @@ impl Component for ProjectController {
     fn create(ctx: &Context<Self>) -> Self {
         let init = vec![
             Project {
+                name: "Incrementars".to_string(),
+                description: "Incremental / self-adapting computating framework for Rust.".to_string(),
+                technologies: "Rust".to_string(),
+                url: Some("https://github.com/YilunAllenChen/incrementars".to_string())
+            },
+            Project {
                 name: "Museum of Code".to_string(),
                 description: "Educational web app caputuring the beauty of programming."
                     .to_string(),
@@ -68,14 +74,6 @@ impl Component for ProjectController {
                 url: Some("https://davinci-ergo-lab.com/".to_string()),
             },
             Project {
-                name: "Project Dowwin".to_string(),
-                description:
-                    "Genetic algorithm inspired robo-advisor training system and market data feeds."
-                        .to_string(),
-                technologies: "Python".to_string(),
-                url: Some("https://github.com/YilunAllenChen/Dowwin_legacy/".to_string()),
-            },
-            Project {
                 name: "PDE-based Anti-Aliasing".to_string(),
                 description: "Enhance computer graphics with partial differential equations. "
                     .to_string(),
@@ -90,7 +88,8 @@ impl Component for ProjectController {
             },
             Project {
                 name: "Rusume".to_string(),
-                description: "Real-time resume builder that I used to craft this very resume".to_string(),
+                description: "Real-time resume builder that I used to craft this very resume"
+                    .to_string(),
                 technologies: "Rust/Yew".to_string(),
                 url: Some("https://yilunallenchen.github.io/Rusume/#/".to_string()),
             },
@@ -138,9 +137,7 @@ impl Component for ProjectController {
             .iter()
             .enumerate()
             .map(|(idx, project)| {
-                let remove_project = ctx.link().callback(move |_| {
-                    ProjectMsg::RemoveProject(idx)
-                });
+                let remove_project = ctx.link().callback(move |_| ProjectMsg::RemoveProject(idx));
 
                 let name_input = make_input(
                     ctx,
@@ -188,7 +185,8 @@ impl Component for ProjectController {
                         </button>
                     </div>
                 }
-            }).collect::<Html>();
+            })
+            .collect::<Html>();
         html! {
             <>
                 <h5 class="text-xl font-bold text-left self-center pl-4 mt-4 mb-1"> {"Projects"} </h5>
