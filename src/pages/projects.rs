@@ -43,7 +43,7 @@ impl Component for ProjectController {
         let init = vec![
             Project {
                 name: "Incrementars".to_string(),
-                description: "Incremental / self-adapting computating framework for Rust.".to_string(),
+                description: "Incremental / self-adapting computing framework for Rust.".to_string(),
                 technologies: "Rust".to_string(),
                 url: Some("https://github.com/YilunAllenChen/incrementars".to_string())
             },
@@ -88,7 +88,7 @@ impl Component for ProjectController {
             },
             Project {
                 name: "Rusume".to_string(),
-                description: "Real-time resume builder that I used to craft this very resume"
+                description: "Real-time resume builder that was used to craft this very resume"
                     .to_string(),
                 technologies: "Rust/Yew".to_string(),
                 url: Some("https://yilunallenchen.github.io/Rusume/#/".to_string()),
