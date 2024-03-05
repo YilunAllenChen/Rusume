@@ -84,7 +84,7 @@ impl Component for ProjectController {
                 name: "SDC in GTAV".to_string(),
                 description: "Self-driving cars in Grant Theft Auto V.".to_string(),
                 technologies: "Python, C++".to_string(),
-                url: Some("https://github.com/YilunAllenChen/Dowwin_legacy/".to_string()),
+                url: Some("https://github.com/YilunAllenChen/GTAV_SDC/".to_string()),
             },
             Project {
                 name: "Rusume".to_string(),
