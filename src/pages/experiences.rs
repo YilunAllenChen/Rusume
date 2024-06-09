@@ -52,8 +52,8 @@ impl Component for ExperienceController {
             location: "Chicago, IL".to_string(),
             description: vec![
                 "Own, develop and manage the **unified streaming data platform** enjoyed by 20 systems and 13 trading desks.",
-                "Spearhead the design and development of a core option pricing dataset process with **>$2M/yr** impact.",
-                "Rearchitected and optimized visualization pipelines, achieving **10x** speedup while using **<30%** compute.",
+                "Spearhead the design and development of core option pricing datasets & processes with **>$10M/yr** impact.",
+                "Modernized desks' analytical tools using functional domain modelling, reduced turnaround time by **10x.**",
                 "Automated, standardized and documented team support & operational procedures, saving 20 engr hrs / week.",
                 "Coordinated collaboration across 3 teams to integrate exotic options pricing into existing trading systems.",
                 "**Utilized**: Python, Rust, Java, Kafka, Delta Lake, gRPC/Protobuf, Arrow, Flight, Redis",

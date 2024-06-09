@@ -44,7 +44,7 @@ impl Component for SkillController {
             },
             SkillCategory {
                 category: "Technologies".to_string(),
-                skills: "Git, Kafka, Delta Lake, Redis, gRPC/Protobuf, Yew, Tailwind, Arrow, SQL, ArgoCD"
+                skills: "Git, Kafka, Delta Lake, Redis, gRPC/Protobuf, Yew, Tailwind, Arrow, SQL, ArgoCD, Neovim"
                     .to_string(),
             },
             SkillCategory {
