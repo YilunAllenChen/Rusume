@@ -47,13 +47,25 @@ impl Component for ExperienceController {
         let init = vec![Experience {
             employer: "DRW".to_string(),
             team: "FICC Options".to_string().into(),
-            title: "Software Developer".to_string(),
-            dates: "2022/07 - Present".to_string(),
+            title: "Senior Software Engineer".to_string(),
+            dates: "2024/07 - Present".to_string(),
             location: "Chicago, IL".to_string(),
             description: vec![
-                "Own, develop and manage the **unified streaming data platform** enjoyed by 20 systems and 13 trading desks.",
+                "Own, develop and manage the **streaming data platform** enjoyed by >60 systems and 13 trading desks.",
+                "Shipped an options analytical arsenal using **functional domain modelling**, reduced turnaround time by **10x.**",
+                "Lead a team of 3, own numerous trading critical visualization across asset classes, used widely by traders.",
+                "**Utilized**: Python, Rust, Kafka, Delta Lake, gRPC/Protobuf, Arrow",
+            ].join("\n").to_string(),
+        },
+        Experience {
+            employer: "DRW".to_string(),
+            team: "FICC Options".to_string().into(),
+            title: "Software Developer".to_string(),
+            dates: "2022/07 - 2024/07".to_string(),
+            location: "Chicago, IL".to_string(),
+            description: vec![
                 "Spearhead the design and development of core option pricing datasets & processes with **>$10M/yr** impact.",
-                "Modernized desks' analytical tools using functional domain modelling, reduced turnaround time by **10x.**",
+                "Owned the re-architecture, development, optimization and delivery of a vol dynamics visualization dashboard",
                 "Automated, standardized and documented team support & operational procedures, saving 20 engr hrs / week.",
                 "Coordinated collaboration across 3 teams to integrate exotic options pricing into existing trading systems.",
                 "**Utilized**: Python, Rust, Java, Kafka, Delta Lake, gRPC/Protobuf, Arrow, Flight, Redis",
@@ -81,18 +93,7 @@ impl Component for ExperienceController {
                 "Architected asynchronous over-the-air software update infrastructure for field-deployed robots swarms.",
                 "**Utilized**: C/C++, Python, JavaScript, React+Redux, Google Firebase, Kubernetes, Docker, ROS.",
             ].join("\n").to_string(),
-        }, Experience {
-            employer: "Uber ATG".to_string(),
-            team: "Platform Validation".to_string().into(),
-            title: "Hardawre Engineering Intern".to_string(),
-            dates: "2020/05 - 2020/07".to_string(),
-            location: "Atlanta, GA".to_string(),
-            description: vec![
-                "Modularized and optimized the architecture of a legacy autonomous vehicle fleet orchestration system.",
-                "Designed task scheduling algorithms, improving system capacity by **700%** and reducing memory usage by **80%**.",
-                "**Utilized**: Python (asyncio), Bash, AWS (EC2), PostgreSQL.",
-            ].join("\n").to_string(),
-       }
+        }
         ];
         let slf = Self { experiences: init };
         ctx.props().callback.emit(slf.experiences.clone());
