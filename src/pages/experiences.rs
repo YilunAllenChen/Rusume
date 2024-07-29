@@ -51,10 +51,11 @@ impl Component for ExperienceController {
             dates: "2024/07 - Present".to_string(),
             location: "Chicago, IL".to_string(),
             description: vec![
-                "Own, develop and manage the **streaming data platform** enjoyed by >60 systems and 13 trading desks.",
-                "Shipped an options analytical arsenal using **functional domain modelling**, reduced turnaround time by **10x.**",
-                "Lead a team of 3, own numerous trading critical visualization across asset classes, used widely by traders.",
-                "**Utilized**: Python, Rust, Kafka, Delta Lake, gRPC/Protobuf, Arrow",
+                "Own, develop and manage the **streaming data platform** for both historical and live use cases, used by >60 systems and 13 trading desks.",
+                "Shipped an options analytical arsenal leveraging **functional domain modelling**, reduced turnaround time for new tools by **10x.**",
+                "Maintain a generic **stream-processing** system to ingest, clean, transform and aggregate data following the Medallion architecture",
+                "Lead a team of 3, own numerous trading critical visualization tools across asset classes, used widely by traders.",
+                "**Utilized**: Python, Rust, Kafka, Delta Lake, Protobuf, Arrow, DuckDB, PostgreSQL",
             ].join("\n").to_string(),
         },
         Experience {
@@ -64,10 +65,10 @@ impl Component for ExperienceController {
             dates: "2022/07 - 2024/07".to_string(),
             location: "Chicago, IL".to_string(),
             description: vec![
-                "Spearhead the design and development of core option pricing datasets & processes with **>$10M/yr** impact.",
-                "Owned the re-architecture, development, optimization and delivery of a vol dynamics visualization dashboard",
+                "Spearhead the design and development of core option pricing datasets & processes with **>$10M/yr** estimated materiality.",
+                "Owned the re-architecture and optimization of a vol dynamics visualization dashboard, making it **8x** faster and **10x** more resource efficient",
+                "Coordinated collaboration across 3 teams and 10+ engineers to integrate exotic options pricing & risks into existing trading systems.",
                 "Automated, standardized and documented team support & operational procedures, saving 20 engr hrs / week.",
-                "Coordinated collaboration across 3 teams to integrate exotic options pricing into existing trading systems.",
                 "**Utilized**: Python, Rust, Java, Kafka, Delta Lake, gRPC/Protobuf, Arrow, Flight, Redis",
             ].join("\n").to_string(),
         }, Experience {
@@ -77,7 +78,7 @@ impl Component for ExperienceController {
             dates: "2022/06 - 2022/08".to_string(),
             location: "Chicago, IL".to_string(),
             description: vec![
-                "Pioneered the design of a performant, language-agnostic data streaming engine, handling **>300k** msgs/s.",
+                "Pioneered the design of a performant, language-agnostic streaming data system, capable of handling **>300k** msgs/s.",
                 "Shipped unified data APIs to serve both historical and live data, widely used in critical trading infrastructure.",
                 "Devised compression and normalization algorithms for high-dimensional data, reducing sizes by **80%**.",
                 "**Utilized**: Python, Java, Kafka, S3, Parquet, gRPC/Protobuf, Trino/Presto.",
