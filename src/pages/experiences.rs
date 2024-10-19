@@ -51,7 +51,7 @@ impl Component for ExperienceController {
             dates: "2024/07 - Present".to_string(),
             location: "Chicago, IL".to_string(),
             description: vec![
-                "Own, develop and manage the **streaming data platform** for both historical and live use cases, used by >60 systems and 13 trading desks.",
+                "Own, develop and manage the **streaming data platform** for both historical and live use cases, used by >100 systems across 13 trading desks.",
                 "Shipped an options analytical arsenal leveraging **functional domain modelling**, reduced turnaround time for new tools by **10x.**",
                 "Maintain a generic **stream-processing** system to ingest, clean, transform and aggregate data following the Medallion architecture",
                 "Lead a team of 3, own numerous trading critical visualization tools across asset classes, used widely by traders.",
