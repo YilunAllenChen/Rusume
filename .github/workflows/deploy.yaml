@@ -3,7 +3,6 @@ name: Deployment
 on:
   push:
     branches: [main]
-
   workflow_dispatch:
 
 permissions:
@@ -21,6 +20,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Restore cache
         uses: actions/cache@v4
         with:
@@ -37,7 +37,7 @@ jobs:
             && rustup target add wasm32-unknown-unknown
 
       - name: Build the Rust WASM app and all of its assets
-        run: trunk build --public-url ${{ github.event.repository.name }}
+        run: trunk build --public-url /${{ github.event.repository.name }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -49,9 +49,6 @@ jobs:
   deploy:
     needs: build
     
-    permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
 
     environment:
       name: github-pages
