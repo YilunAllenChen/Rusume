@@ -51,8 +51,8 @@ impl Component for ExperienceController {
             dates: "2024/07 - Present".to_string(),
             location: "Chicago, IL".to_string(),
             description: vec![
-                "Own, develop and manage the **streaming data platform** for both historical and live use cases, used by >100 systems across 13 trading desks.",
-                "Shipped an options analytical arsenal leveraging **functional domain modelling**, reduced turnaround time for new tools by **10x.**",
+                "Own, develop and manage a **streaming data platform** used by >100 trading-critical systems across 13 trading desks.",
+                "Shipped an options analytical arsenal leveraging **functional domain modelling**, reduced turnaround time for new tools by **~10x.**",
                 "Maintain a generic **stream-processing** system to ingest, clean, transform and aggregate data following the Medallion architecture",
                 "Lead a team of 3, own numerous trading critical visualization tools across asset classes, used widely by traders.",
                 "**Utilized**: Python, Rust, Kafka, Delta Lake, Protobuf, Arrow, DuckDB, PostgreSQL",
@@ -66,7 +66,7 @@ impl Component for ExperienceController {
             location: "Chicago, IL".to_string(),
             description: vec![
                 "Spearhead the design and development of core option pricing datasets & processes with **>$10M/yr** estimated materiality.",
-                "Owned the re-architecture and optimization of a vol dynamics visualization dashboard, making it **8x** faster and **10x** more resource efficient",
+                "Owned the re-architecture of a vol-dynamics visualization dashboard, making it **8x** faster and **10x** more resource efficient",
                 "Coordinated collaboration across 3 teams and 10+ engineers to integrate exotic options pricing & risks into existing trading systems.",
                 "Automated, standardized and documented team support & operational procedures, saving 20 engr hrs / week.",
                 "**Utilized**: Python, Rust, Java, Kafka, Delta Lake, gRPC/Protobuf, Arrow, Flight, Redis",
@@ -82,6 +82,17 @@ impl Component for ExperienceController {
                 "Shipped unified data APIs to serve both historical and live data, widely used in critical trading infrastructure.",
                 "Devised compression and normalization algorithms for high-dimensional data, reducing sizes by **80%**.",
                 "**Utilized**: Python, Java, Kafka, S3, Parquet, gRPC/Protobuf, Trino/Presto.",
+            ].join("\n").to_string(),
+        }, Experience {
+            employer: "Uber ATG".to_string(),
+            team: "Platform Validation".to_string().into(),
+            title: "Hardware Intern".to_string(),
+            dates: "2021/05 - 2021/08".to_string(),
+            location: "Atlanta, GA (Remote)".to_string(),
+            description: vec![
+                "Modularized and optimized the architecture of a legacy autonomous vehicle fleet orchestration system.",
+                "Designed task scheduling algorithms, improving system capacity by **700%** and reducing memory usage by **80%**.",
+                "**Utilized**: Python (asyncio), Bash, AWS (EC2), PostgreSQL.",
             ].join("\n").to_string(),
         }, Experience {
             employer: "Georgia Tech".to_string(),

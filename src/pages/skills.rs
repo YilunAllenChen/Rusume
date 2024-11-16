@@ -96,30 +96,62 @@ impl Component for SkillController {
                     .link()
                     .callback(move |_| SkillMsg::RemoveSkillCategory(idx));
 
-                let category_input = make_input(
-                    ctx,
-                    idx,
-                    "Category".to_string(),
-                    skill.category.clone(),
-                    SkillField::Category,
-                );
-                let skills_input = make_input(
-                    ctx,
-                    idx,
-                    "Skills".to_string(),
-                    skill.skills.clone(),
-                    SkillField::Skills,
-                );
+                let callback = ctx.link().callback(move |e: InputEvent| {
+                    let input: HtmlInputElement = e.target_unchecked_into();
+                    SkillMsg::UpdateField(idx, SkillField::Category(input.value()))
+                });
+                let category_input = html! {
+                    <div class="">
+                        <div class="relative flex-1">
+                            <input type="text"
+                                   id={"Category".to_string()}
+                                   oninput={callback}
+                                   class={INPUT_CLASS}
+                                   value={skill.category.clone()}
+                            />
+                            <label for={"Category".to_string()}
+                                   class={LABEL_CLASS}>
+                                {"Category"}
+                            </label>
+                        </div>
+                    </div>
+                };
+
+                let callback = ctx.link().callback(move |e: InputEvent| {
+                    let input: HtmlInputElement = e.target_unchecked_into();
+                    SkillMsg::UpdateField(idx, SkillField::Skills(input.value()))
+                });
+                let skills_input = html! {
+                    <div class="relative">
+                    <textarea
+                        name="description"
+                        class="w-full h-30 rounded-md px-2 pt-5 text-md shadow-sm"
+                        oninput={callback}
+                        value={skill.skills.clone()}
+                    />
+                    <label for={"description".to_string()}
+                           class={LABEL_CLASS} >
+                        {"Description"}
+                    </label>
+                    </div>
+                };
                 html! {
-                    <div class="space-y-2 bg-slate-100 rounded-lg p-4 my-4">
-                        {category_input}
+                    <div class="space-y-2 bg-slate-100 rounded-lg p-1 m-1 ">
+                        <div class="flex">
+                            <div class="flex-1">
+                            {category_input}
+                            </div>
+
+                            <div class="w-8 mx-4 mt-2">
+                                <button
+                                    class={REMOVE_BUTTON_CLASS}
+                                    onclick={remove_skill}
+                                >
+                                    {"❌"}
+                                </button>
+                            </div>
+                        </div>
                         {skills_input}
-                        <button
-                            class={REMOVE_BUTTON_CLASS}
-                            onclick={remove_skill}
-                        >
-                            {"Remove Skill"}
-                        </button>
                     </div>
                 }
             })
@@ -137,38 +169,6 @@ impl Component for SkillController {
                 </button>
             </>
         }
-    }
-}
-
-fn make_input<F>(
-    ctx: &Context<SkillController>,
-    idx: usize,
-    name: String,
-    value: String,
-    cons: F,
-) -> Html
-where
-    F: Fn(String) -> SkillField + 'static,
-{
-    let callback = ctx.link().callback(move |e: InputEvent| {
-        let input: HtmlInputElement = e.target_unchecked_into();
-        SkillMsg::UpdateField(idx, cons(input.value()))
-    });
-    html! {
-    <div class="m-2">
-        <div class="relative">
-            <input type="text"
-                   id={name.clone()}
-                   oninput={callback}
-                   class={INPUT_CLASS}
-                   value={value}
-            />
-            <label for={name.clone()}
-                   class={LABEL_CLASS}>
-                {name}
-            </label>
-        </div>
-    </div>
     }
 }
 
