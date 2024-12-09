@@ -39,12 +39,12 @@ impl Component for SkillController {
         let init = vec![
             SkillCategory {
                 category: "Programming".to_string(),
-                skills: "(Proficient) Python, Rust (Good) Java, C, C++, JavaScript, Lua (Familiar) Go, OCaml"
+                skills: "Python, Rust, Java, C, C++, Gleam, JavaScript, Lua, Go, Haskell, OCaml"
                     .to_string(),
             },
             SkillCategory {
                 category: "Technologies".to_string(),
-                skills: "Git, Kafka, Delta Lake, Redis, gRPC/Protobuf, Yew, Tailwind, Arrow, SQL, ArgoCD, Neovim"
+                skills: "Git, Kafka, Delta Lake, Redis, gRPC/Protobuf, Docker, Arrow, SQL, Tailwind, ArgoCD, Neovim"
                     .to_string(),
             },
             SkillCategory {
