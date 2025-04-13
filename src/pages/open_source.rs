@@ -201,4 +201,4 @@ pub fn view_open_source(props: &Props) -> Html {
             </div>
         </>
     }
-} 
+}

@@ -53,8 +53,8 @@ impl Component for ExperienceController {
             location: "Chicago, IL".to_string(),
             description: vec![
                 "Lead, manage and mentor a **global front office team of 7 exceptional engineers**, providing both direct desk service and central tooling.",
-                "Standardize, optimize, document and automate operation procedures, boosting engineer productivy by lowering team support burden by **80%**.",
-                "Prioritize and allocate team resources towards strategic initiatives, while tactically managing technical debt, eliminating 50+ legacy systems.",
+                "Standardize, optimize, document and automate **operation procedures**, boosting engineer productivy by lowering team support burden by **80%**.",
+                "Prioritize and **allocate team resources** towards strategic initiatives, while tactically **managing technical debt**, eliminating 50+ legacy systems.",
                 "Design, implement and own the core **FICC & equity options portfolio risk pipeline** for all (10+) trading desks within the group.",
                 "Own a versatile, high performance options analytics & trading tools library, used by 60+ traders and researchers globally.", 
                 "**Utilized**: Python, Java, C++, Kafka, Delta Lake, FastAPI, Plotly Dash, Kubernetes",
@@ -70,7 +70,7 @@ impl Component for ExperienceController {
                 "Own, develop and manage the **streaming data platform** for both historical and live use cases, used by >200 systems worldwide.",
                 "Shipped an options analytical arsenal leveraging **functional domain modelling**, reduced turnaround time for new tools by **10x.**",
                 "Maintain a generic **stream-processing** system to ingest, clean, transform and aggregate data following the Medallion architecture.",
-                "Spearheaded the implementation of a **bitemporal** binary wire transfer protocol that focuses on efficiency and the ability to time travel.",
+                "Pioneered the implementation of a **bitemporal** binary wire transfer protocol that focuses on efficiency and the ability to time travel.",
                 "**Utilized**: Python, Rust, Kafka, Delta Lake, Protobuf, Arrow, DuckDB, PostgreSQL",
             ].join("\n").to_string(),
         },
@@ -87,18 +87,30 @@ impl Component for ExperienceController {
                 "Automated, standardized and documented team support & operational procedures, saving 20 engr hrs / week.",
                 "**Utilized**: Python, Rust, Java, Kafka, Delta Lake, gRPC/Protobuf, Arrow, Flight, Redis",
             ].join("\n").to_string(),
-        }, Experience {
-            employer: "Georgia Tech".to_string(),
-            team: "GRITS Lab".to_string().into(),
-            title: "Student Robotics Researcher".to_string(),
-            dates: "2019/05 - 2021/6".to_string(),
+        },
+        Experience {
+            employer: "DRW".to_string(),
+            team: "FICC Options".to_string().into(),
+            title: "Software Developer Intern".to_string(),
+            dates: "2021/06 - 2021/08".to_string(),
             location: "Atlanta, GA".to_string(),
             description: vec![
-                "Led a team of 4 PhD/MS students to build hardware, firmware and software for hyper-energy-efficient robot: (_[The SlothBot](https://atlantabg.org/conservation-research/look-up-its-slothbot/)_).",
-                "Architected asynchronous pull-based over-the-air software update infrastructure for field-deployed robots swarms.",
-                "**Utilized**: C/C++, Python, JavaScript, React+Redux, Google Firebase, Kubernetes, Docker, ROS.",
+                "Built a proof-of-concept, language-agnostic, high performance unified streaming data platform with logical data compression.",
+                "Took the initiative to create peripheral automated deployment workflows & monitoring dashboard for the above data platform.",
+                "**Utilized**: Python, Java, Kafka, Presto/Trino, CephFS."
             ].join("\n").to_string(),
-        }
+        },
+        Experience {
+            employer: "Uber Advanced Technology Group".to_string(),
+            team: "Platform Validation".to_string().into(),
+            title: "Software Engineering Intern".to_string(),
+            dates: "2020/05 - 2020/07".to_string(),
+            location: "Atlanta, GA".to_string(),
+            description: vec![
+                "Rearchitected a fleet orchestration system that efficiently schedule the dispatchment of autonomous vehicles for field tests",
+                "**Utilized**: Python (asyncio), PostgreSQL"
+            ].join("\n").to_string(),
+        },
         ];
         let slf = Self { experiences: init };
         ctx.props().callback.emit(slf.experiences.clone());

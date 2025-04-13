@@ -57,13 +57,6 @@ impl Component for ProjectController {
             },
 
             Project {
-                name: "Karage".to_string(),
-                description: "Toy trading platform with market-making / arbitrage bot.".to_string(),
-                technologies: "Rust".to_string(),
-                url: Some("https://github.com/YilunAllenChen/Karage".to_string()),
-            },
-
-            Project {
                 name: "Rusume".to_string(),
                 description: "Real-time resume builder that was used to craft this very resume"
                     .to_string(),
