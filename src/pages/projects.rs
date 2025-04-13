@@ -51,8 +51,23 @@ impl Component for ProjectController {
                 name: "Museum of Code".to_string(),
                 description: "Educational web app caputuring the beauty of programming."
                     .to_string(),
-                technologies: "Rust/Yew".to_string(),
+                technologies: "Rust".to_string(),
                 url: Some("https://yilunallenchen.github.io/museum_of_code/".to_string()),
+            },
+
+            Project {
+                name: "Karage".to_string(),
+                description: "Toy trading platform with market-making / arbitrage bot.".to_string(),
+                technologies: "Rust".to_string(),
+                url: Some("https://github.com/YilunAllenChen/Karage".to_string()),
+            },
+
+            Project {
+                name: "Rusume".to_string(),
+                description: "Real-time resume builder that was used to craft this very resume"
+                    .to_string(),
+                technologies: "Rust".to_string(),
+                url: Some("https://yilunallenchen.github.io/Rusume/#/".to_string()),
             },
             Project {
                 name: "Exchange Simulator".to_string(),
@@ -61,10 +76,10 @@ impl Component for ProjectController {
                 url: Some("https://tradingsim.allenchen.dev/".to_string()),
             },
             Project {
-                name: "Project Karage".to_string(),
-                description: "Toy trading platform with market-making / arbitrage bot.".to_string(),
-                technologies: "Rust".to_string(),
-                url: Some("https://github.com/YilunAllenChen/Karage".to_string()),
+                name: "Iterr".to_string(),
+                description: "Rust-style iterator pattern in python: lazy, minimal, and type safe all the way.".to_string(),
+                technologies: "Python".to_string(),
+                url: Some("https://github.com/YilunAllenChen/iterr".to_string()),
             },
             Project {
                 name: "DaVinci Ergo Lab".to_string(),
@@ -85,13 +100,6 @@ impl Component for ProjectController {
                 description: "Self-driving cars in Grant Theft Auto V.".to_string(),
                 technologies: "Python, C++".to_string(),
                 url: Some("https://github.com/YilunAllenChen/GTAV_SDC/".to_string()),
-            },
-            Project {
-                name: "Rusume".to_string(),
-                description: "Real-time resume builder that was used to craft this very resume"
-                    .to_string(),
-                technologies: "Rust/Yew".to_string(),
-                url: Some("https://yilunallenchen.github.io/Rusume/#/".to_string()),
             },
         ];
         let slf = Self { projects: init };

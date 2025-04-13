@@ -28,12 +28,18 @@ use skills::SkillCategory;
 use skills::SkillController;
 use skills::SkillViewer;
 
+mod open_source;
+use open_source::OpenSource;
+use open_source::OpenSourceController;
+use open_source::OpenSourceViewer;
+
 pub struct Home {
     basic: Basic,
     educations: Vec<Education>,
     skills: Vec<SkillCategory>,
     experiences: Vec<Experience>,
     projects: Vec<Project>,
+    open_sources: Vec<OpenSource>,
 }
 
 pub enum HomeMsg {
@@ -43,6 +49,7 @@ pub enum HomeMsg {
     UpdateExperienceSection(Vec<Experience>),
     UpdateProjectSection(Vec<projects::Project>),
     UpdateSkillSection(Vec<skills::SkillCategory>),
+    UpdateOpenSourceSection(Vec<open_source::OpenSource>),
 }
 
 #[derive(Properties, PartialEq)]
@@ -59,6 +66,7 @@ impl Component for Home {
             skills: [].to_vec(),
             experiences: [].to_vec(),
             projects: [].to_vec(),
+            open_sources: [].to_vec(),
         }
     }
 
@@ -90,6 +98,9 @@ impl Component for Home {
             HomeMsg::UpdateSkillSection(skills) => {
                 self.skills = skills;
             }
+            HomeMsg::UpdateOpenSourceSection(open_sources) => {
+                self.open_sources = open_sources;
+            }
         }
         true
     }
@@ -110,6 +121,9 @@ impl Component for Home {
         let skill_cb = ctx
             .link()
             .callback(|skills| HomeMsg::UpdateSkillSection(skills));
+        let open_source_cb = ctx
+            .link()
+            .callback(|open_sources| HomeMsg::UpdateOpenSourceSection(open_sources));
 
         let print_button = html! {
             <button
@@ -130,16 +144,18 @@ impl Component for Home {
                     <EducationController callback={education_cb}/>
                     <ExperienceController callback={experience_cb} />
                     <ProjectController callback={project_cb} />
+                    <OpenSourceController callback={open_source_cb} />
                     {print_button.clone()}
                 </h1>
                 <div class="flex w-2/3 justify-center bg-slate-100 ">
                 <div id="rusume" class="flex-none max-w-[816x] bg-white overflow-scroll">
                     <div class="font-['Arial'] text-lg tracking-normal p-10">
                         <BasicViewer basic={self.basic.clone()} />
-                        <EducationViewer educations={self.educations.clone()} />
                         <SkillViewer skills={self.skills.clone()} />
                         <ExperienceViewer experiences={self.experiences.clone()} />
                         <ProjectViewer projects={self.projects.clone()} />
+                        <OpenSourceViewer open_sources={self.open_sources.clone()} />
+                        <EducationViewer educations={self.educations.clone()} />
                     </div>
                 </div>
                 </div>

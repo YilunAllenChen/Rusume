@@ -44,17 +44,33 @@ impl Component for ExperienceController {
     type Properties = ExperienceControllerProps;
 
     fn create(ctx: &Context<Self>) -> Self {
-        let init = vec![Experience {
+        let init = vec![
+            Experience {
+            employer: "DRW".to_string(),
+            team: "Cumberland / FICC Options".to_string().into(),
+            title: "Tech Lead".to_string(),
+            dates: "2025/01 - Present".to_string(),
+            location: "Chicago, IL".to_string(),
+            description: vec![
+                "Lead, manage and mentor a **global front office team of 7 exceptional engineers**, providing both direct desk service and central tooling.",
+                "Standardize, optimize, document and automate operation procedures, boosting engineer productivy by lowering team support burden by **80%**.",
+                "Prioritize and allocate team resources towards strategic initiatives, while tactically managing technical debt, eliminating 50+ legacy systems.",
+                "Design, implement and own the core **FICC & equity options portfolio risk pipeline** for all (10+) trading desks within the group.",
+                "Own a versatile, high performance options analytics & trading tools library, used by 60+ traders and researchers globally.", 
+                "**Utilized**: Python, Java, C++, Kafka, Delta Lake, FastAPI, Plotly Dash, Kubernetes",
+            ].join("\n").to_string(),
+        },
+            Experience {
             employer: "DRW".to_string(),
             team: "FICC Options".to_string().into(),
             title: "Senior Software Engineer".to_string(),
-            dates: "2024/07 - Present".to_string(),
+            dates: "2024/07 - 2025/01".to_string(),
             location: "Chicago, IL".to_string(),
             description: vec![
-                "Own, develop and manage the **streaming data platform** for both historical and live use cases, used by >100 systems across 13 trading desks.",
+                "Own, develop and manage the **streaming data platform** for both historical and live use cases, used by >200 systems worldwide.",
                 "Shipped an options analytical arsenal leveraging **functional domain modelling**, reduced turnaround time for new tools by **10x.**",
-                "Maintain a generic **stream-processing** system to ingest, clean, transform and aggregate data following the Medallion architecture",
-                "Lead a team of 3, own numerous trading critical visualization tools across asset classes, used widely by traders.",
+                "Maintain a generic **stream-processing** system to ingest, clean, transform and aggregate data following the Medallion architecture.",
+                "Spearheaded the implementation of a **bitemporal** binary wire transfer protocol that focuses on efficiency and the ability to time travel.",
                 "**Utilized**: Python, Rust, Kafka, Delta Lake, Protobuf, Arrow, DuckDB, PostgreSQL",
             ].join("\n").to_string(),
         },
@@ -66,32 +82,20 @@ impl Component for ExperienceController {
             location: "Chicago, IL".to_string(),
             description: vec![
                 "Spearhead the design and development of core option pricing datasets & processes with **>$10M/yr** estimated materiality.",
-                "Owned the re-architecture and optimization of a vol dynamics visualization dashboard, making it **8x** faster and **10x** more resource efficient",
+                "Rearchitected of a volatility path dynamics visualization dashboard, making it **8x** faster and **10x** more resource efficient.",
                 "Coordinated collaboration across 3 teams and 10+ engineers to integrate exotic options pricing & risks into existing trading systems.",
                 "Automated, standardized and documented team support & operational procedures, saving 20 engr hrs / week.",
                 "**Utilized**: Python, Rust, Java, Kafka, Delta Lake, gRPC/Protobuf, Arrow, Flight, Redis",
             ].join("\n").to_string(),
         }, Experience {
-            employer: "DRW".to_string(),
-            team: "FICC Options".to_string().into(),
-            title: "Software Developer Intern".to_string(),
-            dates: "2022/06 - 2022/08".to_string(),
-            location: "Chicago, IL".to_string(),
-            description: vec![
-                "Pioneered the design of a performant, language-agnostic streaming data system, capable of handling **>300k** msgs/s.",
-                "Shipped unified data APIs to serve both historical and live data, widely used in critical trading infrastructure.",
-                "Devised compression and normalization algorithms for high-dimensional data, reducing sizes by **80%**.",
-                "**Utilized**: Python, Java, Kafka, S3, Parquet, gRPC/Protobuf, Trino/Presto.",
-            ].join("\n").to_string(),
-        }, Experience {
             employer: "Georgia Tech".to_string(),
             team: "GRITS Lab".to_string().into(),
-            title: "Robotics Researcher".to_string(),
+            title: "Student Robotics Researcher".to_string(),
             dates: "2019/05 - 2021/6".to_string(),
             location: "Atlanta, GA".to_string(),
             description: vec![
-                "Led a team of 4 PhD/MS students to build hardware, firmware and software for robots (_[The SlothBot](https://atlantabg.org/conservation-research/look-up-its-slothbot/)_).",
-                "Architected asynchronous over-the-air software update infrastructure for field-deployed robots swarms.",
+                "Led a team of 4 PhD/MS students to build hardware, firmware and software for hyper-energy-efficient robot: (_[The SlothBot](https://atlantabg.org/conservation-research/look-up-its-slothbot/)_).",
+                "Architected asynchronous pull-based over-the-air software update infrastructure for field-deployed robots swarms.",
                 "**Utilized**: C/C++, Python, JavaScript, React+Redux, Google Firebase, Kubernetes, Docker, ROS.",
             ].join("\n").to_string(),
         }
