@@ -136,7 +136,7 @@ impl Component for Home {
 
         html! {
             <div class="w-screen h-screen flex">
-                <h1 class="w-1/3 p-4 bg-slate-200 overflow-y-scroll">
+                <h1 class="invisible md:visible resize-x overflow-x-auto bg-slate-200 overflow-y-scroll">
 
                     {print_button.clone()}
                     <BasicController callback={basic_cb}/>
@@ -147,8 +147,8 @@ impl Component for Home {
                     <OpenSourceController callback={open_source_cb} />
                     {print_button.clone()}
                 </h1>
-                <div class="flex w-2/3 justify-center bg-slate-100 ">
-                <div id="rusume" class="flex-none max-w-[816x] bg-white overflow-scroll">
+                <div class="flex-1 justify-center bg-slate-100 ">
+                <div id="rusume" class="flex-none bg-white overflow-scroll">
                     <div class="font-['Arial'] text-lg tracking-normal p-10">
                         <BasicViewer basic={self.basic.clone()} />
                         <SkillViewer skills={self.skills.clone()} />
