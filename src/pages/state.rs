@@ -6,6 +6,7 @@ use web_sys::{window, UrlSearchParams};
 use super::basic::Basic;
 use super::education::Education;
 use super::experiences::Experience;
+use super::experiences::RolePeriod;
 use super::open_source::OpenSource;
 use super::projects::Project;
 use super::skills::SkillCategory;
@@ -82,12 +83,18 @@ pub fn default_seed_state() -> AppState {
                 team: Some("Cumberland / FICC Options".to_string()),
                 title: "Head of Tools Engineering".to_string(),
                 dates: "2025/01 - Present".to_string(),
+                roles: vec![RolePeriod {
+                    title: "Head of Tools Engineering".to_string(),
+                    dates: "2025/01 - Present".to_string(),
+                    location: "Chicago, IL".to_string(),
+                }],
                 location: "Chicago, IL".to_string(),
                 description: [
-                    "Lead and manage a **global front office team of 10 engineers**, providing direct desk service and central tooling.",
+                    "Lead, manage and grow a **global front office team of 10 engineers**, providing direct desk service and a central platform.",
                     "Standardize, document and optimize team operations, boosting engineer productivy by lowering team support burden by **80%**.",
-                    "Prioritize and **allocate team resources** towards strategic initiatives, while tactically **managing technical debt**, eliminating 95% legacy pipelines.",
-                    "Design, implement and own an AI-native software infrastructrue platform traders confidently leverage in production trading",
+                    "Tactically **allocate team resources** towards strategic initiatives and tech debt elimination, deprecated 95% legacy pipelines.",
+                    "Push for adoption of cutting-edge technologies like ruff, uv, ty, Claude Code, Codex, n8n to continuously improve platform offerings.",
+                    "Design, implement and own an **AI-native** software infrastructrue platform traders confidently leverage in production trading.",
                     "Own a versatile, ergonomic, high performance options analytics & trading tools library, used by 60+ traders and researchers globally.",
                     "**Utilized**: Python, Java, C++, Kafka, DeltaLake, FastAPI, Plotly Dash, Kubernetes",
                 ]
@@ -96,42 +103,30 @@ pub fn default_seed_state() -> AppState {
             Experience {
                 employer: "DRW".to_string(),
                 team: Some("FICC Options".to_string()),
-                title: "Senior Software Engineer".to_string(),
-                dates: "2024/07 - 2025/01".to_string(),
+                title: "Software Engineer, Senior Software Engineer".to_string(),
+                dates: "2022/07 - 2025/01".to_string(),
+                roles: vec![
+                    RolePeriod {
+                        title: "Software Developer, Senior Software Engineer".to_string(),
+                        dates: "2022/07 - 2025/01".to_string(),
+                        location: "Chicago, IL".to_string(),
+                    },
+                    RolePeriod {
+                        title: "Software Developer Intern".to_string(),
+                        dates: "2021/06 - 2021/08".to_string(),
+                        location: "Chicago, IL".to_string(),
+                    },
+                ],
                 location: "Chicago, IL".to_string(),
                 description: [
                     "Own, develop and manage the **streaming data platform** for both historical and live use cases, used by >200 systems worldwide.",
-                    "Shipped an options analytical arsenal leveraging **functional domain modelling**, reduced turnaround time for new tools by **10x.**",
                     "Maintain a generic **stream-processing** system to ingest, clean, transform and aggregate data following the Medallion architecture.",
                     "Pioneered the implementation of a **bitemporal** binary wire transfer protocol that focuses on efficiency and the ability to time travel.",
-                    "**Utilized**: Python, Rust, Kafka, DeltaLake, Protobuf, Arrow, DuckDB, PostgreSQL",
-                ]
-                .join("\n"),
-            },
-            Experience {
-                employer: "DRW".to_string(),
-                team: Some("FICC Options".to_string()),
-                title: "Software Developer".to_string(),
-                dates: "2022/07 - 2024/07".to_string(),
-                location: "Chicago, IL".to_string(),
-                description: [
+                    "Shipped an options analytical arsenal leveraging **functional domain modelling**, reduced turnaround time for new tools by **10x.**",
                     "Spearhead the design and development of core option pricing datasets & processes with **>$10M/yr** estimated materiality.",
-                    "Rearchitected of a volatility path dynamics visualization dashboard, making it **8x** faster and **10x** more resource efficient.",
+                    "Rearchitected of a volatility dynamics computation & visualization pipeline, making it **8x** faster and **10x** more resource efficient.",
                     "Coordinated collaboration across 3 teams and 10+ engineers to integrate exotic options pricing & risks into existing trading systems.",
-                    "**Utilized**: Python, Rust, Java, Kafka, DeltaLake, gRPC/Protobuf, Arrow, Flight, Redis",
-                ]
-                .join("\n"),
-            },
-            Experience {
-                employer: "DRW".to_string(),
-                team: Some("FICC Options".to_string()),
-                title: "Software Developer Intern".to_string(),
-                dates: "2021/06 - 2021/08".to_string(),
-                location: "Atlanta, GA".to_string(),
-                description: [
-                    "Built a proof-of-concept, language-agnostic, high performance unified streaming data platform with logical data compression.",
-                    "Took the initiative to create peripheral automated deployment workflows & monitoring dashboard for the above data platform.",
-                    "**Utilized**: Python, Java, Kafka, Presto/Trino, CephFS.",
+                    "**Utilized**: Python, Rust, Java, Kafka, DeltaLake, gRPC/Protobuf, Arrow, DuckDB, PostgreSQL, Presto/Trino",
                 ]
                 .join("\n"),
             },
@@ -140,6 +135,11 @@ pub fn default_seed_state() -> AppState {
                 team: Some("Platform Validation".to_string()),
                 title: "Software Engineering Intern".to_string(),
                 dates: "2020/05 - 2020/07".to_string(),
+                roles: vec![RolePeriod {
+                    title: "Software Engineering Intern".to_string(),
+                    dates: "2020/05 - 2020/07".to_string(),
+                    location: "Atlanta, GA".to_string(),
+                }],
                 location: "Atlanta, GA".to_string(),
                 description: [
                     "Rearchitected a fleet orchestration system that efficiently schedule the dispatchment of autonomous vehicles for field tests",
@@ -147,6 +147,23 @@ pub fn default_seed_state() -> AppState {
                 ]
                 .join("\n"),
             },
+            Experience {
+                employer: "Georgia Institute of Technology".to_string(),
+                team: Some("GRITS Lab".to_string()),
+                title: "Robotics Research Assistant".to_string(),
+                dates: "2019/05 - 2022/05".to_string(),
+                roles: vec![RolePeriod {
+                    title: "Robotics Research Assistant".to_string(),
+                    dates: "2019/05 - 2022/05".to_string(),
+                    location: "Atlanta, GA".to_string(),
+                }],
+                location: "Atlanta, GA".to_string(),
+                description: [
+                    "Designed and built hardware, firmware and software for various robotics systems. Examples: [Slothbot](https://atlantabg.org/conservation-research/look-up-its-slothbot/), [Brushbot v2](https://github.com/YilunAllenChen/BrushBot)",
+                    "Revamped and optimized a giga-scale urban traffic simulation testbed that backs [the GreenEVT paper](https://arxiv.org/pdf/2305.12722)",
+                    "**Utilized**: Python, ROS, Gazebo, Embedded C++, Autodesk Eagle",
+                ].join("\n"),
+            }
         ],
         projects: vec![
             Project {
