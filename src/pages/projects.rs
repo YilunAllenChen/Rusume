@@ -3,7 +3,8 @@ use web_sys::HtmlInputElement;
 use yew::prelude::*;
 
 use super::html_utils::{
-    ADD_BUTTON_CLASS, INPUT_CLASS, LABEL_CLASS, REMOVE_BUTTON_CLASS, SECTION_HEADER_CLASS,
+    ADD_BUTTON_CLASS, INPUT_CLASS, INPUT_DIVIDER_CLASS, INPUT_FIELD_WRAPPER_CLASS,
+    INPUT_SECTION_CLASS, LABEL_CLASS, REMOVE_BUTTON_CLASS, SECTION_HEADER_CLASS,
 };
 
 #[derive(Debug, PartialEq, Clone, Default, Serialize, Deserialize)]
@@ -89,7 +90,7 @@ pub fn project_controller(props: &ProjectControllerProps) -> Html {
             );
 
             html! {
-                <div class="space-y-2 rounded-lg bg-slate-100 p-4 my-4">
+                <>
                     {name_input}
                     {description_input}
                     {technologies_input}
@@ -100,14 +101,14 @@ pub fn project_controller(props: &ProjectControllerProps) -> Html {
                     >
                         {"Remove"}
                     </button>
-                </div>
+                </>
             }
         })
         .collect::<Html>();
     html! {
         <>
-            <h5 class="text-xl font-bold text-left self-center pl-4 mt-4 mb-1"> {"Projects"} </h5>
-            <hr/>
+            <h5 class={INPUT_SECTION_CLASS}> {"Projects"} </h5>
+            <div class={INPUT_DIVIDER_CLASS}></div>
             {inputs}
             <button
                 class={ADD_BUTTON_CLASS}
@@ -145,8 +146,7 @@ where
         }
     });
     html! {
-    <>
-    <div class="m-2">
+    <div class={INPUT_FIELD_WRAPPER_CLASS}>
         <div class="relative">
             <input type="text"
                    id={name.clone()}
@@ -160,7 +160,6 @@ where
             </label>
         </div>
     </div>
-    </>
     }
 }
 

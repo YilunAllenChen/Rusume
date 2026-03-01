@@ -3,7 +3,8 @@ use web_sys::HtmlInputElement;
 use yew::prelude::*;
 
 use super::html_utils::{
-    ADD_BUTTON_CLASS, INPUT_CLASS, LABEL_CLASS, REMOVE_BUTTON_CLASS, SECTION_HEADER_CLASS,
+    ADD_BUTTON_CLASS, INPUT_CLASS, INPUT_DIVIDER_CLASS, INPUT_FIELD_WRAPPER_CLASS,
+    INPUT_SECTION_CLASS, LABEL_CLASS, REMOVE_BUTTON_CLASS, SECTION_HEADER_CLASS,
 };
 
 #[derive(Debug, PartialEq, Clone, Default, Serialize, Deserialize)]
@@ -22,7 +23,7 @@ pub enum EducationField {
     Major(String),
     StartDate(String),
     EndDate(String),
-    GPA(String),
+    Gpa(String),
 }
 
 #[derive(Properties, PartialEq)]
@@ -100,10 +101,10 @@ pub fn education_controller(props: &EducationControllerProps) -> Html {
                 idx,
                 "GPA".to_string(),
                 education.gpa.clone(),
-                EducationField::GPA,
+                EducationField::Gpa,
             );
             html! {
-                <div class="space-y-2 bg-slate-100 rounded-lg p-4 my-4">
+                <>
                     {school_input}
                     {major_input}
                     <div class="flex">
@@ -120,16 +121,16 @@ pub fn education_controller(props: &EducationControllerProps) -> Html {
                         class={REMOVE_BUTTON_CLASS}
                         onclick={remove_education}
                     >
-                        {"Remove Education"}
+                        {"Remove"}
                     </button>
-                </div>
+                </>
             }
         })
         .collect::<Html>();
     html! {
         <>
-            <h5 class="text-xl font-bold text-left self-center pl-4 mt-4 mb-1"> {"Education"} </h5>
-            <hr/>
+            <h5 class={INPUT_SECTION_CLASS}> {"Education"} </h5>
+            <div class={INPUT_DIVIDER_CLASS}></div>
             {inputs}
             <button
                 class={ADD_BUTTON_CLASS}
@@ -163,13 +164,13 @@ where
                 EducationField::Major(major) => education.major = major,
                 EducationField::StartDate(start_date) => education.start_date = start_date,
                 EducationField::EndDate(end_date) => education.end_date = end_date,
-                EducationField::GPA(gpa) => education.gpa = gpa,
+                EducationField::Gpa(gpa) => education.gpa = gpa,
             }
             on_change.emit(next);
         }
     });
     html! {
-    <div class="m-2">
+    <div class={INPUT_FIELD_WRAPPER_CLASS}>
         <div class="relative">
             <input type="text"
                    id={name.clone()}

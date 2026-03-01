@@ -83,7 +83,7 @@ pub fn default_seed_state() -> AppState {
                 title: "Tech Lead".to_string(),
                 dates: "2025/01 - Present".to_string(),
                 location: "Chicago, IL".to_string(),
-                description: vec![
+                description: [
                     "Lead, manage and mentor a **global front office team of 7 exceptional engineers**, providing both direct desk service and central tooling.",
                     "Standardize, optimize, document and automate **operation procedures**, boosting engineer productivy by lowering team support burden by **80%**.",
                     "Prioritize and **allocate team resources** towards strategic initiatives, while tactically **managing technical debt**, eliminating 50+ legacy systems.",
@@ -99,7 +99,7 @@ pub fn default_seed_state() -> AppState {
                 title: "Senior Software Engineer".to_string(),
                 dates: "2024/07 - 2025/01".to_string(),
                 location: "Chicago, IL".to_string(),
-                description: vec![
+                description: [
                     "Own, develop and manage the **streaming data platform** for both historical and live use cases, used by >200 systems worldwide.",
                     "Shipped an options analytical arsenal leveraging **functional domain modelling**, reduced turnaround time for new tools by **10x.**",
                     "Maintain a generic **stream-processing** system to ingest, clean, transform and aggregate data following the Medallion architecture.",
@@ -114,7 +114,7 @@ pub fn default_seed_state() -> AppState {
                 title: "Software Developer".to_string(),
                 dates: "2022/07 - 2024/07".to_string(),
                 location: "Chicago, IL".to_string(),
-                description: vec![
+                description: [
                     "Spearhead the design and development of core option pricing datasets & processes with **>$10M/yr** estimated materiality.",
                     "Rearchitected of a volatility path dynamics visualization dashboard, making it **8x** faster and **10x** more resource efficient.",
                     "Coordinated collaboration across 3 teams and 10+ engineers to integrate exotic options pricing & risks into existing trading systems.",
@@ -129,7 +129,7 @@ pub fn default_seed_state() -> AppState {
                 title: "Software Developer Intern".to_string(),
                 dates: "2021/06 - 2021/08".to_string(),
                 location: "Atlanta, GA".to_string(),
-                description: vec![
+                description: [
                     "Built a proof-of-concept, language-agnostic, high performance unified streaming data platform with logical data compression.",
                     "Took the initiative to create peripheral automated deployment workflows & monitoring dashboard for the above data platform.",
                     "**Utilized**: Python, Java, Kafka, Presto/Trino, CephFS.",
@@ -142,7 +142,7 @@ pub fn default_seed_state() -> AppState {
                 title: "Software Engineering Intern".to_string(),
                 dates: "2020/05 - 2020/07".to_string(),
                 location: "Atlanta, GA".to_string(),
-                description: vec![
+                description: [
                     "Rearchitected a fleet orchestration system that efficiently schedule the dispatchment of autonomous vehicles for field tests",
                     "**Utilized**: Python (asyncio), PostgreSQL",
                 ]
@@ -171,7 +171,7 @@ pub fn default_seed_state() -> AppState {
             Project {
                 name: "Exchange Simulator".to_string(),
                 description: "FIFO matching engine with materialized market impacts.".to_string(),
-                technologies: "Python, JavaScript".to_string(),
+                technologies: "Python, Rust, TypeScript".to_string(),
                 url: Some("https://tradingsim.allenchen.dev/".to_string()),
             },
             Project {

@@ -2,7 +2,9 @@ use serde::{Deserialize, Serialize};
 use web_sys::HtmlInputElement;
 use yew::prelude::*;
 
-use super::html_utils::{INPUT_CLASS, INPUT_SECTION_CLASS, LABEL_CLASS};
+use super::html_utils::{
+    INPUT_CLASS, INPUT_DIVIDER_CLASS, INPUT_FIELD_WRAPPER_CLASS, INPUT_SECTION_CLASS, LABEL_CLASS,
+};
 
 #[derive(Debug, PartialEq, Clone, Default, Serialize, Deserialize)]
 pub struct Basic {
@@ -67,14 +69,12 @@ pub fn basic_controller(props: &BasicControllerProps) -> Html {
     html! {
         <>
         <h5 class={INPUT_SECTION_CLASS}> {"Basic Information"} </h5>
-        <hr/>
-        <div class="space-y-2 bg-slate-100 rounded-lg p-4 my-4">
-            {name_input}
-            {email_input}
-            {phone_input}
-            {linkedin_url_input}
-            {github_url_input}
-        </div>
+        <div class={INPUT_DIVIDER_CLASS}></div>
+        {name_input}
+        {email_input}
+        {phone_input}
+        {linkedin_url_input}
+        {github_url_input}
         </>
     }
 }
@@ -99,7 +99,7 @@ where
     });
 
     html! {
-    <div class="m-2">
+    <div class={INPUT_FIELD_WRAPPER_CLASS}>
         <div class="relative">
             <input type="text"
                    id={name.clone()}

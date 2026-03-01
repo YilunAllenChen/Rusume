@@ -3,7 +3,8 @@ use web_sys::{HtmlInputElement, HtmlTextAreaElement};
 use yew::prelude::*;
 
 use super::html_utils::{
-    ADD_BUTTON_CLASS, INPUT_CLASS, LABEL_CLASS, REMOVE_BUTTON_CLASS, SECTION_HEADER_CLASS,
+    ADD_BUTTON_CLASS, INPUT_CLASS, INPUT_DIVIDER_CLASS, INPUT_FIELD_WRAPPER_CLASS,
+    INPUT_SECTION_CLASS, LABEL_CLASS, REMOVE_BUTTON_CLASS, SECTION_HEADER_CLASS, TEXTAREA_CLASS,
 };
 
 #[derive(Debug, PartialEq, Clone, Default, Serialize, Deserialize)]
@@ -22,7 +23,6 @@ pub enum ExperienceField {
     Title(String),
     Dates(String),
     Location(String),
-    Description(String),
 }
 
 #[derive(Properties, PartialEq)]
@@ -109,10 +109,11 @@ pub fn experience_controller(props: &ExperienceControllerProps) -> Html {
                 })
             };
             let description_input = html! {
-                <div class="relative m-2">
+                <div class={INPUT_FIELD_WRAPPER_CLASS}>
+                <div class="relative">
                 <textarea
                     name="description"
-                    class="w-full h-60 rounded-md px-3.5 pt-5 text-md shadow-sm"
+                    class={TEXTAREA_CLASS}
                     oninput={update_description}
                     value={experience.description.clone()}
                 />
@@ -121,28 +122,29 @@ pub fn experience_controller(props: &ExperienceControllerProps) -> Html {
                     {"Description"}
                 </label>
                 </div>
+                </div>
             };
             html! {
-            <div class="space-y-2 rounded-lg bg-slate-100 p-4 my-4">
-                {employer_input}
-                {team_input}
-                {title_input}
-                {dates_input}
-                {location_input}
-                {description_input}
-                <button
-                    class={REMOVE_BUTTON_CLASS}
-                    onclick={remove_experience}>
-                    {"Remove Experience"}
-                </button>
-            </div>
+                <>
+                    {employer_input}
+                    {team_input}
+                    {title_input}
+                    {dates_input}
+                    {location_input}
+                    {description_input}
+                    <button
+                        class={REMOVE_BUTTON_CLASS}
+                        onclick={remove_experience}>
+                        {"Remove"}
+                    </button>
+                </>
             }
         })
         .collect::<Html>();
     html! {
         <>
-            <h5 class="text-xl font-bold text-left self-center pl-4 mt-4 mb-1"> {"Experiences"} </h5>
-            <hr/>
+            <h5 class={INPUT_SECTION_CLASS}> {"Experiences"} </h5>
+            <div class={INPUT_DIVIDER_CLASS}></div>
             {inputs}
             <button
                 class={ADD_BUTTON_CLASS}
@@ -186,15 +188,12 @@ where
                 ExperienceField::Location(location) => {
                     experience.location = location;
                 }
-                ExperienceField::Description(bullets) => {
-                    experience.description = bullets;
-                }
             }
             on_change.emit(next);
         }
     });
     html! {
-    <div class="m-2">
+    <div class={INPUT_FIELD_WRAPPER_CLASS}>
         <div class="relative">
             <input type="text"
                    id={name.clone()}

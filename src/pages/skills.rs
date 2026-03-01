@@ -3,18 +3,14 @@ use web_sys::{HtmlInputElement, HtmlTextAreaElement};
 use yew::prelude::*;
 
 use super::html_utils::{
-    ADD_BUTTON_CLASS, INPUT_CLASS, LABEL_CLASS, REMOVE_BUTTON_CLASS, SECTION_HEADER_CLASS,
+    ADD_BUTTON_CLASS, INPUT_CLASS, INPUT_DIVIDER_CLASS, INPUT_FIELD_WRAPPER_CLASS,
+    INPUT_SECTION_CLASS, LABEL_CLASS, REMOVE_BUTTON_CLASS, SECTION_HEADER_CLASS, TEXTAREA_CLASS,
 };
 
 #[derive(Debug, PartialEq, Clone, Default, Serialize, Deserialize)]
 pub struct SkillCategory {
     pub category: String,
     pub skills: String,
-}
-
-pub enum SkillField {
-    Category(String),
-    Skills(String),
 }
 
 #[derive(Properties, PartialEq)]
@@ -65,8 +61,8 @@ pub fn skill_controller(props: &SkillControllerProps) -> Html {
                 })
             };
             let category_input = html! {
-                <div class="">
-                    <div class="relative flex-1">
+                <div class={INPUT_FIELD_WRAPPER_CLASS}>
+                    <div class="relative">
                         <input type="text"
                                id={"Category".to_string()}
                                oninput={update_category}
@@ -94,10 +90,11 @@ pub fn skill_controller(props: &SkillControllerProps) -> Html {
                 })
             };
             let skills_input = html! {
+                <div class={INPUT_FIELD_WRAPPER_CLASS}>
                 <div class="relative">
                 <textarea
                     name="description"
-                    class="w-full h-30 rounded-md px-2 pt-5 text-md shadow-sm"
+                    class={TEXTAREA_CLASS}
                     oninput={update_skills}
                     value={skill.skills.clone()}
                 />
@@ -106,32 +103,26 @@ pub fn skill_controller(props: &SkillControllerProps) -> Html {
                     {"Description"}
                 </label>
                 </div>
+                </div>
             };
             html! {
-                <div class="space-y-2 bg-slate-100 rounded-lg p-1 m-1 ">
-                    <div class="flex">
-                        <div class="flex-1">
-                        {category_input}
-                        </div>
-
-                        <div class="w-8 mx-4 mt-2">
-                            <button
-                                class={REMOVE_BUTTON_CLASS}
-                                onclick={remove_skill}
-                            >
-                                {"❌"}
-                            </button>
-                        </div>
-                    </div>
+                <>
+                    {category_input}
                     {skills_input}
-                </div>
+                    <button
+                        class={REMOVE_BUTTON_CLASS}
+                        onclick={remove_skill}
+                    >
+                        {"Remove"}
+                    </button>
+                </>
             }
         })
         .collect::<Html>();
     html! {
         <>
-            <h5 class="text-xl font-bold text-left self-center pl-4 mt-4 mb-1"> {"Skills"} </h5>
-            <hr/>
+            <h5 class={INPUT_SECTION_CLASS}> {"Skills"} </h5>
+            <div class={INPUT_DIVIDER_CLASS}></div>
             {inputs}
             <button
                 class={ADD_BUTTON_CLASS}
