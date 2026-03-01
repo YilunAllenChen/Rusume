@@ -1,3 +1,4 @@
+use serde::{Deserialize, Serialize};
 use web_sys::HtmlInputElement;
 use yew::prelude::*;
 
@@ -5,10 +6,10 @@ use super::html_utils::{
     ADD_BUTTON_CLASS, INPUT_CLASS, LABEL_CLASS, REMOVE_BUTTON_CLASS, SECTION_HEADER_CLASS,
 };
 
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Debug, PartialEq, Clone, Default, Serialize, Deserialize)]
 pub struct OpenSource {
-    name: String,
-    url: String,
+    pub name: String,
+    pub url: String,
 }
 
 pub enum OpenSourceField {
@@ -18,130 +19,87 @@ pub enum OpenSourceField {
 
 #[derive(Properties, PartialEq)]
 pub struct OpenSourceControllerProps {
-    pub callback: Callback<Vec<OpenSource>>,
+    pub value: Vec<OpenSource>,
+    pub on_change: Callback<Vec<OpenSource>>,
 }
 
-pub enum OpenSourceMsg {
-    AddOpenSource,
-    RemoveOpenSource(usize),
-    UpdateField(usize, OpenSourceField),
-}
+#[function_component(OpenSourceController)]
+pub fn open_source_controller(props: &OpenSourceControllerProps) -> Html {
+    let add_open_source = {
+        let open_sources = props.value.clone();
+        let on_change = props.on_change.clone();
+        Callback::from(move |_| {
+            let mut next = open_sources.clone();
+            next.push(OpenSource::default());
+            on_change.emit(next);
+        })
+    };
 
-pub struct OpenSourceController {
-    open_sources: Vec<OpenSource>,
-}
+    let inputs = props
+        .value
+        .iter()
+        .enumerate()
+        .map(|(idx, open_source)| {
+            let remove_open_source = {
+                let open_sources = props.value.clone();
+                let on_change = props.on_change.clone();
+                Callback::from(move |_| {
+                    let mut next = open_sources.clone();
+                    if idx < next.len() {
+                        next.remove(idx);
+                        on_change.emit(next);
+                    }
+                })
+            };
 
-impl Component for OpenSourceController {
-    type Message = OpenSourceMsg;
-    type Properties = OpenSourceControllerProps;
+            let name_input = make_input(
+                props,
+                idx,
+                "Name".to_string(),
+                open_source.name.clone(),
+                OpenSourceField::Name,
+            );
 
-    fn create(ctx: &Context<Self>) -> Self {
-        let init = vec![
-            OpenSource {
-                name: "kafka-rust #222".to_string(),
-                url: "https://github.com/kafka-rust/kafka-rust/pull/222".to_string(),
-            },
-            OpenSource {
-                name: "kafka-rust #223".to_string(),
-                url: "https://github.com/kafka-rust/kafka-rust/pull/223".to_string(),
-            },
-            OpenSource {
-                name: "gleam-stdlib #769".to_string(),
-                url: "https://github.com/gleam-lang/stdlib/pull/769".to_string(),
-            },
-        ];
-        let slf = Self { open_sources: init };
-        ctx.props().callback.emit(slf.open_sources.clone());
-        slf
-    }
+            let url_input = make_input(
+                props,
+                idx,
+                "URL".to_string(),
+                open_source.url.clone(),
+                OpenSourceField::Url,
+            );
 
-    fn changed(&mut self, _ctx: &Context<Self>, _old_props: &Self::Properties) -> bool {
-        false
-    }
-
-    fn update(&mut self, ctx: &Context<Self>, msg: Self::Message) -> bool {
-        match msg {
-            OpenSourceMsg::AddOpenSource => {
-                self.open_sources.push(OpenSource {
-                    name: "".to_string(),
-                    url: "".to_string(),
-                });
+            html! {
+                <div class="space-y-2 rounded-lg bg-slate-100 p-4 my-4">
+                    {name_input}
+                    {url_input}
+                    <button
+                        class={REMOVE_BUTTON_CLASS}
+                        onclick={remove_open_source}
+                    >
+                        {"Remove"}
+                    </button>
+                </div>
             }
-            OpenSourceMsg::UpdateField(index, field) => {
-                let open_source = self.open_sources.get_mut(index as usize).unwrap();
-                match field {
-                    OpenSourceField::Name(name) => open_source.name = name,
-                    OpenSourceField::Url(url) => open_source.url = url,
-                }
-            }
-            OpenSourceMsg::RemoveOpenSource(index) => {
-                self.open_sources.remove(index as usize);
-            }
-        }
-        ctx.props().callback.emit(self.open_sources.clone());
-        true
-    }
+        })
+        .collect::<Html>();
 
-    fn view(&self, ctx: &Context<Self>) -> Html {
-        let add_open_source = ctx.link().callback(|_| OpenSourceMsg::AddOpenSource);
-        let inputs = self
-            .open_sources
-            .iter()
-            .enumerate()
-            .map(|(idx, open_source)| {
-                let remove_open_source = ctx
-                    .link()
-                    .callback(move |_| OpenSourceMsg::RemoveOpenSource(idx));
-
-                let name_input = make_input(
-                    ctx,
-                    idx,
-                    "Name".to_string(),
-                    open_source.name.clone(),
-                    OpenSourceField::Name,
-                );
-
-                let url_input = make_input(
-                    ctx,
-                    idx,
-                    "URL".to_string(),
-                    open_source.url.clone(),
-                    OpenSourceField::Url,
-                );
-
-                html! {
-                    <div class="space-y-2 rounded-lg bg-slate-100 p-4 my-4">
-                        {name_input}
-                        {url_input}
-                        <button
-                            class={REMOVE_BUTTON_CLASS}
-                            onclick={remove_open_source}
-                        >
-                            {"Remove"}
-                        </button>
-                    </div>
-                }
-            })
-            .collect::<Html>();
-
-        html! {
-            <>
-                <h5 class="text-xl font-bold text-left self-center pl-4 mt-4 mb-1"> {"Open Source"} </h5>
-                <hr/>
-                {inputs}
-                <button
-                    class={ADD_BUTTON_CLASS}
-                    onclick={add_open_source}
-                >
-                    {"Add Open Source"}
-                </button>
-            </>
-        }
+    html! {
+        <>
+            <h5 class="text-xl font-bold text-left self-center pl-4 mt-4 mb-1"> {"Open Source"} </h5>
+            <hr/>
+            {inputs}
+            <button
+                class={ADD_BUTTON_CLASS}
+                onclick={add_open_source}
+            >
+                {"Add Open Source"}
+            </button>
+        </>
     }
 }
 
 fn make_input<F>(
-    ctx: &Context<OpenSourceController>,
+    props: &OpenSourceControllerProps,
     idx: usize,
     name: String,
     value: String,
@@ -150,9 +108,18 @@ fn make_input<F>(
 where
     F: Fn(String) -> OpenSourceField + 'static,
 {
-    let callback = ctx.link().callback(move |e: InputEvent| {
+    let open_sources = props.value.clone();
+    let on_change = props.on_change.clone();
+    let callback = Callback::from(move |e: InputEvent| {
         let input: HtmlInputElement = e.target_unchecked_into();
-        OpenSourceMsg::UpdateField(idx, cons(input.value()))
+        let mut next = open_sources.clone();
+        if let Some(open_source) = next.get_mut(idx) {
+            match cons(input.value()) {
+                OpenSourceField::Name(name) => open_source.name = name,
+                OpenSourceField::Url(url) => open_source.url = url,
+            }
+            on_change.emit(next);
+        }
     });
     html! {
     <div class="m-2">

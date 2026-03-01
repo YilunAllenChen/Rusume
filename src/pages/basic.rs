@@ -1,27 +1,16 @@
+use serde::{Deserialize, Serialize};
 use web_sys::HtmlInputElement;
 use yew::prelude::*;
 
 use super::html_utils::{INPUT_CLASS, INPUT_SECTION_CLASS, LABEL_CLASS};
 
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Debug, PartialEq, Clone, Default, Serialize, Deserialize)]
 pub struct Basic {
-    name: String,
-    email: String,
-    phone: String,
-    linkedin_url: Option<String>,
-    github_url: Option<String>,
-}
-
-impl Default for Basic {
-    fn default() -> Self {
-        Self {
-            name: "".to_string(),
-            email: "".to_string(),
-            phone: "".to_string(),
-            linkedin_url: None,
-            github_url: None,
-        }
-    }
+    pub name: String,
+    pub email: String,
+    pub phone: String,
+    pub linkedin_url: Option<String>,
+    pub github_url: Option<String>,
 }
 
 pub enum BasicField {
@@ -34,114 +23,81 @@ pub enum BasicField {
 
 #[derive(Properties, PartialEq)]
 pub struct BasicControllerProps {
-    pub callback: Callback<Basic>,
+    pub value: Basic,
+    pub on_change: Callback<Basic>,
 }
 
-pub enum BasicMsg {
-    UpdateField(BasicField),
-}
+#[function_component(BasicController)]
+pub fn basic_controller(props: &BasicControllerProps) -> Html {
+    let name_input = make_input(
+        "Name".to_string(),
+        props.value.name.clone(),
+        BasicField::Name,
+        props,
+    );
 
-pub struct BasicController {
-    basic: Basic,
-}
+    let email_input = make_input(
+        "Email".to_string(),
+        props.value.email.clone(),
+        BasicField::Email,
+        props,
+    );
 
-impl Component for BasicController {
-    type Message = BasicMsg;
-    type Properties = BasicControllerProps;
+    let phone_input = make_input(
+        "Phone".to_string(),
+        props.value.phone.clone(),
+        BasicField::Phone,
+        props,
+    );
 
-    fn create(ctx: &Context<Self>) -> Self {
-        let init = Basic {
-            name: "Yilun \"Allen\" Chen".to_string(),
-            email: "allenchenyilun1999@gmail.com".to_string(),
-            phone: "404-409-9683".to_string(),
-            linkedin_url: "https://www.linkedin.com/in/yilun-allen-chen-572b71141/"
-                .to_string()
-                .into(),
-            github_url: "https://github.com/YilunAllenChen".to_string().into(),
-        };
-        let slf = Self { basic: init };
-        ctx.props().callback.emit(slf.basic.clone());
-        slf
-    }
+    let linkedin_url_input = make_input(
+        "LinkedIn URL".to_string(),
+        props.value.linkedin_url.clone().unwrap_or_default(),
+        BasicField::LinkedInUrl,
+        props,
+    );
 
-    fn changed(&mut self, _ctx: &Context<Self>, _old_props: &Self::Properties) -> bool {
-        false
-    }
+    let github_url_input = make_input(
+        "Github URL".to_string(),
+        props.value.github_url.clone().unwrap_or_default(),
+        BasicField::GithubUrl,
+        props,
+    );
 
-    fn update(&mut self, ctx: &Context<Self>, msg: Self::Message) -> bool {
-        match msg {
-            BasicMsg::UpdateField(field) => match field {
-                BasicField::Name(name) => self.basic.name = name,
-                BasicField::Email(email) => self.basic.email = email,
-                BasicField::Phone(phone) => self.basic.phone = phone,
-                BasicField::LinkedInUrl(url) => self.basic.linkedin_url = url.into(),
-                BasicField::GithubUrl(url) => self.basic.github_url = url.into(),
-            },
-        }
-        ctx.props().callback.emit(self.basic.clone());
-        true
-    }
-
-    fn view(&self, ctx: &Context<Self>) -> Html {
-        let name_input = make_input(
-            ctx,
-            "Name".to_string(),
-            self.basic.name.clone(),
-            BasicField::Name,
-        );
-
-        let email_input = make_input(
-            ctx,
-            "Email".to_string(),
-            self.basic.email.clone(),
-            BasicField::Email,
-        );
-
-        let phone_input = make_input(
-            ctx,
-            "Phone".to_string(),
-            self.basic.phone.clone(),
-            BasicField::Phone,
-        );
-
-        let linkedin_url_input = make_input(
-            ctx,
-            "LinkedIn URL".to_string(),
-            self.basic.linkedin_url.clone().unwrap_or_default(),
-            BasicField::LinkedInUrl,
-        );
-
-        let github_url_input = make_input(
-            ctx,
-            "Github URL".to_string(),
-            self.basic.github_url.clone().unwrap_or_default(),
-            BasicField::GithubUrl,
-        );
-
-        html! {
-            <>
-            <h5 class={INPUT_SECTION_CLASS}> {"Basic Information"} </h5>
-            <hr/>
-            <div class="space-y-2 bg-slate-100 rounded-lg p-4 my-4">
-                {name_input}
-                {email_input}
-                {phone_input}
-                {linkedin_url_input}
-                {github_url_input}
-            </div>
-            </>
-        }
+    html! {
+        <>
+        <h5 class={INPUT_SECTION_CLASS}> {"Basic Information"} </h5>
+        <hr/>
+        <div class="space-y-2 bg-slate-100 rounded-lg p-4 my-4">
+            {name_input}
+            {email_input}
+            {phone_input}
+            {linkedin_url_input}
+            {github_url_input}
+        </div>
+        </>
     }
 }
 
-fn make_input<F>(ctx: &Context<BasicController>, name: String, value: String, cons: F) -> Html
+fn make_input<F>(name: String, value: String, cons: F, props: &BasicControllerProps) -> Html
 where
     F: Fn(String) -> BasicField + 'static,
 {
-    let callback = ctx.link().callback(move |e: InputEvent| {
+    let current_basic = props.value.clone();
+    let on_change = props.on_change.clone();
+    let callback = Callback::from(move |e: InputEvent| {
         let input: HtmlInputElement = e.target_unchecked_into();
-        BasicMsg::UpdateField(cons(input.value()))
+        let mut next_basic = current_basic.clone();
+        match cons(input.value()) {
+            BasicField::Name(name) => next_basic.name = name,
+            BasicField::Email(email) => next_basic.email = email,
+            BasicField::Phone(phone) => next_basic.phone = phone,
+            BasicField::LinkedInUrl(url) => next_basic.linkedin_url = Some(url),
+            BasicField::GithubUrl(url) => next_basic.github_url = Some(url),
+        }
+        on_change.emit(next_basic.clone());
     });
+
     html! {
     <div class="m-2">
         <div class="relative">

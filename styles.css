@@ -34,3 +34,32 @@
 
 html {
 }
+
+@media print {
+  html,
+  body {
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  * {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+
+  *::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  #rusume {
+    background: white !important;
+    transform: scale(0.7);
+    transform-origin: top left;
+    width: 142.8571428571%;
+  }
+}
