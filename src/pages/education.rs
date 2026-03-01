@@ -4,7 +4,8 @@ use yew::prelude::*;
 
 use super::html_utils::{
     ADD_BUTTON_CLASS, INPUT_CLASS, INPUT_DIVIDER_CLASS, INPUT_FIELD_WRAPPER_CLASS,
-    INPUT_SECTION_CLASS, LABEL_CLASS, REMOVE_BUTTON_CLASS, SECTION_HEADER_CLASS,
+    INPUT_SECTION_CLASS, INPUT_SECTION_ROW_CLASS, LABEL_CLASS, REMOVE_BUTTON_CLASS,
+    SECTION_HEADER_CLASS,
 };
 
 #[derive(Debug, PartialEq, Clone, Default, Serialize, Deserialize)]
@@ -129,15 +130,17 @@ pub fn education_controller(props: &EducationControllerProps) -> Html {
         .collect::<Html>();
     html! {
         <>
-            <h5 class={INPUT_SECTION_CLASS}> {"Education"} </h5>
+            <div class={INPUT_SECTION_ROW_CLASS}>
+                <h5 class={INPUT_SECTION_CLASS}> {"Education"} </h5>
+                <button
+                    class={ADD_BUTTON_CLASS}
+                    onclick={add_education}
+                >
+                    {"Add New"}
+                </button>
+            </div>
             <div class={INPUT_DIVIDER_CLASS}></div>
             {inputs}
-            <button
-                class={ADD_BUTTON_CLASS}
-                onclick={add_education}
-            >
-                {"Add Education"}
-            </button>
         </>
     }
 }

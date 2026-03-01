@@ -3,7 +3,8 @@ use web_sys::HtmlInputElement;
 use yew::prelude::*;
 
 use super::html_utils::{
-    INPUT_CLASS, INPUT_DIVIDER_CLASS, INPUT_FIELD_WRAPPER_CLASS, INPUT_SECTION_CLASS, LABEL_CLASS,
+    INPUT_CLASS, INPUT_DIVIDER_CLASS, INPUT_FIELD_WRAPPER_CLASS, INPUT_SECTION_CLASS,
+    INPUT_SECTION_ROW_CLASS, LABEL_CLASS,
 };
 
 #[derive(Debug, PartialEq, Clone, Default, Serialize, Deserialize)]
@@ -68,7 +69,9 @@ pub fn basic_controller(props: &BasicControllerProps) -> Html {
 
     html! {
         <>
-        <h5 class={INPUT_SECTION_CLASS}> {"Basic Information"} </h5>
+        <div class={INPUT_SECTION_ROW_CLASS}>
+            <h5 class={INPUT_SECTION_CLASS}> {"Basic Information"} </h5>
+        </div>
         <div class={INPUT_DIVIDER_CLASS}></div>
         {name_input}
         {email_input}

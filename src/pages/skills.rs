@@ -4,7 +4,8 @@ use yew::prelude::*;
 
 use super::html_utils::{
     ADD_BUTTON_CLASS, INPUT_CLASS, INPUT_DIVIDER_CLASS, INPUT_FIELD_WRAPPER_CLASS,
-    INPUT_SECTION_CLASS, LABEL_CLASS, REMOVE_BUTTON_CLASS, SECTION_HEADER_CLASS, TEXTAREA_CLASS,
+    INPUT_SECTION_CLASS, INPUT_SECTION_ROW_CLASS, LABEL_CLASS, REMOVE_BUTTON_CLASS,
+    SECTION_HEADER_CLASS, TEXTAREA_CLASS,
 };
 
 #[derive(Debug, PartialEq, Clone, Default, Serialize, Deserialize)]
@@ -121,15 +122,17 @@ pub fn skill_controller(props: &SkillControllerProps) -> Html {
         .collect::<Html>();
     html! {
         <>
-            <h5 class={INPUT_SECTION_CLASS}> {"Skills"} </h5>
+            <div class={INPUT_SECTION_ROW_CLASS}>
+                <h5 class={INPUT_SECTION_CLASS}> {"Skills"} </h5>
+                <button
+                    class={ADD_BUTTON_CLASS}
+                    onclick={add_skill}
+                >
+                    {"Add New"}
+                </button>
+            </div>
             <div class={INPUT_DIVIDER_CLASS}></div>
             {inputs}
-            <button
-                class={ADD_BUTTON_CLASS}
-                onclick={add_skill}
-            >
-                {"Add Skill"}
-            </button>
         </>
     }
 }

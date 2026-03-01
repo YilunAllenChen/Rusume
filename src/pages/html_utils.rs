@@ -1,4 +1,5 @@
 // input section
+pub static INPUT_SECTION_ROW_CLASS: &str = "sidebar-section-row";
 pub static REMOVE_BUTTON_CLASS: &str = "sidebar-remove-btn";
 pub static ADD_BUTTON_CLASS: &str = "sidebar-add-btn";
 pub static INPUT_CLASS: &str = "sidebar-input";

@@ -65,11 +65,11 @@ pub fn default_seed_state() -> AppState {
         skills: vec![
             SkillCategory {
                 category: "Programming".to_string(),
-                skills: "Python, Rust, Gleam, Java, C, C++, JavaScript, Lua, Go, Haskell, OCaml".to_string(),
+                skills: "Python, Rust, Java, C++, Gleam, JavaScript, Lua, Haskell, OCaml, Go".to_string(),
             },
             SkillCategory {
                 category: "Technologies".to_string(),
-                skills: "Git, Kafka, Delta Lake, Redis, gRPC/Protobuf, Docker, Arrow, SQL, Tailwind, ArgoCD, Neovim".to_string(),
+                skills: "Git, Kafka, DeltaLake, Redis, gRPC/Protobuf, Docker, Arrow, SQL, Tailwind, ArgoCD, Neovim".to_string(),
             },
             SkillCategory {
                 category: "The Softs".to_string(),
@@ -80,16 +80,16 @@ pub fn default_seed_state() -> AppState {
             Experience {
                 employer: "DRW".to_string(),
                 team: Some("Cumberland / FICC Options".to_string()),
-                title: "Tech Lead".to_string(),
+                title: "Head of Tools Engineering".to_string(),
                 dates: "2025/01 - Present".to_string(),
                 location: "Chicago, IL".to_string(),
                 description: [
-                    "Lead, manage and mentor a **global front office team of 7 exceptional engineers**, providing both direct desk service and central tooling.",
-                    "Standardize, optimize, document and automate **operation procedures**, boosting engineer productivy by lowering team support burden by **80%**.",
-                    "Prioritize and **allocate team resources** towards strategic initiatives, while tactically **managing technical debt**, eliminating 50+ legacy systems.",
-                    "Design, implement and own the core **FICC & equity options portfolio risk pipeline** for all (10+) trading desks within the group.",
-                    "Own a versatile, high performance options analytics & trading tools library, used by 60+ traders and researchers globally.",
-                    "**Utilized**: Python, Java, C++, Kafka, Delta Lake, FastAPI, Plotly Dash, Kubernetes",
+                    "Lead and manage a **global front office team of 10 engineers**, providing direct desk service and central tooling.",
+                    "Standardize, document and optimize team operations, boosting engineer productivy by lowering team support burden by **80%**.",
+                    "Prioritize and **allocate team resources** towards strategic initiatives, while tactically **managing technical debt**, eliminating 95% legacy pipelines.",
+                    "Design, implement and own an AI-native software infrastructrue platform traders confidently leverage in production trading",
+                    "Own a versatile, ergonomic, high performance options analytics & trading tools library, used by 60+ traders and researchers globally.",
+                    "**Utilized**: Python, Java, C++, Kafka, DeltaLake, FastAPI, Plotly Dash, Kubernetes",
                 ]
                 .join("\n"),
             },
@@ -104,7 +104,7 @@ pub fn default_seed_state() -> AppState {
                     "Shipped an options analytical arsenal leveraging **functional domain modelling**, reduced turnaround time for new tools by **10x.**",
                     "Maintain a generic **stream-processing** system to ingest, clean, transform and aggregate data following the Medallion architecture.",
                     "Pioneered the implementation of a **bitemporal** binary wire transfer protocol that focuses on efficiency and the ability to time travel.",
-                    "**Utilized**: Python, Rust, Kafka, Delta Lake, Protobuf, Arrow, DuckDB, PostgreSQL",
+                    "**Utilized**: Python, Rust, Kafka, DeltaLake, Protobuf, Arrow, DuckDB, PostgreSQL",
                 ]
                 .join("\n"),
             },
@@ -118,8 +118,7 @@ pub fn default_seed_state() -> AppState {
                     "Spearhead the design and development of core option pricing datasets & processes with **>$10M/yr** estimated materiality.",
                     "Rearchitected of a volatility path dynamics visualization dashboard, making it **8x** faster and **10x** more resource efficient.",
                     "Coordinated collaboration across 3 teams and 10+ engineers to integrate exotic options pricing & risks into existing trading systems.",
-                    "Automated, standardized and documented team support & operational procedures, saving 20 engr hrs / week.",
-                    "**Utilized**: Python, Rust, Java, Kafka, Delta Lake, gRPC/Protobuf, Arrow, Flight, Redis",
+                    "**Utilized**: Python, Rust, Java, Kafka, DeltaLake, gRPC/Protobuf, Arrow, Flight, Redis",
                 ]
                 .join("\n"),
             },

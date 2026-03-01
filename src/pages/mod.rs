@@ -69,10 +69,6 @@ impl Component for Home {
             HomeMsg::Print => {
                 if let Some(window) = window() {
                     scroll_print_view_to_top(&window);
-                    if exceeds_single_page_estimate() {
-                        let _ = window
-                            .alert_with_message("Warning - resumes typically is 1-page long!");
-                    }
                     let _ = window.print();
                 }
             }
@@ -187,24 +183,4 @@ fn scroll_print_view_to_top(window: &web_sys::Window) {
             preview.set_scroll_top(0);
         }
     }
-}
-
-fn exceeds_single_page_estimate() -> bool {
-    let Some(window) = window() else {
-        return false;
-    };
-    let Some(document) = window.document() else {
-        return false;
-    };
-    let Some(rusume) = document.get_element_by_id("rusume") else {
-        return false;
-    };
-    let Ok(rusume) = rusume.dyn_into::<web_sys::HtmlElement>() else {
-        return false;
-    };
-
-    let unscaled_height_px = f64::from(rusume.scroll_height());
-    let print_scale = 0.7;
-    let printable_one_page_height_px = 960.0;
-    (unscaled_height_px * print_scale) > printable_one_page_height_px
 }
