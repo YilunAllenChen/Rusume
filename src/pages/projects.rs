@@ -198,7 +198,7 @@ pub fn view_project(props: &Props) -> Html {
         .collect::<Html>();
     html! {
         <>
-        <h5 class={SECTION_HEADER_CLASS}> {"Projects"} </h5>
+        <h5 class={SECTION_HEADER_CLASS}> {"Personal Projects"} </h5>
         <div class="m-2 flex flex-col space-y-[0.5]">
             {projects}
         </div>

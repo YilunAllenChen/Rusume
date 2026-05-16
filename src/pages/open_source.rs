@@ -88,7 +88,7 @@ pub fn open_source_controller(props: &OpenSourceControllerProps) -> Html {
     html! {
         <>
             <div class={INPUT_SECTION_ROW_CLASS}>
-                <h5 class={INPUT_SECTION_CLASS}> {"Open Source"} </h5>
+                <h5 class={INPUT_SECTION_CLASS}> {"Select Open Source"} </h5>
                 <button
                     class={ADD_BUTTON_CLASS}
                     onclick={add_open_source}
@@ -166,7 +166,7 @@ pub fn view_open_source(props: &Props) -> Html {
         .collect::<Html>();
     html! {
         <>
-            <h5 class={SECTION_HEADER_CLASS}> {"Open Source"} </h5>
+            <h5 class={SECTION_HEADER_CLASS}> {"Select Open Source"} </h5>
             <div class="mx-2 my-2 flex flex-wrap">
                 {open_sources}
             </div>

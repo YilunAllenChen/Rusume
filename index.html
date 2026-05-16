@@ -26,6 +26,41 @@
 			</div>
 		</div>
 	</div>
+  <script>
+    (function () {
+      var CLIP_W = 816;
+      var CLIP_H = 1056;
+      var PADDING = 32; // breathing room on sides
+
+      function updateScale() {
+        var area = document.getElementById('preview-scroll-area');
+        var clip = document.querySelector('.preview-paper-clip');
+        var paper = document.querySelector('.preview-paper');
+        if (!area || !clip || !paper) return;
+
+        var available = area.clientWidth - PADDING;
+        var scale = available < CLIP_W ? available / CLIP_W : 1;
+
+        clip.style.width = (CLIP_W * scale) + 'px';
+        clip.style.minHeight = (CLIP_H * scale) + 'px';
+        paper.style.transform = 'scale(' + (0.7 * scale) + ')';
+      }
+
+      function init() {
+        if (!document.querySelector('.preview-paper-clip')) {
+          setTimeout(init, 50);
+          return;
+        }
+        updateScale();
+        new ResizeObserver(updateScale).observe(
+          document.getElementById('preview-scroll-area')
+        );
+      }
+
+      init();
+    })();
+  </script>
+
 </body>
 
 </html>

@@ -135,8 +135,8 @@ impl Component for Home {
         };
 
         html! {
-            <div class="w-screen h-screen flex">
-                <aside class="hidden md:flex md:flex-col resize-x min-w-[31rem] no-print sidebar-shell">
+            <div class="w-screen min-h-screen flex flex-col xl:flex-row xl:h-screen">
+                <aside class="flex flex-col order-2 xl:order-1 xl:w-[30%] xl:max-w-[800px] xl:min-w-[24rem] xl:h-screen no-print sidebar-shell">
                     <div class="sidebar-header">
                         <div>
                             <div class="sidebar-kicker">{"Rusume"}</div>
@@ -154,16 +154,18 @@ impl Component for Home {
                         <OpenSourceController value={self.state.open_sources.clone()} on_change={open_source_cb} />
                     </div>
                 </aside>
-                <div id="preview-scroll-area" class="flex-1 bg-slate-100 overflow-scroll">
+                <div id="preview-scroll-area" class="order-1 xl:order-2 xl:flex-1 bg-slate-100 overflow-auto">
                     <div class="preview-stage">
-                        <div id="rusume" class="preview-paper">
-                            <div class="font-['Arial'] text-lg tracking-normal p-10">
-                                <BasicViewer basic={self.state.basic.clone()} />
-                                <SkillViewer skills={self.state.skills.clone()} />
-                                <ExperienceViewer experiences={self.state.experiences.clone()} />
-                                <ProjectViewer projects={self.state.projects.clone()} />
-                                <OpenSourceViewer open_sources={self.state.open_sources.clone()} />
-                                <EducationViewer educations={self.state.educations.clone()} />
+                        <div class="preview-paper-clip">
+                            <div id="rusume" class="preview-paper">
+                                <div class="font-['Arial'] text-lg tracking-normal p-10">
+                                    <BasicViewer basic={self.state.basic.clone()} />
+                                    <SkillViewer skills={self.state.skills.clone()} />
+                                    <ExperienceViewer experiences={self.state.experiences.clone()} />
+                                    <ProjectViewer projects={self.state.projects.clone()} />
+                                    <OpenSourceViewer open_sources={self.state.open_sources.clone()} />
+                                    <EducationViewer educations={self.state.educations.clone()} />
+                                </div>
                             </div>
                         </div>
                     </div>

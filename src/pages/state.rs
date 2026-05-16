@@ -63,40 +63,26 @@ pub fn default_seed_state() -> AppState {
                 gpa: "3.86 / 4.0".to_string(),
             },
         ],
-        skills: vec![
-            SkillCategory {
-                category: "Programming".to_string(),
-                skills: "Python, Rust, Java, C++, Gleam, JavaScript, Lua, Haskell, OCaml, Go".to_string(),
-            },
-            SkillCategory {
-                category: "Technologies".to_string(),
-                skills: "Git, Kafka, DeltaLake, Redis, gRPC/Protobuf, Docker, Arrow, SQL, Tailwind, ArgoCD, Neovim".to_string(),
-            },
-            SkillCategory {
-                category: "The Softs".to_string(),
-                skills: "Leadership, Evidence-based Entrepreneurship, Project Management, Public Speaking".to_string(),
-            },
-        ],
+        skills: vec![],
         experiences: vec![
             Experience {
                 employer: "DRW".to_string(),
                 team: Some("Cumberland / FICC Options".to_string()),
                 title: "Head of Tools Engineering".to_string(),
-                dates: "2025/01 - Present".to_string(),
+                dates: "2025.01 - Present".to_string(),
                 roles: vec![RolePeriod {
                     title: "Head of Tools Engineering".to_string(),
-                    dates: "2025/01 - Present".to_string(),
+                    dates: "2025.01 - Present".to_string(),
                     location: "Chicago, IL".to_string(),
                 }],
                 location: "Chicago, IL".to_string(),
                 description: [
-                    "Lead, manage and grow a **global front office team of 10 engineers**, providing direct desk service and a central platform.",
-                    "Standardize, document and optimize team operations, boosting engineer productivy by lowering team support burden by **80%**.",
-                    "Tactically **allocate team resources** towards strategic initiatives and tech debt elimination, deprecated 95% legacy pipelines.",
-                    "Push for adoption of cutting-edge technologies like ruff, uv, ty, Claude Code, Codex, n8n to continuously improve platform offerings.",
-                    "Design, implement and own an **AI-native** software infrastructrue platform traders confidently leverage in production trading.",
-                    "Own a versatile, ergonomic, high performance options analytics & trading tools library, used by 60+ traders and researchers globally.",
-                    "**Utilized**: Python, Java, C++, Kafka, DeltaLake, FastAPI, Plotly Dash, Kubernetes",
+                    "Lead, manage, and grow a **global team from 4 to 10 quantitative developers**, servicing 10 market making and 8 prop desks.",
+                    "Standardize, document and optimize team operations, boosting engineer productivity by lowering team support burden by **80%**.",
+                    "**Allocate team resources** between strategic initiatives and tech debt elimination, deprecated 95% legacy pipelines.",
+                    "Own an option & portfolio analytics platform, cutting down trader idea-to-prototype turnaround time by 10x.",
+                    "Migrated group toolchain to uv/ruff/ty, cutting CI/lint time by 90% and improving iteration speed for 40 engineers across 3 teams",
+                    "**Stack**: Python, Java, C++, Kafka, DeltaLake, FastAPI, Plotly Dash, Kubernetes",
                 ]
                 .join("\n"),
             },
@@ -104,16 +90,11 @@ pub fn default_seed_state() -> AppState {
                 employer: "DRW".to_string(),
                 team: Some("FICC Options".to_string()),
                 title: "Software Engineer, Senior Software Engineer".to_string(),
-                dates: "2022/07 - 2025/01".to_string(),
+                dates: "2022.07 - 2025.01".to_string(),
                 roles: vec![
                     RolePeriod {
-                        title: "Software Developer, Senior Software Engineer".to_string(),
-                        dates: "2022/07 - 2025/01".to_string(),
-                        location: "Chicago, IL".to_string(),
-                    },
-                    RolePeriod {
-                        title: "Software Developer Intern".to_string(),
-                        dates: "2021/06 - 2021/08".to_string(),
+                        title: "Senior Software Engineer (promoted from SDE, Jul 2024)".to_string(),
+                        dates: "2022.07 - 2025.01".to_string(),
                         location: "Chicago, IL".to_string(),
                     },
                 ],
@@ -121,12 +102,30 @@ pub fn default_seed_state() -> AppState {
                 description: [
                     "Own, develop and manage the **streaming data platform** for both historical and live use cases, used by >200 systems worldwide.",
                     "Maintain a generic **stream-processing** system to ingest, clean, transform and aggregate data following the Medallion architecture.",
-                    "Pioneered the implementation of a **bitemporal** binary wire transfer protocol that focuses on efficiency and the ability to time travel.",
-                    "Shipped an options analytical arsenal leveraging **functional domain modelling**, reduced turnaround time for new tools by **10x.**",
+                    "Pioneered the implementation of a **bitemporal** binary streaming protocol that focuses on efficiency and the ability to time travel.",
                     "Spearhead the design and development of core option pricing datasets & processes with **>$10M/yr** estimated materiality.",
-                    "Rearchitected of a volatility dynamics computation & visualization pipeline, making it **8x** faster and **10x** more resource efficient.",
+                    "Rearchitected a volatility dynamics computation & visualization pipeline, making it **8x** faster and **10x** more resource efficient.",
                     "Coordinated collaboration across 3 teams and 10+ engineers to integrate exotic options pricing & risks into existing trading systems.",
-                    "**Utilized**: Python, Rust, Java, Kafka, DeltaLake, gRPC/Protobuf, Arrow, DuckDB, PostgreSQL, Presto/Trino",
+                    "**Stack**: Python, Rust, Java, Kafka, DeltaLake, gRPC/Protobuf, Arrow, DuckDB, PostgreSQL", ]
+                .join("\n"),
+            },
+            Experience {
+                employer: "DRW".to_string(),
+                team: Some("FICC Options".to_string()),
+                title: "Software Developer Intern".to_string(),
+                dates: "2021.06 - 2021.08".to_string(),
+                roles: vec![
+                    RolePeriod {
+                        title: "Software Developer Intern".to_string(),
+                        dates: "2021.06 - 2021.08".to_string(),
+                        location: "Chicago, IL".to_string(),
+                    },
+                ],
+                location: "Chicago, IL".to_string(),
+                description: [
+                    "Built a streaming data system allowing access to live and historical data with the same API and onboarded 4 production datasets.",
+                    "Designed and built a dashboard to monitor and manage it, speeding up onboarding by 5x",
+                    "**Stack**: Python, Kafka, Presto/Trino",
                 ]
                 .join("\n"),
             },
@@ -134,16 +133,17 @@ pub fn default_seed_state() -> AppState {
                 employer: "Uber Advanced Technology Group".to_string(),
                 team: Some("Platform Validation".to_string()),
                 title: "Software Engineering Intern".to_string(),
-                dates: "2020/05 - 2020/07".to_string(),
+                dates: "2020.05 - 2020.07".to_string(),
                 roles: vec![RolePeriod {
                     title: "Software Engineering Intern".to_string(),
-                    dates: "2020/05 - 2020/07".to_string(),
+                    dates: "2020.05 - 2020.07".to_string(),
                     location: "Atlanta, GA".to_string(),
                 }],
                 location: "Atlanta, GA".to_string(),
                 description: [
-                    "Rearchitected a fleet orchestration system that efficiently schedule the dispatchment of autonomous vehicles for field tests",
-                    "**Utilized**: Python (asyncio), PostgreSQL",
+                    "Rearchitected a fleet orchestration system for autonomous vehicles for field tests, improving availability by 7x",
+                    "Built slack integration with access gating for the system for non-technical staff",
+                    "**Stack**: Python (asyncio), PostgreSQL",
                 ]
                 .join("\n"),
             },
@@ -151,42 +151,36 @@ pub fn default_seed_state() -> AppState {
                 employer: "Georgia Institute of Technology".to_string(),
                 team: Some("GRITS Lab".to_string()),
                 title: "Robotics Research Assistant".to_string(),
-                dates: "2019/05 - 2022/05".to_string(),
+                dates: "2019.05 - 2022.05".to_string(),
                 roles: vec![RolePeriod {
                     title: "Robotics Research Assistant".to_string(),
-                    dates: "2019/05 - 2022/05".to_string(),
+                    dates: "2019.05 - 2022.05".to_string(),
                     location: "Atlanta, GA".to_string(),
                 }],
                 location: "Atlanta, GA".to_string(),
                 description: [
                     "Designed and built hardware, firmware and software for various robotics systems. Examples: [Slothbot](https://atlantabg.org/conservation-research/look-up-its-slothbot/), [Brushbot v2](https://github.com/YilunAllenChen/BrushBot)",
                     "Revamped and optimized a giga-scale urban traffic simulation testbed that backs [the GreenEVT paper](https://arxiv.org/pdf/2305.12722)",
-                    "**Utilized**: Python, ROS, Gazebo, Embedded C++, Autodesk Eagle",
+                    "**Stack**: Python, ROS, Gazebo, Embedded C++, Autodesk Eagle",
                 ].join("\n"),
             }
         ],
         projects: vec![
             Project {
                 name: "Incrementars".to_string(),
-                description: "Incremental / self-adapting computing framework for Rust.".to_string(),
+                description: "Adapton-like incremental / self-adapting computing framework for Rust.".to_string(),
                 technologies: "Rust".to_string(),
                 url: Some("https://github.com/YilunAllenChen/incrementars".to_string()),
             },
             Project {
-                name: "Museum of Code".to_string(),
-                description: "Educational web app caputuring the beauty of programming.".to_string(),
-                technologies: "Rust".to_string(),
-                url: Some("https://yilunallenchen.github.io/museum_of_code/".to_string()),
-            },
-            Project {
                 name: "Rusume".to_string(),
-                description: "Real-time resume builder that was used to craft this very resume".to_string(),
+                description: "WASM resume builder with live preview".to_string(),
                 technologies: "Rust".to_string(),
                 url: Some("https://yilunallenchen.github.io/Rusume/#/".to_string()),
             },
             Project {
                 name: "Exchange Simulator".to_string(),
-                description: "FIFO matching engine with materialized market impacts.".to_string(),
+                description: "FIFO matching engine game with bots, news feeds and leaderboard.".to_string(),
                 technologies: "Python, Rust, TypeScript".to_string(),
                 url: Some("https://tradingsim.allenchen.dev/".to_string()),
             },
@@ -199,35 +193,27 @@ pub fn default_seed_state() -> AppState {
             },
             Project {
                 name: "DaVinci Ergo Lab".to_string(),
-                description: "Ergonomic split mechanical keyboards built from the ground up. ".to_string(),
+                description: "Affordable ergonomic split mechanical keyboards (30 customers)".to_string(),
                 technologies: "Python, C++".to_string(),
                 url: Some("https://davinci-ergo-lab.com/".to_string()),
-            },
-            Project {
-                name: "PDE-based Anti-Aliasing".to_string(),
-                description: "Enhance computer graphics with partial differential equations. ".to_string(),
-                technologies: "Python".to_string(),
-                url: Some("https://github.com/YilunAllenChen/Dowwin_legacy/".to_string()),
-            },
-            Project {
-                name: "SDC in GTAV".to_string(),
-                description: "Self-driving cars in Grant Theft Auto V.".to_string(),
-                technologies: "Python, C++".to_string(),
-                url: Some("https://github.com/YilunAllenChen/GTAV_SDC/".to_string()),
             },
         ],
         open_sources: vec![
             OpenSource {
-                name: "kafka-rust #222".to_string(),
+                name: "kafka-rust #222: seek".to_string(),
                 url: "https://github.com/kafka-rust/kafka-rust/pull/222".to_string(),
             },
             OpenSource {
-                name: "kafka-rust #223".to_string(),
+                name: "kafka-rust #223: list offsets".to_string(),
                 url: "https://github.com/kafka-rust/kafka-rust/pull/223".to_string(),
             },
             OpenSource {
-                name: "gleam-stdlib #769".to_string(),
+                name: "gleam-stdlib #769: list.max".to_string(),
                 url: "https://github.com/gleam-lang/stdlib/pull/769".to_string(),
+            },
+            OpenSource {
+                name: "ruff #23643: completion ranking".to_string(),
+                url: "https://github.com/astral-sh/ruff/pull/23643".to_string(),
             },
         ],
     }

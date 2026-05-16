@@ -32,11 +32,15 @@
   animation-delay: 1s;
 }
 
+#rusume a {
+  color: #1d4ed8;
+}
+
 .sidebar-shell {
   position: relative;
-  background: radial-gradient(circle at 12% 8%, #1f2937 0%, #0b1220 42%, #060a13 100%);
-  border-right: 1px solid rgba(148, 163, 184, 0.2);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+  background: radial-gradient(circle at 12% 8%, #f1f5f9 0%, #e8eef7 42%, #dde6f2 100%);
+  border-right: 1px solid rgba(100, 116, 139, 0.2);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
 }
 
 .sidebar-shell::before {
@@ -46,10 +50,10 @@
   pointer-events: none;
   background-image: linear-gradient(
       to right,
-      rgba(148, 163, 184, 0.05) 1px,
+      rgba(100, 116, 139, 0.07) 1px,
       transparent 1px
     ),
-    linear-gradient(to bottom, rgba(148, 163, 184, 0.04) 1px, transparent 1px);
+    linear-gradient(to bottom, rgba(100, 116, 139, 0.06) 1px, transparent 1px);
   background-size: 24px 24px;
   opacity: 0.55;
 }
@@ -65,11 +69,11 @@
   padding: 18px 16px 14px;
   background: linear-gradient(
     to bottom,
-    rgba(8, 12, 22, 0.96),
-    rgba(8, 12, 22, 0.78)
+    rgba(241, 245, 249, 0.97),
+    rgba(241, 245, 249, 0.82)
   );
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+  border-bottom: 1px solid rgba(100, 116, 139, 0.2);
 }
 
 .sidebar-kicker {
@@ -77,7 +81,7 @@
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #67e8f9;
+  color: #0891b2;
 }
 
 .sidebar-title {
@@ -85,14 +89,14 @@
   font-size: 23px;
   font-weight: 800;
   line-height: 1.1;
-  color: #f8fafc;
+  color: #0f172a;
 }
 
 .sidebar-subtitle {
   margin-top: 4px;
   font-size: 12px;
   line-height: 1.45;
-  color: #94a3b8;
+  color: #475569;
   max-width: 230px;
 }
 
@@ -110,7 +114,7 @@
   font-weight: 700;
   letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: #bfdbfe;
+  color: #1e40af;
 }
 
 .sidebar-section-row {
@@ -125,8 +129,8 @@
   padding: 12px 16px 6px;
   background: linear-gradient(
     to bottom,
-    rgba(11, 18, 32, 0.95),
-    rgba(11, 18, 32, 0.78)
+    rgba(236, 242, 251, 0.97),
+    rgba(236, 242, 251, 0.82)
   );
   backdrop-filter: blur(6px);
 }
@@ -136,7 +140,7 @@
   margin: 0 2px 10px;
   background: linear-gradient(
     to right,
-    rgba(103, 232, 249, 0.32),
+    rgba(8, 145, 178, 0.3),
     rgba(59, 130, 246, 0.08)
   );
 }
@@ -149,13 +153,13 @@
 .sidebar-textarea {
   width: 100%;
   border-radius: 10px;
-  border: 1px solid rgba(71, 85, 105, 0.9);
-  background: rgba(2, 6, 23, 0.84);
-  color: #e2e8f0;
+  border: 1px solid rgba(148, 163, 184, 0.9);
+  background: rgba(255, 255, 255, 0.9);
+  color: #1e293b;
   font-size: 14px;
   line-height: 1.35;
   outline: none;
-  box-shadow: inset 0 1px 0 rgba(148, 163, 184, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
   transition: border-color 0.18s ease, box-shadow 0.18s ease,
     background-color 0.18s ease;
 }
@@ -172,9 +176,9 @@
 
 .sidebar-input:focus,
 .sidebar-textarea:focus {
-  border-color: rgba(34, 211, 238, 0.95);
-  background: rgba(2, 6, 23, 0.98);
-  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.2);
+  border-color: rgba(8, 145, 178, 0.9);
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.15);
 }
 
 .sidebar-label {
@@ -238,13 +242,24 @@
   padding: 28px 0 48px;
 }
 
+/* Visual-size wrapper — what flex/centering sees. 816 = 1166*0.7, 1056 = 1509*0.7 */
+.preview-paper-clip {
+  position: relative;
+  width: 816px;
+  min-height: 1056px;
+  flex-shrink: 0;
+}
+
 .preview-paper {
-  width: calc(8.5in / 0.7);
-  min-height: calc(11in / 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1166px;
+  min-height: 1509px;
   background: white;
   box-shadow: 0 18px 45px rgba(15, 23, 42, 0.22);
   transform: scale(0.7);
-  transform-origin: top center;
+  transform-origin: top left;
 }
 
 @media print {
@@ -288,19 +303,17 @@
     padding: 0 !important;
   }
 
+  .preview-paper-clip {
+    position: static !important;
+    width: 100% !important;
+    min-height: auto !important;
+  }
+
   .preview-paper {
+    position: static !important;
     width: 100% !important;
     min-height: auto !important;
     transform: none !important;
-    box-shadow: none !important;
-  }
-
-  #rusume {
-    background: white !important;
-    transform: scale(0.7) !important;
-    transform-origin: top left !important;
-    width: 142.8571428571% !important;
-    min-height: auto !important;
     box-shadow: none !important;
   }
 }
