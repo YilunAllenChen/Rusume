@@ -174,7 +174,7 @@ pub fn default_seed_state() -> AppState {
             },
             Project {
                 name: "Rusume".to_string(),
-                description: "WASM resume builder with live preview".to_string(),
+                description: "WASM resume builder with live preview.".to_string(),
                 technologies: "Rust".to_string(),
                 url: Some("https://yilunallenchen.github.io/Rusume/#/".to_string()),
             },
@@ -193,7 +193,7 @@ pub fn default_seed_state() -> AppState {
             },
             Project {
                 name: "DaVinci Ergo Lab".to_string(),
-                description: "Affordable ergonomic split mechanical keyboards (30 customers)".to_string(),
+                description: "Affordable ergonomic split mechanical keyboards (30 customers).".to_string(),
                 technologies: "Python, C++".to_string(),
                 url: Some("https://davinci-ergo-lab.com/".to_string()),
             },
