@@ -27,10 +27,6 @@ mod skills;
 use skills::SkillController;
 use skills::SkillViewer;
 
-mod open_source;
-use open_source::OpenSourceController;
-use open_source::OpenSourceViewer;
-
 mod state;
 use state::load_state_from_url;
 use state::write_state_to_url;
@@ -47,7 +43,6 @@ pub enum HomeMsg {
     UpdateExperienceSection(Vec<Experience>),
     UpdateProjectSection(Vec<projects::Project>),
     UpdateSkillSection(Vec<skills::SkillCategory>),
-    UpdateOpenSourceSection(Vec<open_source::OpenSource>),
 }
 
 #[derive(Properties, PartialEq)]
@@ -102,12 +97,6 @@ impl Component for Home {
                     state_changed = true;
                 }
             }
-            HomeMsg::UpdateOpenSourceSection(open_sources) => {
-                if self.state.open_sources != open_sources {
-                    self.state.open_sources = open_sources;
-                    state_changed = true;
-                }
-            }
         }
 
         if state_changed {
@@ -123,7 +112,6 @@ impl Component for Home {
         let project_cb = ctx.link().callback(HomeMsg::UpdateProjectSection);
         let basic_cb = ctx.link().callback(HomeMsg::UpdateBasicSection);
         let skill_cb = ctx.link().callback(HomeMsg::UpdateSkillSection);
-        let open_source_cb = ctx.link().callback(HomeMsg::UpdateOpenSourceSection);
 
         let print_button = html! {
             <button
@@ -140,18 +128,16 @@ impl Component for Home {
                     <div class="sidebar-header">
                         <div>
                             <div class="sidebar-kicker">{"Rusume"}</div>
-                            <h2 class="sidebar-title">{"Resume Editor"}</h2>
-                            <p class="sidebar-subtitle">{"Craft and tune your resume with live preview."}</p>
+                            <h2 class="sidebar-title">{"Live Resume Editor"}</h2>
                         </div>
                         {print_button.clone()}
                     </div>
                     <div class="sidebar-scroll">
                         <BasicController value={self.state.basic.clone()} on_change={basic_cb}/>
-                        <SkillController value={self.state.skills.clone()} on_change={skill_cb} />
                         <EducationController value={self.state.educations.clone()} on_change={education_cb}/>
                         <ExperienceController value={self.state.experiences.clone()} on_change={experience_cb} />
                         <ProjectController value={self.state.projects.clone()} on_change={project_cb} />
-                        <OpenSourceController value={self.state.open_sources.clone()} on_change={open_source_cb} />
+                        <SkillController value={self.state.skills.clone()} on_change={skill_cb} />
                     </div>
                 </aside>
                 <div id="preview-scroll-area" class="order-1 xl:order-2 xl:flex-1 bg-slate-100 overflow-auto">
@@ -160,10 +146,9 @@ impl Component for Home {
                             <div id="rusume" class="preview-paper">
                                 <div class="font-['Arial'] text-lg tracking-normal p-10">
                                     <BasicViewer basic={self.state.basic.clone()} />
-                                    <SkillViewer skills={self.state.skills.clone()} />
                                     <ExperienceViewer experiences={self.state.experiences.clone()} />
                                     <ProjectViewer projects={self.state.projects.clone()} />
-                                    <OpenSourceViewer open_sources={self.state.open_sources.clone()} />
+                                    <SkillViewer skills={self.state.skills.clone()} />
                                     <EducationViewer educations={self.state.educations.clone()} />
                                 </div>
                             </div>

@@ -6,9 +6,8 @@ use web_sys::{window, UrlSearchParams};
 use super::basic::Basic;
 use super::education::Education;
 use super::experiences::Experience;
-use super::experiences::RolePeriod;
-use super::open_source::OpenSource;
 use super::projects::Project;
+use super::projects::ProjectLink;
 use super::skills::SkillCategory;
 
 pub const STATE_VERSION: u8 = 1;
@@ -27,8 +26,6 @@ pub struct AppState {
     pub experiences: Vec<Experience>,
     #[serde(default)]
     pub projects: Vec<Project>,
-    #[serde(default)]
-    pub open_sources: Vec<OpenSource>,
 }
 
 fn default_state_version() -> u8 {
@@ -63,50 +60,51 @@ pub fn default_seed_state() -> AppState {
                 gpa: "3.86 / 4.0".to_string(),
             },
         ],
-        skills: vec![],
+        skills: vec![
+            SkillCategory {
+                category: "Languages".to_string(),
+                skills: "Python, Rust, Java, C++, TypeScript, Gleam".to_string(),
+            },
+            SkillCategory {
+                category: "Technologies".to_string(),
+                skills: "Kafka, DeltaLake, PostgreSQL, gRPC/Protobuf, Kubernetes, FastAPI, Plotly Dash, FastMCP".to_string(),
+            },
+        ],
         experiences: vec![
             Experience {
                 employer: "DRW".to_string(),
                 team: Some("Cumberland / FICC Options".to_string()),
                 title: "Head of Tools Engineering".to_string(),
                 dates: "2025.01 - Present".to_string(),
-                roles: vec![RolePeriod {
-                    title: "Head of Tools Engineering".to_string(),
-                    dates: "2025.01 - Present".to_string(),
-                    location: "Chicago, IL".to_string(),
-                }],
                 location: "Chicago, IL".to_string(),
                 description: [
-                    "Lead, manage, and grow a **global team from 4 to 10 quantitative developers**, servicing 10 market making and 8 prop desks.",
-                    "Standardize, document and optimize team operations, boosting engineer productivity by lowering team support burden by **80%**.",
-                    "**Allocate team resources** between strategic initiatives and tech debt elimination, deprecated 95% legacy pipelines.",
-                    "Own an option & portfolio analytics platform, cutting down trader idea-to-prototype turnaround time by 10x.",
-                    "Migrated group toolchain to uv/ruff/ty, cutting CI/lint time by 90% and improving iteration speed for 40 engineers across 3 teams",
-                    "**Stack**: Python, Java, C++, Kafka, DeltaLake, FastAPI, Plotly Dash, Kubernetes",
+                    "Define team engineering philosophy emphasizing simplicity, explicit contracts, functional style, and strong domain modeling.",
+                    "Drive hiring to scale team from 4 to 10 quantitative developers globally, including sourcing, interviewing and closing candidates.",
+                    "Own team roadmap across 10 market making and 8 prop desks, balancing desk requests against long-term platform investments.",
+                    "Established **Forward Deployment** as a flagship team practice, embedding engineers with trading desks to solve idiosyncratic problems and feed insights back to the central platform; 9 deployments, consistently high desk satisfaction.",
+                    "Standardized incident response and operational runbooks, cutting support time **80%** and freeing engineers for product work.",
+                    "Retire **95%** legacy business-critical systems, unlocking feature development that legacy architecture made impossible.",
+                    "Own an option & portfolio analytics platform, cutting down trader idea-to-prototype turnaround time from ~week to hours.",
+                    "**Stack**: Python, Java, C++, Kafka, TypeScript, DeltaLake, PostgreSQL, Protobuf, FastAPI, Plotly Dash, Kubernetes, FastMCP"
                 ]
                 .join("\n"),
             },
             Experience {
                 employer: "DRW".to_string(),
                 team: Some("FICC Options".to_string()),
-                title: "Software Engineer, Senior Software Engineer".to_string(),
+                title: "Senior Software Engineer".to_string(),
                 dates: "2022.07 - 2025.01".to_string(),
-                roles: vec![
-                    RolePeriod {
-                        title: "Senior Software Engineer (promoted from SDE, Jul 2024)".to_string(),
-                        dates: "2022.07 - 2025.01".to_string(),
-                        location: "Chicago, IL".to_string(),
-                    },
-                ],
                 location: "Chicago, IL".to_string(),
                 description: [
+                    "Joined as SDE, promoted to Senior in Jul 2024 within 2 years.",
                     "Own, develop and manage the **streaming data platform** for both historical and live use cases, used by >200 systems worldwide.",
-                    "Maintain a generic **stream-processing** system to ingest, clean, transform and aggregate data following the Medallion architecture.",
-                    "Pioneered the implementation of a **bitemporal** binary streaming protocol that focuses on efficiency and the ability to time travel.",
+                    "Maintain a flexible **stream-processing** system to ingest, clean, transform and aggregate data following the Medallion architecture.",
+                    "Designed and implemented a **bitemporal** binary streaming protocol that focuses on efficiency and the ability to time travel.",
                     "Spearhead the design and development of core option pricing datasets & processes with **>$10M/yr** estimated materiality.",
                     "Rearchitected a volatility dynamics computation & visualization pipeline, making it **8x** faster and **10x** more resource efficient.",
                     "Coordinated collaboration across 3 teams and 10+ engineers to integrate exotic options pricing & risks into existing trading systems.",
-                    "**Stack**: Python, Rust, Java, Kafka, DeltaLake, gRPC/Protobuf, Arrow, DuckDB, PostgreSQL", ]
+                    "**Stack**: Python, Rust, Java, Kafka, DeltaLake, gRPC/Protobuf, Arrow, DuckDB, PostgreSQL",
+                ]
                 .join("\n"),
             },
             Experience {
@@ -114,18 +112,11 @@ pub fn default_seed_state() -> AppState {
                 team: Some("FICC Options".to_string()),
                 title: "Software Developer Intern".to_string(),
                 dates: "2021.06 - 2021.08".to_string(),
-                roles: vec![
-                    RolePeriod {
-                        title: "Software Developer Intern".to_string(),
-                        dates: "2021.06 - 2021.08".to_string(),
-                        location: "Chicago, IL".to_string(),
-                    },
-                ],
                 location: "Chicago, IL".to_string(),
                 description: [
                     "Built a streaming data system allowing access to live and historical data with the same API and onboarded 4 production datasets.",
-                    "Designed and built a dashboard to monitor and manage it, speeding up onboarding by 5x",
-                    "**Stack**: Python, Kafka, Presto/Trino",
+                    "Designed and built a dashboard to monitor and manage the platform, speeding up new dataset onboarding by 5x",
+                    "**Stack**: Python, Kafka, CephS3, Presto/Trino, Typescript",
                 ]
                 .join("\n"),
             },
@@ -134,15 +125,10 @@ pub fn default_seed_state() -> AppState {
                 team: Some("Platform Validation".to_string()),
                 title: "Software Engineering Intern".to_string(),
                 dates: "2020.05 - 2020.07".to_string(),
-                roles: vec![RolePeriod {
-                    title: "Software Engineering Intern".to_string(),
-                    dates: "2020.05 - 2020.07".to_string(),
-                    location: "Atlanta, GA".to_string(),
-                }],
                 location: "Atlanta, GA".to_string(),
                 description: [
-                    "Rearchitected a fleet orchestration system for autonomous vehicles for field tests, improving availability by 7x",
-                    "Built slack integration with access gating for the system for non-technical staff",
+                    "Rearchitected a field-testing autonomous vehicles fleet orchestrator with improved scheduling algorithm, boosting availability by 7x",
+                    "Built slack integration with strict access gating for the system for non-technical staff",
                     "**Stack**: Python (asyncio), PostgreSQL",
                 ]
                 .join("\n"),
@@ -152,11 +138,6 @@ pub fn default_seed_state() -> AppState {
                 team: Some("GRITS Lab".to_string()),
                 title: "Robotics Research Assistant".to_string(),
                 dates: "2019.05 - 2022.05".to_string(),
-                roles: vec![RolePeriod {
-                    title: "Robotics Research Assistant".to_string(),
-                    dates: "2019.05 - 2022.05".to_string(),
-                    location: "Atlanta, GA".to_string(),
-                }],
                 location: "Atlanta, GA".to_string(),
                 description: [
                     "Designed and built hardware, firmware and software for various robotics systems. Examples: [Slothbot](https://atlantabg.org/conservation-research/look-up-its-slothbot/), [Brushbot v2](https://github.com/YilunAllenChen/BrushBot)",
@@ -171,49 +152,59 @@ pub fn default_seed_state() -> AppState {
                 description: "Adapton-like incremental / self-adapting computing framework for Rust.".to_string(),
                 technologies: "Rust".to_string(),
                 url: Some("https://github.com/YilunAllenChen/incrementars".to_string()),
+                links: vec![],
             },
             Project {
                 name: "Rusume".to_string(),
-                description: "WASM resume builder with live preview.".to_string(),
+                description: "WASM resume builder with live preview and url state persistence.".to_string(),
                 technologies: "Rust".to_string(),
                 url: Some("https://yilunallenchen.github.io/Rusume/#/".to_string()),
+                links: vec![],
             },
             Project {
                 name: "Exchange Simulator".to_string(),
                 description: "FIFO matching engine game with bots, news feeds and leaderboard.".to_string(),
                 technologies: "Python, Rust, TypeScript".to_string(),
                 url: Some("https://tradingsim.allenchen.dev/".to_string()),
+                links: vec![],
             },
             Project {
                 name: "Iterr".to_string(),
-                description:
-                    "Rust-style iterator pattern in python: lazy, minimal, and type safe all the way.".to_string(),
+                description: "Rust-style iterator pattern in python: lazy, minimal, and type safe all the way.".to_string(),
                 technologies: "Python".to_string(),
                 url: Some("https://github.com/YilunAllenChen/iterr".to_string()),
+                links: vec![],
             },
             Project {
                 name: "DaVinci Ergo Lab".to_string(),
                 description: "Affordable ergonomic split mechanical keyboards (30 customers).".to_string(),
                 technologies: "Python, C++".to_string(),
                 url: Some("https://davinci-ergo-lab.com/".to_string()),
+                links: vec![],
             },
-        ],
-        open_sources: vec![
-            OpenSource {
-                name: "kafka-rust #222: seek".to_string(),
-                url: "https://github.com/kafka-rust/kafka-rust/pull/222".to_string(),
-            },
-            OpenSource {
-                name: "kafka-rust #223: list offsets".to_string(),
-                url: "https://github.com/kafka-rust/kafka-rust/pull/223".to_string(),
-            },
-            OpenSource {
-                name: "gleam-stdlib #769: list.max".to_string(),
-                url: "https://github.com/gleam-lang/stdlib/pull/769".to_string(),
-            },
-            OpenSource {
-                name: "ruff #23643: completion ranking".to_string(),
-                url: "https://github.com/astral-sh/ruff/pull/23643".to_string(),
+            Project {
+                name: "Select Open Source".to_string(),
+                description: "".to_string(),
+                technologies: "Rust, Gleam".to_string(),
+                url: None,
+                links: vec![
+                    ProjectLink {
+                        name: "kafka-rust: seek".to_string(),
+                        url: "https://github.com/kafka-rust/kafka-rust/pull/222".to_string(),
+                    },
+                    ProjectLink {
+                        name: "kafka-rust: list offsets".to_string(),
+                        url: "https://github.com/kafka-rust/kafka-rust/pull/223".to_string(),
+                    },
+                    ProjectLink {
+                        name: "gleam-stdlib: list.max".to_string(),
+                        url: "https://github.com/gleam-lang/stdlib/pull/769".to_string(),
+                    },
+                    ProjectLink {
+                        name: "ruff: completion ranking".to_string(),
+                        url: "https://github.com/astral-sh/ruff/pull/23643".to_string(),
+                    },
+                ],
             },
         ],
     }
